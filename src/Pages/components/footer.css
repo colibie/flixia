@@ -1,0 +1,60 @@
+.footer {
+    height: 220px;
+    background-color: rgb(37, 33, 33);
+    color: whitesmoke;
+    padding-top: 40px;
+    width: 95%;
+    margin-left: 2.5%;
+    box-sizing: border-box;
+    box-shadow: 1px 11px 9px 11px darkgrey;
+    padding-left: 45px;
+}
+
+.equal {
+    width: 50%;
+    padding-top: 20px
+}
+
+ul {
+    list-style-type: none;
+}
+
+.big-box {
+    align-content: center
+}
+
+.box {
+    list-style-type: none;
+    display: list-item;
+    float: left;
+}
+
+.box1 {
+    text-align: left;
+    width: 20%;
+    border-right: 1px solid rgb(67, 65, 63);
+    padding-left: 20px;
+    float: left;
+}
+
+.box2 {
+    text-align: left;
+    float: left;
+    padding-left: 20px;
+    width: 30%;
+    border-right: 1px solid rgb(67, 65, 63);
+}   	
+
+.sign {
+    text-align: center;
+    margin-top: 10px;
+    float: left
+}
+
+
+.contact {
+    float: right;
+    margin-top: -71px;
+    line-height: 17px;
+    text-align: center;
+}

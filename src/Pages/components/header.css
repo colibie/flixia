@@ -1,0 +1,52 @@
+.main {
+    background-color: rgb(16, 15, 15);
+    opacity: 0.7;
+    color: whitesmoke;
+    height: 50px;
+    width: 100%;
+    padding: 5px 0 5px 10px;
+    position: fixed;
+    overflow: hidden;
+}
+
+
+.menu {
+    float: right;
+    color: whitesmoke;
+    padding: 0 20px 5px auto;
+    overflow: hidden;
+    width: 80%;
+}
+
+.left {
+    width: 20%;
+    float: left
+}
+
+.right {
+    float: right;
+    line-height: 3em;
+    padding-right: 40px;
+    font-size: 1.1em;
+    font-weight: bold
+}
+
+home.data {
+    height: 100%
+}
+
+.isearch {
+    border-radius: 4px;
+    width: 30%;
+    padding: 5px;
+    margin-right: 60px;
+    height: 35px;
+    margin-top: 2.5px;
+    font-weight: bolder
+
+}
+
+.hbtn {
+    visibility: hidden;
+    cursor: none;
+}
