@@ -40,3 +40,6 @@ node_modules/
 # all test and old files #
 *test.*
 Old*/
+
+# ignore app.js #
+*app.js
