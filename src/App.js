@@ -19,5 +19,3 @@ class App extends Component {
 }
 
 export default App;
-
-// npm run start
