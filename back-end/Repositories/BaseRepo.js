@@ -15,8 +15,11 @@ BaseRepo.prototype.add = function(data, callback){
     this.model.create(data, callback);
 }
 
-BaseRepo.prototype.getById = function(id, callback){
-    this.model.findById(id, callback);
+BaseRepo.prototype.getById = function(id, structure, param, param1, callback){
+    this.model.findById(id, structure).
+    populate(param).
+    populate(param1).
+    exec(callback);
 }
 
 BaseRepo.prototype.delete = function(options, callback){

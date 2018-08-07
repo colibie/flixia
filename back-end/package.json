@@ -12,6 +12,7 @@
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "joi": "^13.5.2",
+    "joi-errors-for-forms": "^0.2.6",
     "mongoose": "^5.1.6",
     "morgan": "~1.9.0",
     "pug": "2.0.0-beta11"
