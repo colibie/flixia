@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var trailersRouter = require('./routes/trailer');
+var trailersRouter = require('./routes/trailerRoute');
 
 var app = express();
 
@@ -31,6 +31,10 @@ app.use(function(req, res, next){
   }
   next(); //allows the next middleware to execute
 });
+
+//connecting to mongoose database
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/nmdb');
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

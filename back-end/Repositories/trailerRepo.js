@@ -1,6 +1,5 @@
-//for instantiating new instances of the trailer object
 var model = require('../Models/trailerModel');
-var baseRepo = require('../Repository/baseRepo');
+var baseRepo = require('../Repositories/BaseRepo'); //contains the content of module.exports
 
 function trailerRepo(){
 

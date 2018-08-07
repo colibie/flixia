@@ -1,41 +1,32 @@
-// this is where all data fetching happens
 var service = require('../Services/trailerService');
 
-exports.addTrailer = function(req, res){
-    var data = {
+exports.add = function(req, res){
+    data = {
         title: req.body.title,
         description: req.body.description,
         rating: req.body.rating,
         year: req.body.year,
         productionCompany: req.body.productionCompany,
         duration: req.body.duration,
-        categories: req.body.categories,
-        comments: req.body.comments
-    };
-    return service.addTrailer(req, res, data);
+    }
+    return service.add(req, res, data);
 }
 
-exports.getTrailers = function(req, res){
-    return service.getAllTrailers(req, res);
+exports.getAll = function(req, res){
+    return service.getAll(req, res);
 }
 
-exports.deleteTrailer = function(req, res){
+exports.getById = function(req, res){
+    var id = req.params.id;
+    return service.getById(req, res, id);
+}
+
+exports.search = function(req, res){
+    var option = req.query;
+    return service.search(req, res, option);
+}
+
+exports.delete = function(req, res){
     var option = {_id: req.params.id};
-    return service.deleteTrailer(req, res, option);
+    return service.delete(req, res, option);
 }
-
-
-
-
-// exports.getTrailersByParam = function(req, res){
-//     var option = req.query;
-//     return service.getTrailersByParam(req, res, option);
-// }
-
-// exports.updateTrailer = function(req, res){
-//     id = req.params.id;
-//     update = {
-//         time: Date.now(),
-//         TrailerBody: req.body.TrailerBody};
-//     return service.updateTrailer(req, res, id, update);    
-// }

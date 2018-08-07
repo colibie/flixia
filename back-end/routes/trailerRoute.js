@@ -3,14 +3,14 @@ var router = express.Router();
 var trailerController = require('../Controllers/trailerController');
 
 /* GET trailers listing. */
-router.get('/', trailerController.getTrailers);
+router.get('/', trailerController.getAll);
 
-router.get('/:id', trailerController.getTrailerById);
+router.get('/:id', trailerController.getById);
 
-router.post('/add', trailerController.addTrailer);
+router.post('/create', trailerController.add);
 
-router.delete('/delete/:id', trailerController.deleteTrailer);
+router.delete('/delete/:id', trailerController.delete);
 
-// router.put('/update/:id', trailerController.updateTrailer);
+router.get('/search', trailerController.search);
 
 module.exports = router;
