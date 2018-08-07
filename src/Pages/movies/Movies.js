@@ -3,7 +3,7 @@ import '../general_style.css'
 import Header from '../components/header'
 import Footer from '../components/footer';
 import './Movies.css'
-import Card from '../components/card';
+import Cards from '../components/card';
 
 
 const Movies = () => {
@@ -34,7 +34,7 @@ return (
         />
         <div className="container general">
             <h1>checkout our awesome personnels</h1>
-            <Card 
+            <Cards 
                 data={[
                     {
                         key: new Date(),

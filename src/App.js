@@ -6,7 +6,7 @@ import Movies from './Pages/movies/Movies';
 import FAQ from './Pages/faq/FAQ';
 import Celebs from './Pages/celebs/Celebs';
 import Error from './Pages/error/Error';
-
+import Terms_and_Conditions from './Pages/terms/tandc'
 
 class App extends Component {
   render() {
@@ -19,6 +19,7 @@ class App extends Component {
 			<Route path="/faq" component={FAQ} />
 			<Route path="/celebs" component={Celebs} />
 			<Route path="*" component={Error} />
+			<Route path="/terms" component={Terms_and_Conditions} />
 		</Switch>
       </BrowserRouter>
     );

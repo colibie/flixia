@@ -6,6 +6,7 @@ import './home.css';
 import '../general_style.css'
 import PasswordComponent from '../components/password';
 // import Note from '../components/note'
+import GuttersGrid from '../components/cardSet'
 
 
 const Home = () => {
@@ -47,6 +48,7 @@ const Home = () => {
             </span>
             {/* <Note /> */}
             <PasswordComponent />
+            <GuttersGrid />
             <hr />
             <Footer />
         </div>

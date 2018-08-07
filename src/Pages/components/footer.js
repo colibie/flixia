@@ -8,43 +8,49 @@ const Footer = () => {
         <div>
             <div className="footer">
                 <div className="big-box">
-                    <div className="box dem box1 container">
-                        <h1> Lances Consult </h1>
-                        <p>Property consultancy</p>
-                        <p className="sign"> &copy; Copyright 2018 </p>
+                    <div className="box dem box1">
+                        <h1> NMDb </h1>
+                        <p>Nollywood Movie Database</p>
+                        <p className="sign"> &copy; Copyright 2018, All rights reserved </p>
                     </div>
                     <div className="box box2">
                         <div className="equal">
-                            <ul style={{ paddingLeft: 0 adjusted the}}>
-                                <li>Travelers</li>
-                                <li>Travelers</li>
-                                <li>Travelers</li>
-                                <li>Travelers</li>
+                            <ul style={{ paddingLeft: 0, fontWeight: 'bolder'}}>
+                                <li>MOVIES</li>
+                                <li>TV SHOWS</li>
+                                <li>CELEBS</li>
+                                <li>NEWS</li>
                             </ul>
                         </div>
                         <div className="contact">
-                            <li><NavLink to="/"> Home </NavLink></li>
-                            <li><NavLink to="/about"> About Us </NavLink> </li>
-                            <li><NavLink to="/contact"> Contact Us today </NavLink> </li>                   
+                            <li><NavLink to="/about"> About </NavLink></li>
+                            {/* <li><NavLink to="/about"> Contact </NavLink> </li> */}
+                            <li><NavLink to="/termsofservice"> Terms Of Service </NavLink> </li>                   
+                            <li><NavLink to="/privacy"> Privacy Policy </NavLink> </li>                   
                         </div>
                         
                     </div>
                     <div className="box1">
-                        from now on, we come back home here again
-                        <p>
-                            <br />
-                            <br />
-                        </p>
+                        <p><b> FOLLOW US </b></p>
+                        {/* <p> */}
+                            <p> Facebook </p>
+                            <p> Twitter </p>
+                            <p> Instagram </p>
+                            <p> Google </p>
+                        {/* </p> */}
                     </div>
-                    <div className="box2">
-                        Lorem ipsum is where we meet againand decide what happens to solomon grandie,. then we may settle this amicably
+                    <div className="box2 no-box">
+                       <p><b>SUBSCRIBE TO OUR NEWS</b></p>
                         <br />
+                        <p>
+                            Don't miss out on our amazing contents, we keep you up to date
+                        </p>
                         <form>
                             <input type="text"
-                                placeholder="Enter Email"
+                                placeholder="Your Email"
                                 className="subscribe"
                             />
-                            <button className="btn btn-md btn-warning">Subscribe</button>
+                            <button className="btn btn-md btn-warning hidden">Subscribe</button>
                         </form>
                     </div>
                 </div>

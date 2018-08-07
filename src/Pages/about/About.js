@@ -1,9 +1,8 @@
 import React from 'react';
 import '../general_style.css'
 import Header from '../components/header'
-import Card from '../components/card';
 import Footer from '../components/footer';
-
+import GuttersGrid from '../components/cardSet'
 
 const About = () => {
 return (
@@ -33,45 +32,13 @@ return (
         />
         <div className="container general">
             <h1>checkout our awesome personnels</h1>
-            <Card 
-                data={[
-                    {
-                        key: new Date(),
-                        aUrl: '../components/end.jpg',
-                        title: 'the big bad wolf',
-                        descr: "the wolf was very bad"
-                    },
-                    {
-                        key: new Date(),
-                        aUrl: '../components/end.jpg',
-                        title: 'the big bad wolf',
-                        descr: "the wolf was very bad"
-                    },
-                    {
-                        key: new Date(),
-                        aUrl: '../components/end.jpg',
-                        title: 'the big bad wolf',
-                        descr: "the wolf was very bad"
-                    },
-                    {
-                        key: new Date(),
-                        aUrl: '../components/end.jpg',
-                        title: 'the big bad wolf',
-                        descr: "the wolf was very bad"
-                    },                    
-                    {
-                        key: new Date(),
-                        aUrl: '../components/end.jpg',
-                        title: 'the big bad wolf',
-                        descr: "the wolf was very bad"
-                    },
-                ]}
-            />
         </div>
+        <GuttersGrid />
+        <hr />
+        <br/>
         <Footer />
     </div>
 )
 }
 
-// export default '../components/end.jpg';
 export default About;

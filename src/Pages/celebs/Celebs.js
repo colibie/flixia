@@ -1,7 +1,7 @@
 import React from 'react';
 import '../general_style.css'
 import Header from '../components/header';
-import Card from '../components/card';
+import Cards from '../components/card';
 import Footer from '../components/footer';
 
 
@@ -33,7 +33,7 @@ return (
         />
         <div className="container general">
             <h1>checkout our awesome personnels</h1>
-            <Card 
+            <Cards 
                 data={[
                     {
                         key: new Date(),
