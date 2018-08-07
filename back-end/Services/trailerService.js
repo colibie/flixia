@@ -1,13 +1,15 @@
 var repo = require('../Repositories/trailerRepo');
 var baseService = require('../Services/baseService'); //contains the content of module.exports
-var schema = require('../JoiSchema/trailerSchema');
+var joiSchema = require('../JoiSchema/trailerSchema');
 
-function trailerService(schema){
+function trailerService(joiSchema){
+    //must be added for population purposes
     this.structure = '-__v';
     this.populateA = '';
     this.populateB = '';
-    this.schema = schema;
+    //needed to define the joiSchema
+    this.joiSchema = joiSchema;
 }
 trailerService.prototype = baseService(repo);
 
-module.exports = new trailerService(schema);
+module.exports = new trailerService(joiSchema);

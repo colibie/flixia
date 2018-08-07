@@ -6,7 +6,7 @@ function BaseService(repo){
 }
 
 BaseService.prototype.add = function(req, res, data){
-    var valid = validator.isValid(req, res, this.schema, data);
+    var valid = validator.isValid(req, res, this.joiSchema, data);
     if (valid != null){
         res.json(valid);
     }
