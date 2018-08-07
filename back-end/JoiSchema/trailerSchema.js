@@ -1,7 +1,10 @@
 var Joi = require('joi');
 
 module.exports = Joi.object().keys({
-    name: Joi.string().regex(/^[a-zA-Z]+/).required(),
-    email: Joi.string().email(),
-    password: Joi.string.regex(/^[a-zA-Z0-9]{3,30}$/),
-})
+    title: Joi.string().alphanum().required(),
+    description: Joi.string(),
+    rating: Joi.number().integer().min(0).max(5),
+    year: Joi.number().integer(),
+    productionCompany: Joi.string().alphanum(),
+    duration: Joi.number().min(20).max(180)
+});
