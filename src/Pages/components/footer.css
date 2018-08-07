@@ -12,7 +12,17 @@
 
 .equal {
     width: 50%;
-    padding-top: 20px
+    padding-top: 6px
+}
+
+.subscribe {
+    border-radius: 4px;
+    width: 50%;
+    padding: 5px;
+    margin-right: 4px;
+    height: 27px;
+    margin-top: 6.5px;
+    font-weight: bold;
 }
 
 ul {
@@ -33,14 +43,14 @@ ul {
     text-align: left;
     width: 20%;
     border-right: 1px solid rgb(67, 65, 63);
-    padding-left: 20px;
+    padding: 6px 20px;
     float: left;
 }
 
 .box2 {
     text-align: left;
     float: left;
-    padding-left: 20px;
+    padding: 6px 20px;
     width: 30%;
     border-right: 1px solid rgb(67, 65, 63);
 }   	
@@ -54,7 +64,7 @@ ul {
 
 .contact {
     float: right;
-    margin-top: -71px;
+    margin-top: -78px;
     line-height: 17px;
-    text-align: center;
+    text-align: right;
 }

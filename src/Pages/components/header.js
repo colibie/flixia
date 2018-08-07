@@ -19,7 +19,7 @@ const Header = (props) => {
                             </NavLink>
                         </span>
                     ))}
-                        <form>
+                    <form>
                         <input type="text"
                             placeholder="Enter search term"
                             className="isearch right"
