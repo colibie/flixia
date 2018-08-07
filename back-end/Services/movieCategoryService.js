@@ -1,6 +1,5 @@
+//This is the section that takes care of all the logical functionality of adding and getting movie categories
 var repo = require('../Repositories/movieCategoryRepo');
-//var subscriberRepo = require('../Repository/SubscriberRepo');
-//var subscriberService = require('../Services/SubscriberService');
 
 exports.addCategory = function(req, res, data){
     repo.add(data, function(err, Category){
@@ -16,15 +15,6 @@ exports.getAllCategories = function(req, res){
     });
 }
 
-// exports.batchSendMail = function(req, res){
-//     repo.getById(id, function(err, category){
-//         if (err) res.json('Could not send mail. Try again');
-//         else{
-//             subscriberService.sendMail(req, res, category.subscribers);
-//             res.json('Mail sent successfully');
-//         }
-//     });
-// }
 
 
 
