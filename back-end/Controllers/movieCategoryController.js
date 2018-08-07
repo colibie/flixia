@@ -1,3 +1,4 @@
+//This section controls fetching of data and sending them to the database
 var service = require('../Services/movieCategoryService');
 //var category = require('../Models/movieCategoryModel');
 
