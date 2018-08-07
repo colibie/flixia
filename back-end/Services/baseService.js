@@ -1,3 +1,4 @@
+var validator = require('../JoiSchema/validator');
 //creating a constructor for base Services
 function BaseService(repo){
     if(!repo) throw new Error("A repo must be provided");
@@ -5,10 +6,16 @@ function BaseService(repo){
 }
 
 BaseService.prototype.add = function(req, res, data){
-    this.repo.add(data, function(err, result){
-        if (err) res.json({err: err, message: 'Data could not be created'});
-        res.json(result);
-    });
+    var valid = validator.isValid(req, res, this.schema, data);
+    if (valid != null){
+        res.json(valid);
+    }
+    else{
+        this.repo.add(data, function(err, result){
+            if (err) res.json({err: err, message: 'Data could not be created'});
+            res.json(result);
+        });
+    }
 }
 
 BaseService.prototype.getAll = function(req, res){
