@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var categoryController = require('../Controller/movieCategoryController');
+var categoryController = require('../Controllers/movieCategoryController');
 
 /* GET subscribers listing. */
 router.get('/', categoryController.getCategories);

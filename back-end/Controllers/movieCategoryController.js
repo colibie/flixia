@@ -3,7 +3,7 @@ var service = require('../Services/movieCategoryService');
 
 exports.addCategory = function(req, res){
     var data = {
-        category: req.body.category   
+        name: req.body.name 
     };
     return service.addCategory(req, res, data);
 }

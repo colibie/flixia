@@ -1,5 +1,5 @@
 var model = require('../Models/movieCategoryModel');
-var baseRepo = require('../Repository/BaseRepo');
+var baseRepo = require('../Repositories/BaseRepo');
 
 function categoryRepo(){
     
