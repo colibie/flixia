@@ -1,3 +1,4 @@
+//this is where all logic happens
 var repo = require('../Repositories/trailerRepo');
 
 exports.addtrailer = function(req, res, data){
