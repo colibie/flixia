@@ -2,15 +2,15 @@
 var service = require('../Services/movieCategoryService');
 //var category = require('../Models/movieCategoryModel');
 
-exports.addCategory = function(req, res){
+exports.add = function(req, res){
     var data = {
         name: req.body.name 
     };
-    return service.addCategory(req, res, data);
+    return service.add(req, res, data);
 }
 
-exports.getCategories = function(req, res){
-    return service.getAllCategories(req, res);
+exports.getAll = function(req, res){
+    return service.getAll(req, res);
 }
 
 // exports.batchSendMail = function(req, res){
