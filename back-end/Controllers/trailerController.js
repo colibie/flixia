@@ -8,6 +8,7 @@ exports.add = function(req, res){
         year: req.body.year,
         productionCompany: req.body.productionCompany,
         duration: req.body.duration,
+        trailerCover: req.file.path
     }
     return service.add(req, res, data);
 }

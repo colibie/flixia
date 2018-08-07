@@ -7,10 +7,10 @@ var TrailerSchema = mongoose.Schema({
     year: Number,
     productionCompany: String,
     duration: Number,
+    trailerCover: String, 
     categories: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
-    comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
+    trailerComments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
     // trailer_video: {type: VideoTrack, unique: true},
-    // movieCover: File, 
     //casts: [{name:--, role:--, etc}],
 })
 
