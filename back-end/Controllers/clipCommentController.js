@@ -1,3 +1,4 @@
+//This section fetches and supplies data to the rest of the service
 var service = require('../Services/clipCommentService');
 
 exports.add = function(req, res){

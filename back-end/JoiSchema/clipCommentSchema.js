@@ -1,3 +1,4 @@
+//This schema defines how joi validates data
 var Joi = require('joi');
 
 module.exports = Joi.object().keys({

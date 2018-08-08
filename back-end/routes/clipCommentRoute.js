@@ -1,3 +1,4 @@
+//Defines the routes required to access different parts of the feature
 var express = require('express');
 var router = express.Router();
 var clipCommentController = require('../Controllers/clipCommentController');

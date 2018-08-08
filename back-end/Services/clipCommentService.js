@@ -1,3 +1,4 @@
+//Runs the logic with help of the base Service logic
 var repo = require('../Repositories/clipCommentRepo');
 var baseService = require('../Services/baseService'); //contains the content of module.exports
 var joiSchema = require('../JoiSchema/clipCommentSchema');
