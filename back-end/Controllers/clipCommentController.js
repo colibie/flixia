@@ -4,7 +4,7 @@ exports.add = function(req, res){
     data = {
         content: req.body.content,
         rating: req.body.rating,
-        time : Date.now
+        time : Date.now()
         
     }
     return service.add(req, res, data);
