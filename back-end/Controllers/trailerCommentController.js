@@ -1,4 +1,4 @@
-var service = require('../Services/trailerService');
+var service = require('../Services/trailerCommentService');
 
 exports.add = function(req, res){
     data = {
