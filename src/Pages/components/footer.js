@@ -33,10 +33,10 @@ const Footer = () => {
                     <div className="box1">
                         <p><b> FOLLOW US </b></p>
                         {/* <p> */}
-                            <p> Facebook </p>
-                            <p> Twitter </p>
-                            <p> Instagram </p>
-                            <p> Google </p>
+                            <p><b className="fa fa-facebook"></b> &nbsp; Facebook </p>
+                            <p><b className="fa fa-twitter"></b> &nbsp; Twitter </p>
+                            <p><b className="fa fa-instagram"></b> &nbsp; Instagram </p>
+                            <p><b className="fa fa-google"></b> &nbsp; Google </p>
                         {/* </p> */}
                     </div>
                     <div className="box2 no-box">
