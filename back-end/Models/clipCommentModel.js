@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 
 var clipCommentSchema = mongoose.Schema({
 
-    clip : [{type : mongoose.Schema.Types.ObjectId, ref : 'Clips'}],
-    user : [{type : mongoose.Schema.Types.ObjectId, ref : 'User'}],
-    time : Date.now,
+    //clip : [{type : mongoose.Schema.Types.ObjectId, ref : 'Clips'}],
+    //user : [{type : mongoose.Schema.Types.ObjectId, ref : 'User'}],
+    time : Date,
     rating : Number,
     content : String
 });
