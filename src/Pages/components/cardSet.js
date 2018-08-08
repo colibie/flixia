@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Icon from '@material-ui/icons'
 
 const styles = theme => ({
   root: {
@@ -33,8 +34,8 @@ class GuttersGrid extends React.Component {
                         <img alt="" src="" />
                     </div>
                     <div style={{height: "27", padding:"20px"}}>
-                        <h4><b>{} her name</b></h4>
-                        <p>{}What she is all about</p>
+                        <h4><b> her name</b></h4>
+                        <p>{}<Icon>star</Icon>What she is all about</p>
                     </div>
                 </Paper>
               </Grid>
