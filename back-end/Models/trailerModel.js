@@ -8,10 +8,10 @@ var TrailerSchema = mongoose.Schema({
     productionCompany: String,
     duration: Number,
     trailerCover: String,
+    trailerVideo: {type: String, unique: true},
     casts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Celebrity'}],
     categories: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
-    trailerComments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
-    // trailer_video: {type: VideoTrack, unique: true},
+    trailerComments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
 })
 
 module.exports = mongoose.model('Trailer', TrailerSchema);
