@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var trailerController = require('../Controllers/trailerController');
-var uploadService = require('../Uploads/uploadService');
+var uploadService = require('../Uploads/trailerUploads/uploadService');
 
 /* GET trailers listing. */
 router.get('/', trailerController.getAll);
