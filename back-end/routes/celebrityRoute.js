@@ -1,3 +1,4 @@
+//Defines the path that you need to access some functions on the celebrity feature
 var express = require('express');
 var router = express.Router();
 var celebrityController = require('../Controllers/celebrityController');

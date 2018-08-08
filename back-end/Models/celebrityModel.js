@@ -1,3 +1,4 @@
+//Defines the schema/property for a celebrity
 var mongoose = require('mongoose');
 
 var celebrityModel = mongoose.Schema({
