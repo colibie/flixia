@@ -1,3 +1,4 @@
+//Defines the properties of the roles
 var repo = require('../Repositories/rolesRepo');
 var baseService = require('../Services/baseService'); //contains the content of module.exports
 var joiSchema = require('../JoiSchema/rolesSchema');

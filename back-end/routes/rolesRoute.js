@@ -1,3 +1,4 @@
+//This section defines the path to access some functions of the roles feature
 var express = require('express');
 var router = express.Router();
 var rolesController = require('../Controllers/rolesController');
