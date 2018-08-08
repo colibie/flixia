@@ -1,17 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var trailerController = require('../Controllers/trailerController');
+var userController = require('../Controllers/userController');
 var uploadService = require('../Uploads/userUploads/uploadService');
 
-/* GET trailers listing. */
-router.get('/', trailerController.getAll);
+/* GET users listing. */
+router.get('/', userController.getAll);
 
-router.get('/:id', trailerController.getById);
+router.get('/:id', userController.getById);
 
-router.post('/create', uploadService.upload.single('profilePicture'), trailerController.add);
+router.post('/create', uploadService.upload.single('profilePicture'), userController.add);
 
-router.delete('/delete/:id', trailerController.delete);
+router.delete('/delete/:id', userController.delete);
 
-router.get('/search', trailerController.search);
+router.get('/search', userController.search);
 
 module.exports = router;
