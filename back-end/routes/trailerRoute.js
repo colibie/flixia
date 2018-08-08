@@ -1,14 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var trailerController = require('../Controllers/trailerController');
-var trailerImage = require('../Images/imageUpload');
+var uploadService = require('../Uploads/uploadService');
 
 /* GET trailers listing. */
 router.get('/', trailerController.getAll);
 
 router.get('/:id', trailerController.getById);
 
-router.post('/create', trailerImage.upload.single('trailerCover'), trailerController.add);
+router.post('/create', uploadService.upload.any(), trailerController.add);
+
+// router.post('/create', uploadService.upload.fields([
+//     {name: 'trailerCover', maxCount: 1},
+//     {name: 'TrailerVideo', maxCount: 1}]),
+//     trailerController.add);
 
 router.delete('/delete/:id', trailerController.delete);
 
