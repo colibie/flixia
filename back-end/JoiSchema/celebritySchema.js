@@ -1,3 +1,4 @@
+//Defines how we use joi to validate our properties
 var Joi = require('joi');
 
 module.exports = Joi.object().keys({

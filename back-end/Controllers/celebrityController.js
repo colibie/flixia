@@ -1,3 +1,4 @@
+//Retrieves and serves data for usage
 var service = require('../Services/celebrityService');
 
 exports.add = function(req, res){

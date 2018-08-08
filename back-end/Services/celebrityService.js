@@ -1,3 +1,4 @@
+//Defines the propererties and functionalities we can perform with the celebrity feature
 var repo = require('../Repositories/celebrityRepo');
 var baseService = require('../Services/baseService'); //contains the content of module.exports
 var joiSchema = require('../JoiSchema/celebritySchema');
