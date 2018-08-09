@@ -4,7 +4,7 @@ exports.add = function(req, res){
     data = {
         name: req.body.name,
         biography: req.body.biography,
-        dob: req.body.dob, //stands for date of birth
+        dateOfBirth: req.body.dateOfBirth, //stands for date of birth
         //movieIndustryRole: req.body.movieIndustryRole,
     }
     return service.add(req, res, data);
