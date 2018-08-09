@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var trailersRouter = require('./routes/trailerRoute');
 var trailerCommentsRouter = require('./routes/trailerCommentRoute');
+var movieCategories = require('./routes/movieCategory');
 
 var app = express();
 
@@ -23,23 +24,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//to enable Cross-Origin Resource Sharing
-app.use(function(req, res, next){
+//to enable Cross-Origin resourse Sharing
+app.use( function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  if (req.method === 'OPTIONS'){
+  if(req.method === 'OPTIONS'){
     res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE');
     return res.status(200).json({});
   }
   next(); //allows the next middleware to execute
-});
+}) 
+
+
 
 //connecting to mongoose database
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/nmdb');
 
+
+//Routes which should handle requests
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/movieCategories', movieCategories);
 app.use('/trailers', trailersRouter);
 app.use('/trailer/comments', trailerCommentsRouter);
 
@@ -60,3 +66,4 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+console.log('Server started');
