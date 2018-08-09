@@ -7,7 +7,7 @@ var clipSchema = mongoose.Schema({
     title : String,
     clipComment : {type : mongoose.Schema.Types.ObjectId, ref : clipComment},
     rating : Number,
-    //content :
+    clipContent : String,
 
 });
 
