@@ -1,5 +1,5 @@
 //This section handles the getting and passing of data to other parts of the code
-var service = require('../Services/rolesService');
+var service = require('../Services/roleService');
 
 exports.add = function(req, res){
     data = {

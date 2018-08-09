@@ -1,9 +1,9 @@
 //Defines the properties of the roles
-var repo = require('../Repositories/rolesRepo');
+var repo = require('../Repositories/roleRepo');
 var baseService = require('../Services/baseService'); //contains the content of module.exports
-var joiSchema = require('../JoiSchema/rolesSchema');
+var joiSchema = require('../JoiSchema/roleSchema');
 
-function rolesService(joiSchema){
+function roleService(joiSchema){
     //must be added for population purposes
     this.structure = '-__v';
     this.populateA = '';
@@ -11,6 +11,6 @@ function rolesService(joiSchema){
     //needed to define the joiSchema
     this.joiSchema = joiSchema;
 }
-rolesService.prototype = baseService(repo);
+roleService.prototype = baseService(repo);
 
-module.exports = new rolesService(joiSchema);
+module.exports = new roleService(joiSchema);
