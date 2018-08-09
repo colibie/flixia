@@ -6,7 +6,7 @@ var roleController = require('../Controllers/roleController');
 /* GET trailers listing. */
 router.get('/', roleController.getAll);
 
-router.get('/:id', roleController.getById);
+router.get('/search/:id', roleController.getById);
 
 router.post('/create', roleController.add);
 
