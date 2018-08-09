@@ -2,11 +2,9 @@ var Joi = require('joi');
 
 module.exports = Joi.object().keys({
     title: Joi.string().required(),
-    description: Joi.string(),
+    clipComment: Joi.string().length(24),
     rating: Joi.number().integer().min(0).max(5),
-    year: Joi.number().integer(),
-    productionCompany: Joi.string(),
-    duration: Joi.number().min(20).max(180),
-    trailerCover: Joi.any().required(),
-    trailerVideo: Joi.any().required()
+   // User: Joi.string().length(24).required,
+    time: Joi.any(),
+   // content: Joi.any().required(),
 });
