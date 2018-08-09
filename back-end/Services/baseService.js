@@ -5,6 +5,14 @@ function BaseService(repo){
     this.repo = repo;
 }
 
+
+//can I fetch comments with a differnt route on a trailer page
+//something like 'GET ALL COMMENTS WHERE TRAILER = ID,
+//instead of populating, I can't seem to populate with this structure.
+// BaseService.prototype.populateRepo = function(){
+//     this.populateRepo.getById(data.)
+// }
+
 BaseService.prototype.add = function(req, res, data){
     var valid = validator.isValid(req, res, this.joiSchema, data);
     if (valid != null){
@@ -32,7 +40,7 @@ BaseService.prototype.getById = function(req, res, id){
     });
 }
 
-BaseService.prototype.search = function(req, res, option){
+BaseService.prototype.search = function(req, res, options){
     this.repo.get(options, this.structure, this.populateA, this.populateB, function(err, result){
         if(err) res.json({err: err, message: 'Data could not be fetched'});
         res.json(result);
