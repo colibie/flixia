@@ -6,7 +6,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/userRoute');
 var trailersRouter = require('./routes/trailerRoute');
 var trailerCommentsRouter = require('./routes/trailerCommentRoute');
 var movieCategories = require('./routes/movieCategory');
