@@ -5,11 +5,10 @@ exports.add = function(req, res){
         title: req.body.title,
         description: req.body.description,
         rating: req.body.rating,
-        year: req.body.year,
-        productionCompany: req.body.productionCompany,
+        time: Date.now(),
         duration: req.body.duration,
-        trailerCover: req.files[0].path,
-        trailerVideo: req.files[1].path
+        //trailerCover: req.files[0].path,
+        clipContent: req.files[0].path
     }
     return service.add(req, res, data);
 }

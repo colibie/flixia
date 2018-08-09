@@ -2,10 +2,10 @@ var mongoose = require('mongoose');
 
 
 var clipSchema = mongoose.Schema({
-    User : {type : mongoose.Schema.Types.ObjectId, ref : User},
+    //User : {type : mongoose.Schema.Types.ObjectId, ref : User},
     time : Date,
     title : String,
-    clipComment : {type : mongoose.Schema.Types.ObjectId, ref : clipComment},
+    //clipComment : {type : mongoose.Schema.Types.ObjectId, ref : clipComment},
     rating : Number,
     clipContent : String,
 

@@ -10,7 +10,8 @@ var usersRouter = require('./routes/userRoute');
 var trailersRouter = require('./routes/trailerRoute');
 var trailerCommentsRouter = require('./routes/trailerCommentRoute');
 var movieCategories = require('./routes/movieCategory');
-var rolesRouter = require('./routes/roleRoute')
+var rolesRouter = require('./routes/roleRoute');
+var clipsRouter = require('./routes/clipsRoute');
 
 var app = express();
 
@@ -50,6 +51,7 @@ app.use('/movieCategories', movieCategories);
 app.use('/trailers', trailersRouter);
 app.use('/trailer/comments', trailerCommentsRouter);
 app.use('/roles', rolesRouter);
+app.use('/clips', clipsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
