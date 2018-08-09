@@ -10,4 +10,4 @@ var celebrityModel = mongoose.Schema({
 });
 
 
-module.export = mongoose.model('Celebrity', celebrityModel);
+module.exports = mongoose.model('Celebrity', celebrityModel);
