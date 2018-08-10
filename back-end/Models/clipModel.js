@@ -1,8 +1,7 @@
 var mongoose = require('mongoose');
 
-
-var clipSchema = mongoose.Schema({
-    //User : {type : mongoose.Schema.Types.ObjectId, ref : User},
+var ClipSchema = mongoose.Schema({
+    user : {type : mongoose.Schema.Types.ObjectId, ref : 'User'},
     time : Date,
     title : String,
     //clipComment : {type : mongoose.Schema.Types.ObjectId, ref : clipComment},
@@ -12,4 +11,4 @@ var clipSchema = mongoose.Schema({
 
 });
 
-module.exports = mongoose.model('Clips', clipSchema);
+module.exports = mongoose.model('Clip', ClipSchema);
