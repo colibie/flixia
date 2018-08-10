@@ -7,7 +7,8 @@ exports.add = function(req, res){
         rating: req.body.rating,
         time: Date.now(),
         user: req.body.user,
-        clipContent: req.files[0].path
+        clipComment: req.body.clipComment,
+        clipContent: req.file.path
     }
     return service.add(req, res, data);
 }
