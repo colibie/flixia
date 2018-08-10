@@ -1,4 +1,4 @@
-var service = require('../Services/clipsService');
+var service = require('../Services/clipService');
 
 exports.add = function(req, res){
     data = {
@@ -6,8 +6,7 @@ exports.add = function(req, res){
         description: req.body.description,
         rating: req.body.rating,
         time: Date.now(),
-        //duration: req.body.duration,
-        //trailerCover: req.files[0].path,
+        user: req.body.user,
         clipContent: req.files[0].path
     }
     return service.add(req, res, data);
