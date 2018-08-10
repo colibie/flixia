@@ -11,7 +11,7 @@ var trailersRouter = require('./routes/trailerRoute');
 var trailerCommentsRouter = require('./routes/trailerCommentRoute');
 var movieCategories = require('./routes/movieCategory');
 var rolesRouter = require('./routes/roleRoute');
-var clipsRouter = require('./routes/clipsRoute');
+var clipsRouter = require('./routes/clipRoute');
 
 var app = express();
 
