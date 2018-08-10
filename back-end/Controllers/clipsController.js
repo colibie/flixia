@@ -6,7 +6,7 @@ exports.add = function(req, res){
         description: req.body.description,
         rating: req.body.rating,
         time: Date.now(),
-        duration: req.body.duration,
+        //duration: req.body.duration,
         //trailerCover: req.files[0].path,
         clipContent: req.files[0].path
     }
