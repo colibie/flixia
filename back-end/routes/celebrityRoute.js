@@ -2,13 +2,13 @@
 var express = require('express');
 var router = express.Router();
 var celebrityController = require('../Controllers/celebrityController');
-var uploadService = require('../Uploads/celebrityPics/celebPicsService');
+var uploadService = require('../Uploads/celebrityUploads/celebPicsService');
 
 
 /* GET trailers listing. */
 router.get('/', celebrityController.getAll);
 
-router.get('/:id', celebrityController.getById);
+router.get('/search/:id', celebrityController.getById);
 
 router.post('/create', uploadService.upload.single('picture'), celebrityController.add);
 
