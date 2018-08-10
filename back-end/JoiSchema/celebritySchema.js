@@ -4,6 +4,7 @@ var Joi = require('joi');
 module.exports = Joi.object().keys({
     name: Joi.string().required(),
     biography: Joi.string(),
-    dateOfBirth: Joi.number().integer(), //dob stands for date of birth
+    dateOfBirth: Joi.number().integer(),
+    picture : Joi.string(),
     //movieIndurtyRole: Joi.string(),
 });
