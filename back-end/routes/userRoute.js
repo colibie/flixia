@@ -6,7 +6,7 @@ var uploadService = require('../Uploads/userUploads/uploadService');
 /* GET users listing. */
 router.get('/', userController.getAll);
 
-router.get('/:id', userController.getById);
+router.get('/search/:id', userController.getById);
 
 router.post('/create', uploadService.upload.single('profilePicture'), userController.add);
 
