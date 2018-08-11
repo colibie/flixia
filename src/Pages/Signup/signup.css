@@ -1,0 +1,57 @@
+.content {
+    box-sizing: border-box;
+    padding: 50px;
+    height: 415px;
+    margin-top:  30px;
+}
+
+.content-header {
+    float: left;
+    padding-left: 20px;
+    margin-bottom: 40px;
+    width: 200%
+}
+
+.header {
+    float: left;
+    padding-left: 20px;
+}
+
+.myInput{
+    margin-bottom: 20px
+}
+
+.left-content {
+    padding-left: 50px;
+    width: 50%;
+    border-right: 2px solid darkgray;
+}
+
+.right-content {
+    width: 40%;
+    float: right;
+    margin-top: -113px;
+}
+
+.content-center {
+    padding-right: 40%;
+    margin-top: -6px;
+    float: right
+}
+
+.content-left {
+    width: 50%
+}
+
+.content-right {
+    width: 50%;
+    float: right;
+    justify-content: center;
+    text-align: center;
+    margin-top: -180px;
+}
+
+.push {
+    position: absolute;
+    width: 100%
+}
