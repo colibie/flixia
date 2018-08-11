@@ -1,0 +1,79 @@
+.modalClose {
+    float: right;
+    padding-right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 0;
+}
+.header {
+    margin: auto;
+    margin-left: 10px
+}
+
+.modal-content-center {
+    padding-right: 40%;
+    margin-top: -15px;
+    float: right
+}
+
+.modal-close {
+    margin: 0
+}
+
+.model-content {
+    box-sizing: border-box;
+    padding: 50px;
+    height: 220px
+}
+
+.modal-left {
+    padding-left: 50px;
+    width: 50%;
+    border-right: 2px solid darkgray;
+}
+
+.modal-right {
+    width: 40%;
+    float: right;
+    margin-top: -113px;
+}
+.modal_half {
+    margin-top: 20px;
+    line-height: 30px;
+    width: 50%;
+    height: 96%;
+    border-right: 2px solid grey;
+    padding-top: 10px;
+    float: left;
+    padding-left: 20px 
+}
+
+.modal_half2 {
+    width: 50%;
+    height: 70%;
+    /* padding-top: 10px; */
+    /* float: left; */
+    padding: 20px 20px 0 20px;
+    text-align: center
+}
+
+.content {
+    height: 240px
+}
+
+.modal_half > input {
+    margin-bottom: 20px
+}
+
+.socialLink {
+    padding-left: 40px
+}
+
+.myInput{
+    margin-bottom: 20px
+}
+
+.modal-r2 {
+    margin-top: 55px
+}
