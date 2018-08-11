@@ -24,7 +24,6 @@ const Footer = () => {
                         </div>
                         <div className="contact">
                             <li><NavLink to="/about"> About </NavLink></li>
-                            {/* <li><NavLink to="/about"> Contact </NavLink> </li> */}
                             <li><NavLink to="/termsofservice"> Terms Of Service </NavLink> </li>                   
                             <li><NavLink to="/privacy"> Privacy Policy </NavLink> </li>                   
                         </div>
@@ -32,19 +31,17 @@ const Footer = () => {
                     </div>
                     <div className="box1">
                         <p><b> FOLLOW US </b></p>
-                        {/* <p> */}
-                            <p><b className="fa fa-facebook"></b> &nbsp; Facebook </p>
-                            <p><b className="fa fa-twitter"></b> &nbsp; Twitter </p>
-                            <p><b className="fa fa-instagram"></b> &nbsp; Instagram </p>
-                            <p><b className="fa fa-google"></b> &nbsp; Google </p>
-                        {/* </p> */}
+                            <span><b className="fa fa-facebook"></b> &nbsp;&nbsp; Facebook </span><br />
+                            <span><b className="fa fa-twitter"></b> &nbsp; Twitter </span><br />
+                            <span><b className="fa fa-instagram"></b> &nbsp; Instagram </span><br />
+                            <span><b className="fa fa-google"></b> &nbsp; Google </span><br />
                     </div>
                     <div className="box2 no-box">
-                       <p><b>SUBSCRIBE TO OUR NEWS</b></p>
+                       <span><b>SUBSCRIBE TO OUR NEWS</b></span>
                         <br />
-                        <p>
+                        <span>
                             Don't miss out on our amazing contents, we keep you up to date
-                        </p>
+                        </span><br />
                         <form>
                             <input type="text"
                                 placeholder="Your Email"
