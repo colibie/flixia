@@ -30,7 +30,7 @@ const SignUp = () =>  {
                         </Input>
                     </div>
                     <div className="content-right">
-                        <h3>or SignIn with</h3><br />
+                        <h3>or SignUp with</h3><br />
                         <p className="socialLink">
                         <h2><b className="fa fa-facebook-square" style={{ fontSize:'30px'}}></b> &nbsp;&nbsp;&nbsp;
                         <b className="fa fa-google" style={{ fontSize:'30px'}}></b></h2> &nbsp;
