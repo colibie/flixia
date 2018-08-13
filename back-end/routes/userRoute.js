@@ -8,7 +8,7 @@ router.get('/', userController.getAll);
 
 router.get('/search/:id', userController.getById);
 
-router.post('/create', uploadService.upload.single('profilePicture'), userController.add);
+router.post('/create', uploadService.upload.single('profilePicture'), userController.createAccount);
 
 router.delete('/delete/:id', userController.delete);
 
