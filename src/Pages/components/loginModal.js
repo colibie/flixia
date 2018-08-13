@@ -3,6 +3,7 @@ import { Button, Modal } from 'semantic-ui-react'
 import './style.css'
 import { Icon, Input } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
+import SignUpModal from './signupModal';
 
 class LoginModal extends Component {
   state = { open: false }
@@ -24,7 +25,7 @@ class LoginModal extends Component {
 						<h1 onClick={this.close} className="modal-close"> X </h1>
 					</div>
 				<div className="model-content">
-					<div className="modal-left">
+					<div className="modal-left" style={{height: '100px'}}>
 						<Input iconPosition='left' placeholder='Username or Email' className="myInput">
 							<Icon name='user' />
 							<input />
@@ -53,7 +54,7 @@ class LoginModal extends Component {
 							/>
 						</div> <br /><br />
 						<span className="modal-content-center">
-							Don't have an account, <NavLink to="/loginModal">Sign Up</NavLink>
+							Don't have an account,<SignUpModal/>
 						</span>
 					</Modal.Actions>
 				</div>
