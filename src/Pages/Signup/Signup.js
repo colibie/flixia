@@ -35,7 +35,7 @@ const SignUp = () =>  {
                         <h2><b className="fa fa-facebook-square" style={{ fontSize:'30px'}}></b> &nbsp;&nbsp;&nbsp;
                         <b className="fa fa-google" style={{ fontSize:'30px'}}></b></h2> &nbsp;
                         </p>
-                    </div>
+                    </div><br /><br />
                     <div style={{float: 'left', paddingLeft: '50px', marginTop: '25px'}}>
                         <Button
                             positive

@@ -3,6 +3,11 @@
     padding: 50px;
     height: 415px;
     margin-top:  30px;
+    padding-left: 16%;
+    padding-right: 16%;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    margin-bottom: 30px;
 }
 
 .content-header {
@@ -40,7 +45,9 @@
 }
 
 .content-left {
-    width: 50%
+    width: 50%;
+    border-right: 2px solid darkgrey;
+    height: 200px
 }
 
 .content-right {
