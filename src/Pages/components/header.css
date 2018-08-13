@@ -9,6 +9,9 @@
     overflow: hidden;
 }
 
+html {
+    font-family: 'Raleway', Halvetica, sans-serif;
+}
 
 .menu {
     float: right;
@@ -42,12 +45,34 @@ home.data {
     margin-right: 60px;
     height: 35px;
     margin-top: 2.5px;
-    font-weight: bolder
+    font-weight: bolder;
 
 }
 
+.btn {
+    border-radius: 20px
+}
+
+#header {
+    height: 70px
+}
 
 .hbtn {
     visibility: hidden;
     cursor: none;
+}
+
+.head-details {
+    justify-content: space-around;
+    width: 100%;
+    float: right;
+    text-align: left;
+    word-spacing: 40px;
+}
+
+.headr {
+    width: 60%;
+    display: flex;
+    text-align: center;
+    padding-top: 1.2%;
 }

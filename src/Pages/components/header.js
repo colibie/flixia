@@ -9,6 +9,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import {NavLink } from 'react-router-dom';
+import './header.css'
 
 const styles = {
   root: {
@@ -50,8 +52,8 @@ class Header extends React.Component {
     const open = Boolean(anchorEl);
 
     return (
-      <div className={classes.root}>
-        <AppBar className={classes.app} position="static">
+      <div className={classes.root} id="header">
+        <AppBar className={classes.app} position="static" style={{height: '70px'}}>
           <Toolbar>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
               <MenuIcon />
@@ -60,15 +62,27 @@ class Header extends React.Component {
               <b>NMDb</b>
             </Typography>
             {auth && (
-              <div>
+              <div className="headr">
+                <div className="head-details">
+                  <span><NavLink to="/"> Home </NavLink></span>
+                  <span><NavLink to="/movies"> Trailers</NavLink> </span>
+                  <span><NavLink to="/clips"> Clips</NavLink></span>
+                  <span><NavLink to="/celebs"> Celebs </NavLink></span>
+                  <span><NavLink to="/news"> News </NavLink></span>
+                  <span><NavLink to="/about"> About </NavLink></span>
+                  <span><NavLink to="/login"><button className="btn btn-sm btn-primary"> Login </button></NavLink></span>
+                  &nbsp;<span><NavLink to="/signup"><button className="btn btn-sm btn-primary">SignUp </button></NavLink></span>
+                </div>
                 <IconButton
                   aria-owns={open ? 'menu-appbar' : null}
                   aria-haspopup="true"
                   onClick={this.handleMenu}
                   color="inherit"
+                  style={{marginTop: '-12px'}}
                 >
-                  <AccountCircle />
+                  <AccountCircle/>
                 </IconButton>
+                <span> Adegoke </span>
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorEl}
