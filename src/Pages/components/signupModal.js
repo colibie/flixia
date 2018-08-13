@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Button, Modal } from 'semantic-ui-react'
 import './style.css'
 import { Icon, Input } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
+import LoginModal from './loginModal'
 
 class SignUpModal extends Component {
   state = { open: false }
@@ -57,7 +58,9 @@ class SignUpModal extends Component {
 							/>
 						</div> <br /><br />
 						<span className="modal-content-center">
-							Already have an account, <NavLink to="/loginModal">Sign In</NavLink>
+							Already have an account, 
+							{/* <NavLink to="/loginModal">Sign In</NavLink> */}
+							<LoginModal/>
 						</span>
 					</Modal.Actions>
 				</div>
