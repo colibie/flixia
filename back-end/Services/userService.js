@@ -3,6 +3,7 @@ var baseService = require('../Services/baseService'); //contains the content of 
 var joiSchema = require('../JoiSchema/userSchema');
 var bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+var validator = require('../JoiSchema/validator')
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -25,20 +26,33 @@ function userService(joiSchema){
 }
 userService.prototype = baseService(repo);
 
-exports.createAccount = function(req, res, data){
-    repo.createAccount(data, function(err, userAccount){
-        if(err) res.json({err: err, message: "Something went wrong, please try again"});
-        else{
-            exports.sendMail(req, res, data.email, data.userName);
-            userAccount.save();         
-            };
+ userService.prototype.createAccount = function(req, res, data){
+    console.log('Test');
+    var valid = validator.isValid(req, res, this.joiSchema, data);
+    if (valid != null){
+                res.json(valid);
+        } else{
+               repo.createAccount(data, function(err, userAccount){
 
-            res.json({sub: userAccount, message: 'Your account has been created successfully'});
-        });
-};  
+                if(err) res.json({err: err, message: "Something went wrong, please try again"});
+                else{
+                    
+                    sendMail(req, res, data.email, data.userName);
+                    console.log('trying mail');
+                    userAccount.save();
+                         
+                    };
+        
+                 res.json({sub: userAccount, message: 'Your account has been created successfully'});
+                });   
+            
+        };
+}    
+  
 
-exports.sendMail = function(req, res, userAccount, name){
+sendMail = function(req, res, userAccount, name){
     // setup email data with unicode symbols
+    console.log('Email abt to send');
     var mailOptions = {
         from: 'b2comicscrum@gmail.com', // sender address
         to: userAccount, // list of receivers
