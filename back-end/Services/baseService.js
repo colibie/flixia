@@ -26,18 +26,18 @@ BaseService.prototype.add = function(req, res, data){
         });
     }
 }
-BaseService.prototype.createAccount = function(req, res, data){
-    var valid = validator.isValid(req, res, this.joiSchema, data);
-    if (valid != null){
-        res.json(valid);
-    }
-    else{
-        this.repo.createAccount(data, function(err, result){
-            if (err) res.json({err: err, message: 'Data could not be created'});
-            res.json(result);
-        });
-    }
-}
+// BaseService.prototype.createAccount = function(req, res, data){
+//     var valid = validator.isValid(req, res, this.joiSchema, data);
+//     if (valid != null){
+//         res.json(valid);
+//     }
+//     else{
+//         this.repo.createAccount(data, function(err, result){
+//             if (err) res.json({err: err, message: 'Data could not be created'});
+//             res.json(result);
+//         });
+//     }
+// }
 
 BaseService.prototype.getAll = function(req, res){
     this.repo.get({}, this.structure, this.populateA, this.populateB, function(err, result){
