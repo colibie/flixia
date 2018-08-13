@@ -1,13 +1,17 @@
 var service = require('../Services/userService');
 
-exports.add = function(req, res){
+exports.createAccount = function(req, res){
     data = {
         userName: req.body.userName,
         email: req.body.email,
         password: req.body.password,
         profilePicture: req.file.path,
     }
-    return service.add(req, res, data);
+    return service.createAccount(req, res, data);
+}
+
+exports.sendMail = function(req, res){
+    return service.sendMail(req, res);
 }
 
 exports.getAll = function(req, res){
