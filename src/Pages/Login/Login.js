@@ -32,6 +32,7 @@ const Login = () =>  {
                         <b className="fa fa-google" style={{ fontSize:'30px'}}></b></h2> &nbsp;
                         </p>
                     </div>
+                    <hr />
                     <div style={{float: 'left', paddingLeft: '50px', marginTop: '25px'}}>
                         <Button
                             positive
@@ -40,7 +41,7 @@ const Login = () =>  {
                             content="Sign In"
                             onClick={this.close}
                         />
-                    </div> <br /><br /><br />
+                    </div> <br /><br /><br />< br />
                     <span className="content-center">
                         Don't have an account, <NavLink to="/signup">Sign Up</NavLink>
                     </span>

@@ -1,7 +1,7 @@
 .content {
     box-sizing: border-box;
     padding: 50px;
-    height: 415px;
+    height: 390px;
     margin-top:  30px;
 }
 
@@ -25,7 +25,8 @@
 }
 
 .myInput{
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    width: 60%
 }
 
 .right-content {
@@ -41,7 +42,8 @@
 }
 
 .content-left {
-    width: 50%
+    width: 50%;
+    height: 168px;
 }
 
 .content-right {
