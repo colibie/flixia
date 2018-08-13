@@ -12,9 +12,9 @@ var storage = multer.diskStorage({
     },
     filename: function(req, file, callback){
         if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
-            callback(null, 'tImage_'+ file.originalname);
+            callback(null, 'tImage_'+Date.now()+'-'+ file.originalname);
         }else {
-            callback(null, 'tVideo_'+ file.originalname);
+            callback(null, 'tVideo_'+Date.now()+'-'+ file.originalname);
         }
     }
 });
