@@ -11,6 +11,10 @@ BaseRepo.prototype.get = function(option, structure, param, param1, callback){
     exec(callback);
 }
 
+BaseRepo.prototype.createAccount = function(data, callback){
+    this.model.create(data, callback);
+}
+
 BaseRepo.prototype.add = function(data, callback){
     this.model.create(data, callback);
 }
