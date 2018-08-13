@@ -27,7 +27,7 @@ function userService(joiSchema){
 userService.prototype = baseService(repo);
 
  userService.prototype.createAccount = function(req, res, data){
-    console.log('Test');
+    
     var valid = validator.isValid(req, res, this.joiSchema, data);
     if (valid != null){
                 res.json(valid);
@@ -38,7 +38,6 @@ userService.prototype = baseService(repo);
                 else{
                     
                     sendMail(req, res, data.email, data.userName);
-                    console.log('trying mail');
                     userAccount.save();
                          
                     };
@@ -52,11 +51,11 @@ userService.prototype = baseService(repo);
 
 sendMail = function(req, res, userAccount, name){
     // setup email data with unicode symbols
-    console.log('Email abt to send');
     var mailOptions = {
         from: 'b2comicscrum@gmail.com', // sender address
         to: userAccount, // list of receivers
         subject: `Welcome to Our World Of Nollywood Movies ${name} 🎇`, // Subject line
+        html: "<p>You are very welcome to our platform😁. Expect enough fun and updates from us.</p>"
     };
 
     // send mail with defined transport object
