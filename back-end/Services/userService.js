@@ -8,12 +8,10 @@ var validator = require('../JoiSchema/validator')
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'b2comicscrum@gmail.com',
-        pass: 'genesystechhub'
+        user: 'helloflixia@gmail.com',
+        pass: 'genesystechhub2018*'
     }
 });
-
-
 
 function userService(joiSchema){
     //must be added for population purposes
@@ -26,8 +24,7 @@ function userService(joiSchema){
 }
 userService.prototype = baseService(repo);
 
- userService.prototype.createAccount = function(req, res, data){
-    
+userService.prototype.createAccount = function(req, res, data){    
     var valid = validator.isValid(req, res, this.joiSchema, data);
     if (valid != null){
                 res.json(valid);
@@ -52,7 +49,7 @@ userService.prototype = baseService(repo);
 sendMail = function(req, res, userAccount, name){
     // setup email data with unicode symbols
     var mailOptions = {
-        from: 'b2comicscrum@gmail.com', // sender address
+        from: 'helloflixia@gmail.com', // sender address
         to: userAccount, // list of receivers
         subject: `Welcome to Our World Of Nollywood Movies ${name} 🎇`, // Subject line
         html: "<p>You are very welcome to our platform😁. Expect enough fun and updates from us.</p>"
@@ -68,8 +65,5 @@ sendMail = function(req, res, userAccount, name){
         }
     });
 }
-
-
-
 
 module.exports = new userService(joiSchema);

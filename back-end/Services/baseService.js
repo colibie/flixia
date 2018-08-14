@@ -1,13 +1,12 @@
 var validator = require('../JoiSchema/validator');
-
 var bcrypt = require('bcrypt');
 var token = require('../Config/jwt');
+
 //creating a constructor for base Services
 function BaseService(repo){
     if(!repo) throw new Error("A repo must be provided");
     this.repo = repo;
 }
-
 
 //can I fetch comments with a differnt route on a trailer page
 //something like 'GET ALL COMMENTS WHERE TRAILER = ID,
