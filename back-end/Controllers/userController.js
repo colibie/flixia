@@ -44,6 +44,15 @@ exports.search = function(req, res){
     return service.search(req, res, option);
 }
 
+exports.login = function(req, res){
+    var data = {
+        userName: req.body.userName,
+        email: req.body.email,
+        password: req.body.password 
+    }
+    return service.login(req, res, {email: data.email}, data);
+}
+
 exports.delete = function(req, res){
     var option = {_id: req.params.id};
     return service.delete(req, res, option);
