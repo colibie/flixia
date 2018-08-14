@@ -16,4 +16,6 @@ router.get('/search', userController.search);
 
 router.post('/signup', userController.add);
 
+router.post('/login', userController.login);
+
 module.exports = router;
