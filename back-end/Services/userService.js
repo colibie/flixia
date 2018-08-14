@@ -1,15 +1,14 @@
 var repo = require('../Repositories/userRepo');
 var baseService = require('../Services/baseService'); //contains the content of module.exports
 var joiSchema = require('../JoiSchema/userSchema');
-var bodyParser = require('body-parser');
-const nodemailer = require('nodemailer');
+var nodemailer = require('nodemailer');
 var validator = require('../JoiSchema/validator')
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'helloflixia@gmail.com',
-        pass: 'genesystechhub2018*'
+        pass: 'genesystechhub'
     }
 });
 
@@ -27,24 +26,18 @@ userService.prototype = baseService(repo);
 userService.prototype.createAccount = function(req, res, data){    
     var valid = validator.isValid(req, res, this.joiSchema, data);
     if (valid != null){
-                res.json(valid);
-        } else{
-               repo.createAccount(data, function(err, userAccount){
-
-                if(err) res.json({err: err, message: "Something went wrong, please try again"});
-                else{
-                    
-                    sendMail(req, res, data.email, data.userName);
-                    userAccount.save();
-                         
-                    };
-        
-                 res.json({sub: userAccount, message: 'Your account has been created successfully'});
-                });   
-            
-        };
-}    
-  
+        res.json(valid);
+    }else{
+        repo.createAccount(data, function(err, userAccount){
+            if(err) res.json({err: err, message: "Something went wrong, please try again"});
+            else{                    
+                sendMail(req, res, data.email, data.username);
+                userAccount.save();
+                res.json({sub: userAccount, message: 'Your account has been created successfully'});                      
+            };        
+        });       
+    }
+} 
 
 sendMail = function(req, res, userAccount, name){
     // setup email data with unicode symbols
@@ -58,7 +51,7 @@ sendMail = function(req, res, userAccount, name){
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function(err){
         if (err) {
-           console.log(err);
+            res.json({message: 'Account could not be created'})
         }
         else{
             console.log('Email sent successfully');

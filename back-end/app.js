@@ -44,7 +44,7 @@ app.use( function(req, res, next) {
 
 //connecting to mongoose database
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://flixia:genesystechhub2018*@ds121652.mlab.com:21652/flixia');
+mongoose.connect('mongodb://localhost:27017/nmdb');
 
 
 //Routes which should handle requests

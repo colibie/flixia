@@ -14,7 +14,7 @@ router.delete('/delete/:id', userController.delete);
 
 router.get('/search', userController.search);
 
-router.post('/signup', userController.add);
+router.post('/signup', userController.createAccount);
 
 router.post('/login', userController.login);
 
