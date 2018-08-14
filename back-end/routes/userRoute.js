@@ -8,10 +8,12 @@ router.get('/', userController.getAll);
 
 router.get('/search/:id', userController.getById);
 
-router.post('/create', uploadService.upload.single('profilePicture'), userController.createAccount);
+// router.post('/uploadProfilePicture', uploadService.upload.single('profilePicture'));
 
 router.delete('/delete/:id', userController.delete);
 
 router.get('/search', userController.search);
+
+router.post('/signup', userController.add);
 
 module.exports = router;
