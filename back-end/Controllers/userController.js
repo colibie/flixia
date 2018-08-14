@@ -1,4 +1,5 @@
 var service = require('../Services/userService');
+var bcrypt = require('bcrypt');
 
 exports.createAccount = function(req, res){
     data = {
@@ -12,6 +13,21 @@ exports.createAccount = function(req, res){
 
 exports.sendMail = function(req, res){
     return service.sendMail(req, res);
+}
+exports.add = function(req, res){
+    bcrypt.hash(req.body.password, 10, function(err, hash){
+        if(err) {
+            return res.status(500).json({error: err});
+        }else{
+            var data = {
+                userName: req.body.userName,
+                email: req.body.email,
+                password: hash,
+                // profilePicture: req.file.path,
+            }
+            return service.add(req, res, data);
+        }        
+    });
 }
 
 exports.getAll = function(req, res){
