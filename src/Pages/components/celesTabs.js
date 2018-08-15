@@ -8,6 +8,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import GuttersGrid from './cardSet'
 import SearchBox from './search'
+// import LoginModal from '../'
 
 function TabContainer({ children, dir }) {
   return (
