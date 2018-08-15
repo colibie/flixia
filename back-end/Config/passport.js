@@ -23,13 +23,13 @@ exports.login = function(req, res){
     passport.use('local-login', new LocalStrategy(
             User.findOne({'email': req.body.email}, function(err, user){
                 if (err) return done(err);
-                if(!user || !user.validPassword(req.body.password)) {
+                if(user && user.validPassword(req.body.password)) {
                     return res.json({
-                    message: 'Login failed. Recheck email/password'
+                    message: 'Successfully logged in'
                     });
                 }else {
                    res.json({
-                        message: 'Successfully logged in'
+                        message: 'Login failed. Recheck email/password'
                     });
                 }
             }), function(email, password, done){
