@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { Button, Modal } from 'semantic-ui-react'
 import './style.css'
 import { Icon, Input } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
-import SignUpModal from './signupModal';
 
 class LoginModal extends Component {
   state = { open: false }
@@ -15,52 +13,41 @@ class LoginModal extends Component {
     const { open, dimmer } = this.state
 
     return (
-      <div>
-        <Button onClick={this.show('blurring')}>Login</Button>
+      <span>
+        <button onClick={this.show('blurring')} className=" " >Login</button>
           <div>
-			<Modal dimmer={dimmer} open={open} onClose={this.close} style={{margin: 'auto', height: '400px', marginTop: 'auto'}}>
-				<div className="modalbody">
-					<div className="modal-header">
-						<h2 className="header"> Login Here</h2>
-						<h1 onClick={this.close} className="modal-close"> X </h1>
+			<Modal dimmer={dimmer} open={open} onClose={this.close} style={{margin: 'auto', height: 520, marginTop: 'auto', paddingLeft: '2%', paddingRight: '2%', width: 530 }}>
+				<div className="modal-body">
+					<h1 onClick={this.close} className="modalClose fa fa-close"></h1>
+
+						<div className="modal-content">
+						<button className="btn btn-md btn-primary col-span-12 mass"> <i className="fa fa-facebook"></i> Login with facebook </button>
+							<button className="btn btn-md btn-default col-span-12 mass"> <i className="fa fa-google"></i> Login with Google </button>
+							<span style={{margin: '3%'}}> or </span>
+						<form style={{display: 'contents'}}onSubmit={this.handleSubmit}>
+							<span style={{marginBottomt: '20px'}}><Input iconPosition='left' placeholder='Username or Email' className="myInput">
+								<Icon name='user' />
+								<input />
+							</Input> 
+							</span>
+							<span><br />
+							<Input iconPosition='left' placeholder='Password'  className="myInput">
+								<Icon name='eye' />
+								<input type="password"/>
+							</Input>
+							</span>
+							<span className="modal-deet">
+								<span style={{paddingLeft: '15%', float: 'left'}}>
+									<input type="checkbox" /> Remember Me </span>
+								<span style={{paddingRight: '15%', float: 'right'}}> Forgot password </span>
+							</span>
+						<button className="btn btn-md btn-primary col-span-12 mass"> Login with </button>
+						</form>
 					</div>
-				<div className="model-content">
-					<div className="modal-left" style={{height: '100px'}}>
-						<Input iconPosition='left' placeholder='Username or Email' className="myInput">
-							<Icon name='user' />
-							<input />
-						</Input> <br />
-						<Input iconPosition='left' placeholder='Password'  className="myInput">
-							<Icon name='eye' />
-							<input type="password"/>
-						</Input>
-					</div>
-					<div className="modal-right">
-						<h3>OR SignIn with</h3><br />
-						<p className="socialLink">
-						<h2><b className="fa fa-facebook-square" style={{ fontSize:'30px'}}></b> &nbsp;&nbsp;&nbsp;
-						<b className="fa fa-google" style={{ fontSize:'30px'}}></b></h2> &nbsp;
-						</p>
-					</div>
-				</div>
-					<Modal.Actions>
-						<div style={{float: 'left', paddingLeft: '100px'}}>
-							<Button
-								positive
-								icon='checkmark'
-								labelPosition='right'
-								content="Sign In"
-								onClick={this.close}
-							/>
-						</div> <br /><br />
-						<span className="modal-content-center">
-							Don't have an account,<SignUpModal/>
-						</span>
-					</Modal.Actions>
 				</div>
 			</Modal>
 		  </div>
-		</div>
+		</span>
     )
   }
 }

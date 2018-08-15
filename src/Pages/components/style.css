@@ -1,10 +1,10 @@
 .modalClose {
     float: right;
-    padding-right: 10px;
     background-color: transparent;
     border: none;
     cursor: pointer;
-    margin-top: 0;
+    padding-top: 10px;
+    margin-left: 10px;
 }
 .header {
     margin: auto;
@@ -17,29 +17,24 @@
     float: right
 }
 
-.modal-close {
-    margin: 0;
-    cursor: pointer
+.modal-content {
+    /* margin-top: 2%; */
+    text-align: center;
+    padding-top: 11%;
+    margin: auto;
+    width: 351px;
+    margin-top: 1rem;
+    border: none;
 }
 
 .model-content {
     box-sizing: border-box;
     padding: 50px;
-    height: 220px
+    height: 220px;
+    width: 351px;
+    margin:auto
 }
 
-.modal-left {
-    padding-left: 50px;
-    width: 50%;
-    border-right: 2px solid darkgray;
-    height: 160px;
-}
-
-.modal-right {
-    width: 40%;
-    float: right;
-    margin-top: -113px;
-}
 .modal_half {
     margin-top: 20px;
     line-height: 30px;
@@ -72,10 +67,22 @@
     padding-left: 40px
 }
 
-.myInput{
-    margin-bottom: 20px
+.modal-deet {
+    padding-bottom: 30px;    
+    width: 100%;
+    padding-top: 7px;
 }
 
-.modal-r2 {
-    margin-top: 55px
+.myInput{
+    margin-bottom: 20px;
+    margin: auto;
+    width: 351px;
+    
+}
+
+.mass {
+    height: 40px;
+    width: 351px;
+    margin-top: 10px;
+    border-radius: 8px
 }
