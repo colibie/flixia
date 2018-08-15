@@ -4,7 +4,7 @@ import Footer from '../components/footer';
 import './home.css';
 import '../general_style.css'
 import MovieTab from '../components/movTab.js'
-
+import LoginModal from '../components/loginModal'
 
 
 const Home = () => {
