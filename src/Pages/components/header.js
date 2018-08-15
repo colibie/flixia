@@ -11,6 +11,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import {NavLink } from 'react-router-dom';
 import './header.css'
+import LoginModal from './loginModal'
+import SignUpModal from './signupModal'
+
 
 const styles = {
   root: {
@@ -70,8 +73,8 @@ class Header extends React.Component {
                   <span><NavLink to="/celebs"> Celebs </NavLink></span>
                   <span><NavLink to="/news"> News </NavLink></span>
                   <span><NavLink to="/about"> About </NavLink></span>
-                  <span><NavLink to="/login"><button className="btn btn-sm btn-primary"> Login </button></NavLink></span>
-                  &nbsp;<span><NavLink to="/signup"><button className="btn btn-sm btn-primary">SignUp </button></NavLink></span>
+                  <span><LoginModal /></span>
+                  &nbsp;<span><SignUpModal /></span>
                 </div>
                 <IconButton
                   aria-owns={open ? 'menu-appbar' : null}
