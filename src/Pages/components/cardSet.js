@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import './cardSet.css'
+import './cardSet.css';
+// import josh from '../images/josh.JPG ';
+
 
 const styles = theme => ({
   root: {
@@ -67,11 +69,11 @@ class GuttersGrid extends React.Component {
               <Grid key={value} item>
                 <Paper className={classes.paper}>
                   <div className={classes.paperImage}>
-                  <img src="" className={classes.image} alt=""/>
+                  <img src='' className={classes.image} alt=""/>
                   </div>
                   <div>
                       Movie Title <br />
-                      <span><h3 className="fa fa-star icon"></h3> Likes and <b className="fa fa-comments icon"></b> Comments </span>
+                      <span><h3 className="fa fa-star icon"></h3> <span className="" style={{fontSize: '1rem'}}>43</span> &nbsp;&nbsp;&nbsp;&nbsp;<b className="fa fa-comments icon"></b> Comments </span>
                   </div>
                 </Paper>
                 <h1 className="fa fa-loading "></h1>
