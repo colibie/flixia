@@ -73,31 +73,31 @@ BaseService.prototype.update = function(req, res, id, options){
     });
 }
 
-BaseService.prototype.login = function(req, res, options, data){
-    this.repo.get(options, '','','', function(err, result){
-        if (result.length < 1){
-            res.status(401).json({message: 'Email/Password is incorrect'});
-        } else if(result.length >= 1){
-            bcrypt.compare(data.password, result[0].password, function(err, success){
-                if(err) res.status(401).json({error: err, message: 'Email/Password is incorrect'});
-                else if (success) {
-                    res.status(200).json({
-                        message: 'Welcome and enjoy your stay',
-                        token: token({
-                            email: result[0].email,
-                            id: result[0]._id
-                        }),
-                    });
-                }
-                else {
-                    res.status(401).json({message: 'Email/Password is incorrect' });
-                }
-            });
-        }else{
-            res.status(500).json({message: 'Email/Password is incorrect'});
-        }
-    });
-}
+// BaseService.prototype.login = function(req, res, options, data){
+//     this.repo.get(options, '','','', function(err, result){
+//         if (result.length < 1){
+//             res.status(401).json({message: 'Email/Password is incorrect'});
+//         } else if(result.length >= 1){
+//             bcrypt.compare(data.password, result[0].password, function(err, success){
+//                 if(err) res.status(401).json({error: err, message: 'Email/Password is incorrect'});
+//                 else if (success) {
+//                     res.status(200).json({
+//                         message: 'Welcome and enjoy your stay',
+//                         token: token({
+//                             email: result[0].email,
+//                             id: result[0]._id
+//                         }),
+//                     });
+//                 }
+//                 else {
+//                     res.status(401).json({message: 'Email/Password is incorrect' });
+//                 }
+//             });
+//         }else{
+//             res.status(500).json({message: 'Email/Password is incorrect'});
+//         }
+//     });
+// }
 
 module.exports = function(repo){
     return new BaseService(repo);
