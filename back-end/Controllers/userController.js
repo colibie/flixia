@@ -11,7 +11,7 @@ exports.createAccount = function(req, res){
             return res.status(500).json({error: err});
         }else{
             var data = {
-                username: req.body.userName,
+                username: req.body.username,
                 email: req.body.email,
                 password: hash,
                 // profilePicture: req.file.path,
@@ -35,6 +35,11 @@ exports.search = function(req, res){
     return service.search(req, res, option);
 }
 
+exports.delete = function(req, res){
+    var option = {_id: req.params.id};
+    return service.delete(req, res, option);
+}
+
 // exports.login = function(req, res){
 //     var data = {
 //         userName: req.body.userName,
@@ -44,7 +49,3 @@ exports.search = function(req, res){
 //     return service.login(req, res, {email: data.email}, data);
 // }
 
-exports.delete = function(req, res){
-    var option = {_id: req.params.id};
-    return service.delete(req, res, option);
-}
