@@ -52,8 +52,10 @@ class MovieTab extends React.Component {
 
   render() {
     const { classes, theme } = this.props;
+    const label = ['Action', 'Crime', 'Drama', 'Humor', 'Romance'];
 
     return (
+
       <div className={classes.root}>
         <AppBar position="static" color="default">
           <Tabs
@@ -63,20 +65,17 @@ class MovieTab extends React.Component {
             textColor="primary"
             fullWidth
           >
-            <Tab label="Action" />
-            <Tab label="Crime" />
-            <Tab label="Dramae" />
-            <Tab label="Humor" />
-            <Tab label="Romance" />
+
+         { label.map( TabLabel => 
+            <Tab label={TabLabel} />
+                )}
           </Tabs>
         {/* <LoginModal /> */}
         <div style={{ height: '50px', paddingTop: '9px', paddingLeft: '15px',  }}>
-          <p> 
-            <span style={{ paddingTop: '6px' }}> List_View </span>
-            <span style={{ paddingTop: '6px' }}> Grid_view </span>
-            <span style={{ paddingTop: '6px' }}> Mixed_view </span>
-            <SearchBox />
-          </p>
+          <span> 
+            <span style={{ paddingTop: '13px', fontWeight: 'bolder',  }}> {label[this.state.value]} </span>
+          </span>
+            <span> <SearchBox />   </span>
         </div>
         </AppBar>
         <div className={classes.hide}>
