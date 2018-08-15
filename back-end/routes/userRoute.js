@@ -3,23 +3,23 @@ var router = express.Router();
 var userController = require('../Controllers/userController');
 var trailerController = require('../Controllers/trailerController');
 var uploadService = require('../Uploads/userUploads/uploadService');
-var passport = require('../Config/passport');
+var passportLocal = require('../Config/passport-local');
 
 /* GET users listing. */
-router.get('/', passport.isLoggedIn, userController.getAll);
+router.get('/', passportLocal.isLoggedIn, userController.getAll);
 
 router.get('/search/:id', userController.getById);
 
 // router.post('/uploadProfilePicture', uploadService.upload.single('profilePicture'));
 
-router.delete('/delete/:id', passport.isLoggedIn, userController.delete);
+router.delete('/delete/:id', passportLocal.isLoggedIn, userController.delete);
 
 router.get('/search', userController.search);
 
 router.post('/signup', userController.createAccount);
 
-router.post('/login', passport.login);
+router.post('/login', passportLocal.login);
 
-router.get('/logout', passport.logout, trailerController.getAll);
+router.get('/logout', passportLocal.logout, trailerController.getAll);
 
 module.exports = router;
