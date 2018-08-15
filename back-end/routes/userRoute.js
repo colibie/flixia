@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var userController = require('../Controllers/userController');
 var uploadService = require('../Uploads/userUploads/uploadService');
+var passport = require('../Config/passport')
 
 /* GET users listing. */
 router.get('/', userController.getAll);
@@ -16,6 +17,6 @@ router.get('/search', userController.search);
 
 router.post('/signup', userController.createAccount);
 
-router.post('/login', userController.login);
+router.post('/login', passport.login);
 
 module.exports = router;
