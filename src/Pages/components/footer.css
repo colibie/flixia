@@ -1,0 +1,99 @@
+.footer {
+    height: 180px;
+    background-color: rgb(37, 33, 33);
+    color: whitesmoke;
+    padding-top: 30px;
+    width: 100%;
+    /* margin-left: 2.5%; */
+    box-sizing: border-box;
+    box-shadow: 1px 11px 9px 11px darkgrey;
+    padding-left: 45px;
+    padding-right: 45px;
+}
+
+.equal {
+    width: 50%;
+    padding-top: 6px
+}
+
+.subscribe {
+    border-radius: 4px;
+    width: 50%;
+    padding: 5px;
+    margin-right: 4px;
+    height: 30px;
+    margin-top: 6.5px;
+    font-weight: bold;
+    /* background: url('/favicon.ico') no-repeat 10px 5px;
+    background-size: 10px 10px; */
+    padding-right: 24px
+}
+
+ul {
+    list-style-type: none;
+}
+
+.big-box {
+    align-content: center
+}
+
+.box {
+    list-style-type: none;
+    display: list-item;
+    float: left;
+}
+
+.box1 {
+    text-align: left;
+    width: 20%;
+    border-right: 1px solid rgb(67, 65, 63);
+    padding: 6px 20px;
+    float: left;
+}
+
+.box2 {
+    text-align: left;
+    float: left;
+    padding: 6px 20px;
+    width: 30%;
+    border-right: 1px solid rgb(67, 65, 63);
+}   	
+
+.sign {
+    text-align: center;
+    margin-top: 10px;
+    float: left
+}
+
+
+.contact {
+    float: right;
+    margin-top: -82px;
+    line-height: 17px;
+    text-align: right;
+}
+
+.dem {
+    text-align: center
+}
+
+.dem > h1 {
+    font-size: 2.5rem;
+    font-weight: bolder;
+    margin-bottom: -0.5rem;
+    font-size: 2.5rem;
+}
+
+
+.no-box {
+    border: none;
+    margin-top: -3px;
+}
+
+.hidden {
+    margin-top: -3px;
+}
+
+.fa {
+    margin: 0rem
+}

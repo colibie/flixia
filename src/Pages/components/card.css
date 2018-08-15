@@ -1,0 +1,29 @@
+.large {
+    height: 300px;
+    width: 20%;
+    background-color: transparent;
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    justify-content: space-around;
+}
+
+.avatar {
+    height: 100%;
+    width: 100%
+}
+
+
+.small {
+    height: 75%;
+    width: 96%;
+    background-color: #eee444
+}
+
+
+.descr{
+    background-color: palevioletred;
+    color: whitesmoke;
+    height: 25%;
+    width: 96%
+}

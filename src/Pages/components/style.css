@@ -1,0 +1,88 @@
+.modalClose {
+    float: right;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding-top: 10px;
+    margin-left: 10px;
+}
+.header {
+    margin: auto;
+    margin-left: 10px
+}
+
+.modal-content-center {
+    padding-right: 40%;
+    margin-top: -15px;
+    float: right
+}
+
+.modal-content {
+    /* margin-top: 2%; */
+    text-align: center;
+    padding-top: 11%;
+    margin: auto;
+    width: 351px;
+    margin-top: 1rem;
+    border: none;
+}
+
+.model-content {
+    box-sizing: border-box;
+    padding: 50px;
+    height: 220px;
+    width: 351px;
+    margin:auto
+}
+
+.modal_half {
+    margin-top: 20px;
+    line-height: 30px;
+    width: 50%;
+    height: 96%;
+    border-right: 2px solid grey;
+    padding-top: 10px;
+    float: left;
+    padding-left: 20px 
+}
+
+.modal_half2 {
+    width: 50%;
+    height: 70%;
+    /* padding-top: 10px; */
+    /* float: left; */
+    padding: 20px 20px 0 20px;
+    text-align: center
+}
+
+.content {
+    height: 240px
+}
+
+.modal_half > input {
+    margin-bottom: 20px
+}
+
+.socialLink {
+    padding-left: 40px
+}
+
+.modal-deet {
+    padding-bottom: 30px;    
+    width: 100%;
+    padding-top: 7px;
+}
+
+.myInput{
+    margin-bottom: 20px;
+    margin: auto;
+    width: 351px;
+    
+}
+
+.mass {
+    height: 40px;
+    width: 351px;
+    margin-top: 10px;
+    border-radius: 8px
+}
