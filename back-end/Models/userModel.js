@@ -9,4 +9,7 @@ var UserSchema = mongoose.Schema({
     clips: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clip'}],
 });
 
+UserSchema.methods.validPassword = function(password){
+    return bcrypt.compareSync(password, this.password);
+}
 module.exports = mongoose.model('User', UserSchema);
