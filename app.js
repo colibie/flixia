@@ -35,7 +35,7 @@ app.use(function(req, res, next){
 
 //connecting to mongoose database
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/nmdb');
+// mongoose.connect('mongodb://localhost:27017/nmdb');
 mongoose.connect('mongodb://chidera:genesystechhub2018*@ds121652.mlab.com:21652/flixia');
 
 app.use('/', indexRouter);
