@@ -1,5 +1,5 @@
 var model = require('../Models/userModel');
-var baseRepo = require('../Repositories/BaseRepo'); //contains the content of module.exports
+var baseRepo = require('../Repositories/baseRepo'); //contains the content of module.exports
 
 function userRepo(){
 

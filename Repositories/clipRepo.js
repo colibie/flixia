@@ -1,5 +1,5 @@
 var model = require('../Models/clipModel');
-var baseRepo = require('../Repositories/BaseRepo'); //contains the content of module.exports
+var baseRepo = require('../Repositories/baseRepo'); //contains the content of module.exports
 
 function clipRepo(){
 
