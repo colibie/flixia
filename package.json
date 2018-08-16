@@ -1,5 +1,5 @@
 {
-  "name": "nmdb",
+  "name": "flixia",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
-    "http-errors": "~1.6.2",
+    "http-errors": "^1.6.3",
     "joi": "^13.5.2",
     "joi-errors-for-forms": "^0.2.6",
     "mongoose": "^5.1.6",

@@ -41,5 +41,3 @@ node_modules/
 *test.*
 Old*/
 
-# ignore app.js #
-*app.js
