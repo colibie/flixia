@@ -4,10 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-var passport = require('passport');
-var session = require('express-session');
 
-// var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/userRoute');
 var trailersRouter = require('./routes/trailerRoute');
 var trailerCommentsRouter = require('./routes/trailerCommentRoute');
@@ -17,7 +15,6 @@ var clipsRouter = require('./routes/clipRoute');
 var clipCommentRouter = require('./routes/clipCommentRoute');
 var rolesRouter = require('./routes/roleRoute')
 var celebrityRouter = require('./routes/celebrityRoute');
-var authRouter = require('./routes/authRoute');
 
 var app = express();
 
@@ -31,13 +28,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-  secret: 'genesystechhub',
-  saveUninitialized: true,
-  resave: false
-}));
-app.use(passport.initialize());
-app.use(passport.session());
 
 //to enable Cross-Origin resourse Sharing
 app.use( function(req, res, next) {
@@ -50,15 +40,13 @@ app.use( function(req, res, next) {
   next(); //allows the next middleware to execute
 }) 
 
-
-
 //connecting to mongoose database
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/nmdb');
 
 
 //Routes which should handle requests
-app.use('/', authRouter);
+app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/movieCategories', movieCategories);
 app.use('/trailers', trailersRouter);
