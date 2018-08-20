@@ -28,6 +28,6 @@ exports.search = function(req, res){
 }
 
 exports.delete = function(req, res){
-    var option = {_id: req.params.id};
+    var option = req.params.id;
     return service.delete(req, res, option);
 }

@@ -56,18 +56,22 @@ BaseService.prototype.search = function(req, res, options){
     });
 }
 
-BaseService.prototype.delete = function(req, res, options){
-    this.repo.get(options, '','','', function(err, data){
-        if (data.length >= 1){
-            BaseService.repo.delete(options, function(err){
-                if(err) res.json({err: err, message: 'The data could not be deleted'});
-                res.json({message: 'The data was deleted successfully'});
-            });
+BaseService.prototype.delete = function(req, res, id){
+    this.repo.findAndRemove(id, function(err, result){
+        if (err) res.json({error: err, message: 'The data could not be deleted'});
+        if (result == null){
+            res.json({message: 'Resource does not exist'});
         }else{
-            res.json({message: 'Data does not exist'});
+            res.json({message: 'Resource deleted successfully'});
         }
     })
+}
 
+BaseService.prototype.oldDelete = function(req, res, options){
+    this.repo.delete(options, function(err){
+        if(err) res.json({err: err, message: 'The data could not be deleted'});
+        res.json({message: 'The data was deleted successfully'});
+    });
 }
 
 BaseService.prototype.update = function(req, res, id, options){

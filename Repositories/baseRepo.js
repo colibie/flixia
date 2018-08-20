@@ -34,6 +34,10 @@ BaseRepo.prototype.update = function(id, options, callback){
     this.model.findByIdAndUpdate(id, options, callback);
 }
 
+BaseRepo.prototype.findAndRemove = function(id, callback){
+    this.model.findByIdAndRemove(id, callback);
+}
+
 module.exports = function(model){
     return new BaseRepo(model);
 };
