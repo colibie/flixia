@@ -2,7 +2,7 @@ var service = require('../Services/userService');
 
 exports.add = function(req, res){
     data = {
-        userName: req.body.userName,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password,
         profilePicture: req.file.path,
