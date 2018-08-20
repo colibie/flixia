@@ -23,6 +23,13 @@ function userService(joiSchema){
 }
 userService.prototype = baseService(repo);
 
+userService.prototype.uploadPicture = function(req, res, data){
+    repo.update(data._id, {profilePicture: data.profilePicture}, function(err, user){
+        if(err) res.json({err: err, message: `The user could not be updated`});
+        res.json({message: 'Profile picture uploaded successfully'});
+    });
+}
+
 userService.prototype.createAccount = function(req, res, data){    
     var valid = validator.isValid(req, res, this.joiSchema, data);
     if (valid != null){

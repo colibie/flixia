@@ -13,7 +13,6 @@ exports.createAccount = function(req, res){
             var data = {
                 email: req.body.email,
                 password: hash,
-                // profilePicture: req.file.path,
             }
             return service.createAccount(req, res, data);
         }        
@@ -48,3 +47,10 @@ exports.login = function(req, res){
     return service.login(req, res, {email: data.email}, data);
 }
 
+exports.uploadPicture = function(req, res){
+    var data = {
+        _id: req.body._id,
+        profilePicture: req.file.path
+    }
+    return service.uploadPicture(req, res, data);
+}
