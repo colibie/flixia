@@ -8,5 +8,7 @@ module.exports = Joi.object().keys({
     productionCompany: Joi.string(),
     duration: Joi.number().min(20).max(180),
     trailerCover: Joi.any().required(),
-    trailerVideo: Joi.any().required()
+    trailerCoverId: Joi.any(),
+    trailerVideo: Joi.any().required(),
+    trailerVideoId: Joi.any()
 });
