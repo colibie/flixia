@@ -48,7 +48,7 @@ BaseService.prototype.getById = function(req, res, id){
 BaseService.prototype.search = function(req, res, options){
     this.repo.get(options, this.structure, this.populateA, this.populateB, function(err, result){
         if(err) res.json({err: err, message: 'Data could not be fetched'});
-        if (result >= 1){
+        if (result.length >= 1){
             res.json(result);
         }else{
             res.json({message: 'Not found'});
