@@ -1,4 +1,5 @@
 var service = require('../Services/trailerService');
+var cloudinary = require('../Config/cloudinary');
 
 exports.add = function(req, res){
     data = {
@@ -9,9 +10,24 @@ exports.add = function(req, res){
         productionCompany: req.body.productionCompany,
         duration: req.body.duration,
         trailerCover: req.files[0].path,
-        trailerVideo: req.files[1].path
+        // trailerCoverId : '',
+        trailerVideo: req.files[1].path,
+        // trailerVideoId: ''
     }
-    return service.add(req, res, data);
+    cloudinary.addTrailerCover(data.trailerCover).then((result)=> {
+        data.trailerCover = result.url;
+        data.trailerCoverId = result.ID;
+        cloudinary.addTrailerVideo(data.trailerVideo).then((result)=> {
+            data.trailerVideo = result.url;
+            data.trailerVideoId = result.ID;
+            
+            return service.add(req, res, data);
+        }, (rejected) => {
+            res.json({message: rejected.message});
+        });
+    }, (rejected) => {
+        res.json({message: rejected.message});
+    });
 }
 
 exports.getAll = function(req, res){

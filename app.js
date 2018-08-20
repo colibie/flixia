@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -35,8 +36,9 @@ app.use(function(req, res, next){
 
 //connecting to mongoose database
 mongoose.Promise = global.Promise;
-// mongoose.connect('mongodb://localhost:27017/nmdb');
-mongoose.connect('mongodb://chidera:genesystechhub2018*@ds121652.mlab.com:21652/flixia');
+mongoose.connect('mongodb://localhost:27017/nmdb');
+// mongoose.connect('mongodb://'+ process.env.DB_USER + ':' 
+                  // + process.env.DB_PASS + '@ds121652.mlab.com:21652/flixia');
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
