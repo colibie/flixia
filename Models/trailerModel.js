@@ -7,11 +7,13 @@ var TrailerSchema = mongoose.Schema({
     year: Number,
     productionCompany: String,
     duration: Number,
+    trailerCover: String,
+    trailerVideo: {type: String, unique: true},
+    trailerCoverId: String,
+    trailerVideoId: String,
+    casts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Celebrity'}],
     categories: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
-    // trailer_video: {type: VideoTrack, unique: true},
-    // movieCover: File, 
-    //casts: [{name:--, role:--, etc}],
 })
 
 module.exports = mongoose.model('Trailer', TrailerSchema);
