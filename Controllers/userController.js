@@ -40,7 +40,6 @@ exports.delete = function(req, res){
 
 exports.login = function(req, res){
     var data = {
-        username: req.body.username,
         email: req.body.email,
         password: req.body.password 
     }
