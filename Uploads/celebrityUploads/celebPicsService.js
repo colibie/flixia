@@ -7,7 +7,7 @@ var storage = multer.diskStorage({
         callback(null, './Uploads/celebrityUploads/Images/');
     },
     filename: function(req, file, callback){
-        callback(null, 'CelebImage_'+ file.originalname);
+        callback(null, 'CelebImage_'+Date.now()+'-'+ file.originalname);
     }
 });
 
