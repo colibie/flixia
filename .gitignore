@@ -4,6 +4,7 @@
 *.exe
 *.o
 *.so
+*.env
 
 # Packages #
 ############
