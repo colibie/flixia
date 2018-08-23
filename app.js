@@ -9,6 +9,13 @@ var mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/userRoute');
 var trailersRouter = require('./routes/trailerRoute');
+var trailerCommentsRouter = require('./routes/trailerCommentRoute');
+var movieCategories = require('./routes/movieCategory');
+var rolesRouter = require('./routes/roleRoute');
+var clipsRouter = require('./routes/clipRoute');
+var clipCommentRouter = require('./routes/clipCommentRoute');
+var rolesRouter = require('./routes/roleRoute')
+var celebrityRouter = require('./routes/celebrityRoute');
 
 var app = express();
 
@@ -40,9 +47,16 @@ mongoose.connect('mongodb://localhost:27017/nmdb');
 // mongoose.connect('mongodb://'+ process.env.DB_USER + ':' 
                   // + process.env.DB_PASS + '@ds121652.mlab.com:21652/flixia');
 
+//Routes which should handle requests
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/movieCategories', movieCategories);
 app.use('/trailers', trailersRouter);
+app.use('/trailer/comments', trailerCommentsRouter);
+app.use('/roles', rolesRouter);
+app.use('/clips', clipsRouter);
+app.use('/clipComments', clipCommentRouter);
+app.use('/celebrities', celebrityRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

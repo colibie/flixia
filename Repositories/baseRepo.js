@@ -11,6 +11,10 @@ BaseRepo.prototype.get = function(option, structure, param, param1, callback){
     exec(callback);
 }
 
+BaseRepo.prototype.createAccount = function(data, callback){
+    this.model.create(data, callback);
+}
+
 BaseRepo.prototype.add = function(data, callback){
     this.model.create(data, callback);
 }
@@ -29,6 +33,10 @@ BaseRepo.prototype.delete = function(options, callback){
 BaseRepo.prototype.update = function(id, options, callback){
     this.model.findByIdAndUpdate(id, options, callback);
 }
+
+BaseRepo.prototype.findAndRemove = function(id, callback){
+    this.model.findByIdAndRemove(id, callback);
+}    
 
 module.exports = function(model){
     return new BaseRepo(model);
