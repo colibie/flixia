@@ -1,16 +1,24 @@
 var service = require('../Services/clipService');
+var cloudinary = require('../Config/cloudinary');
 
 exports.add = function(req, res){
-    data = {
+    var data = {
         title: req.body.title,
         description: req.body.description,
         rating: req.body.rating,
         time: Date.now(),
         user: req.body.user,
         clipComment: req.body.clipComment,
-        clipContent: req.file.path
+        clipContent: req.file.path,
+        clipContentId: '',
     }
-    return service.add(req, res, data);
+    cloudinary.addClipUpload(data.clipContent).then((result)=> {
+        data.clipContent = result.url;
+        data.clipContentId = result.ID;        
+        return service.add(req, res, data);
+    }, (rejected) => {
+        res.json({message: rejected.message});
+    });
 }
 
 exports.getAll = function(req, res){

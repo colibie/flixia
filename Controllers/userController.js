@@ -1,5 +1,6 @@
 var service = require('../Services/userService');
 var bcrypt = require('bcrypt');
+var cloudinary = require('../Config/cloudinary');
 
 exports.sendMail = function(req, res){
     return service.sendMail(req, res);
@@ -50,7 +51,14 @@ exports.login = function(req, res){
 exports.uploadPicture = function(req, res){
     var data = {
         _id: req.body._id,
-        profilePicture: req.file.path
+        profilePicture: req.file.path,
+        profilePictureId: ''
     }
-    return service.uploadPicture(req, res, data);
+    cloudinary.addProfilePicture(data.profilePicture).then((result)=> {
+        data.profilePicture = result.url;
+        data.profilePictureId = result.ID;
+        return service.add(req, res, data);
+    }, (rejected) => {
+        res.json({message: rejected.message});
+    });
 }

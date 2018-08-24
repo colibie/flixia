@@ -35,6 +35,28 @@ exports.addClipUpload = function(filename){
     });
 }
 
+exports.addCelebrityPicture = function(filename){
+    return new Promise(resolve => {
+        cloudinary.uploader.upload(filename, function(result){
+            resolve({url: result.url, ID: result.public_id});
+        },         
+        {resource_type: 'image',folder: 'celebPictures', use_filename: true});
+    }, reject => {
+        reject({message: 'File could not be uploaded'});
+    });
+}
+
+exports.addProfilePicture = function(filename){
+    return new Promise(resolve => {
+        cloudinary.uploader.upload(filename, function(result){
+            resolve({url: result.url, ID: result.public_id});
+        },         
+        {resource_type: 'image',folder: 'profilePictures', use_filename: true});
+    }, reject => {
+        reject({message: 'File could not be uploaded'});
+    });
+}
+
 exports.deleteUpload = function(publicId){
     return new Promise(function(resolve){
         cloudinary.uploader.destroy(publicId, function(result){
