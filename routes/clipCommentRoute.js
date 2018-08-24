@@ -6,7 +6,7 @@ var clipCommentController = require('../Controllers/clipCommentController');
 /* GET trailers listing. */
 router.get('/', clipCommentController.getAll);
 
-router.get('/:id', clipCommentController.getById);
+router.get('/search/:id', clipCommentController.getById);
 
 router.post('/create', clipCommentController.add);
 
