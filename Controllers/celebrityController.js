@@ -1,15 +1,23 @@
 //Retrieves and serves data for usage
 var service = require('../Services/celebrityService');
+var cloudinary = require('../Config/cloudinary');
 
 exports.add = function(req, res){
     data = {
         name: req.body.name,
         biography: req.body.biography,
         dateOfBirth: req.body.dateOfBirth,//stands for date of birth
-        picture : req.file.path, 
+        picture : req.file.path,
+        pictureId: '', 
         //movieIndustryRole: req.body.movieIndustryRole,
     }
-    return service.add(req, res, data);
+    cloudinary.addCelebrityPicture(data.picture).then((result)=> {
+        data.picture = result.url;
+        data.pictureId = result.ID;        
+        return service.add(req, res, data);
+    }, (rejected) => {
+        res.json({message: rejected.message});
+    });
 }
 
 exports.getAll = function(req, res){
