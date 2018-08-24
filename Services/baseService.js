@@ -18,7 +18,7 @@ function BaseService(repo){
 BaseService.prototype.add = function(req, res, data){
     var valid = validator.isValid(req, res, this.joiSchema, data);
     if (valid != null){
-        res.json(valid);
+        res.status(400).json(valid);
     }
     else{
         this.repo.add(data, function(err, result){
