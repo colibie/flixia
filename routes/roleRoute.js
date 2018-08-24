@@ -8,9 +8,9 @@ router.get('/', roleController.getAll);
 
 router.get('/search/:id', roleController.getById);
 
-router.post('/create', roleController.add);
+router.post('/create', roleController.add); //adminprotected
 
-router.delete('/delete/:id', roleController.delete);
+router.delete('/delete/:id', roleController.delete);//adminprotected
 
 router.get('/search', roleController.search);
 

@@ -4,14 +4,14 @@ var router = express.Router();
 var clipCommentController = require('../Controllers/clipCommentController');
 
 /* GET trailers listing. */
-router.get('/', clipCommentController.getAll);
+router.get('/', clipCommentController.getAll); 
 
-router.get('/search/:id', clipCommentController.getById);
+router.get('/search/:id', clipCommentController.getById); //protected
 
-router.post('/create', clipCommentController.add);
+router.post('/create', clipCommentController.add); //loginprotected
 
-router.delete('/delete/:id', clipCommentController.delete);
+router.delete('/delete/:id', clipCommentController.delete); //protected
 
-router.get('/search', clipCommentController.search);
+router.get('/search', clipCommentController.search); //protected
 
 module.exports = router;

@@ -8,8 +8,8 @@ router.get('/', categoryController.getAll);
 router.get('/search/:id', categoryController.getById);
 
 //Adding movie categories
-router.post('/create', categoryController.add);
+router.post('/create', categoryController.add); //admin protected
 
-router.delete('/delete/:id', categoryController.delete);
+router.delete('/delete/:id', categoryController.delete);//admin protected
 
 module.exports = router;

@@ -8,8 +8,10 @@ router.get('/', trailerController.getAll);
 
 router.get('/search/:id', trailerController.getById);
 
+//adminprotected
 router.post('/create', uploadService.upload.any(), trailerController.add);
 
+//adminprotected
 router.delete('/delete/:id', trailerController.delete);
 
 router.get('/search', trailerController.search);

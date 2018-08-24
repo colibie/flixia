@@ -5,8 +5,8 @@ var trailerCommentController = require('../Controllers/trailerCommentController'
 /* GET trailers listing. */
 router.get('/', trailerCommentController.getAll);
 
-router.post('/create', trailerCommentController.add);
+router.post('/create', trailerCommentController.add); //loginprotected
 
-router.delete('/delete/:id', trailerCommentController.delete);
+router.delete('/delete/:id', trailerCommentController.delete); //adminprotected
 
 module.exports = router;

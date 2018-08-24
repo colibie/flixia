@@ -7,10 +7,12 @@ var uploadService = require('../Uploads/clipUploads/clipUploadService');
 /* GET trailers listing. */
 router.get('/', clipController.getAll);
 
-router.get('/search/:id', clipController.getById);
+router.get('/search/:id', clipController.getById); //adminprotected
 
+//login protected
 router.post('/create', uploadService.upload.single('clipContent'), clipController.add);
 
+//login protected
 router.delete('/delete/:id', clipController.delete);
 
 router.get('/search', clipController.search);
