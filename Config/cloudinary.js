@@ -3,7 +3,7 @@ var cloudinary = require('cloudinary');
 //promise is used here to ensure that file uploads before the next function happens
 exports.addTrailerCover = function(filename){
     return new Promise(resolve => {
-        cloudinary.uploader.upload(filename, {resource_type: 'image'}, function(result){
+        cloudinary.uploader.unsigned_upload(filename, {resource_type: 'image'},'kpxzsgjw', function(result){
             resolve({url: result.url, ID: result.public_id});
         });
     }, reject => {
@@ -13,7 +13,9 @@ exports.addTrailerCover = function(filename){
 
 exports.addTrailerVideo = function(filename){
     return new Promise(resolve => {
-        cloudinary.uploader.upload(filename, {resource_type: 'video'},function(result){
+        console.log('jere');
+        cloudinary.uploader.upload(filename, {resource_type: 'video'}, 'djo8romk',function(result){
+            console.log(result);
             resolve({url: result.url, ID: result.public_id});
         });
     }, reject => {
