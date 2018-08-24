@@ -11,6 +11,7 @@ exports.createAccount = function(req, res){
             return res.status(500).json({error: err});
         }else{
             var data = {
+                username: req.body.username,
                 email: req.body.email,
                 password: hash,
             }

@@ -33,7 +33,7 @@ BaseService.prototype.add = function(req, res, data){
 
 BaseService.prototype.getAll = function(req, res){
     this.repo.get({}, this.structure, this.populateA, this.populateB, function(err, result){
-        if(err) res.json({err: err, message: 'Data could not be fetched'});
+        if(err) res.status(500).json({err: err, message: 'Data could not be fetched'});
         res.json(result);
     });
 }
@@ -46,7 +46,7 @@ BaseService.prototype.getById = function(req, res, id){
 }
 
 BaseService.prototype.search = function(req, res, option){
-    this.repo.get(options, this.structure, this.populateA, this.populateB, function(err, result){
+    this.repo.get(option, this.structure, this.populateA, this.populateB, function(err, result){
         if(err) res.status(500).json({err: err, message: 'Data could not be fetched'});
         if (result.length >= 1){
             res.json(result);

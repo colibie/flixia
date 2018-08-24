@@ -14,7 +14,7 @@ var transporter = nodemailer.createTransport({
 
 function userService(joiSchema){
     //must be added for population purposes
-    this.structure = '-__v';
+    this.structure = '-__v -password';
     this.populateA = ''; // {path: 'categories', select: '-_id -__v'}
     this.populateB = ''; //{path: 'userComments', select:'-user -__v'};
     
@@ -55,6 +55,9 @@ sendMail = function(req, res, userAccount, name){
         html: "<p>You are very welcome to our platform😁. Expect enough fun and updates from us.</p>"
     };
 
+    /**I need a function that ensures that email is sent
+     * else notify me of the failure to send email.
+     */
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function(err){
         if (err) {
