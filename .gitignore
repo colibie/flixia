@@ -42,5 +42,3 @@ node_modules/
 # all test and old files #
 *test.*
 Old*/
-
-\.env
