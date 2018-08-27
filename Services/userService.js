@@ -31,7 +31,7 @@ userService.prototype.uploadPicture = function(req, res, data){
         });
     }
     catch(exception){
-        res.json({err:error});
+        res.json({error:err});
     }
    
 }
@@ -54,7 +54,7 @@ userService.prototype.createAccount = function(req, res, data){
     }
 
     catch(exception){
-        res.json({err:error});
+        res.json({error:err});
     }
     
 }
@@ -84,7 +84,7 @@ sendMail = function(req, res, userAccount, name){
         });
     }
     catch(exception){
-        res.json({err:error});
+        res.json({error:err});
     }    
 }
     

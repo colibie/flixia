@@ -24,7 +24,7 @@ adminService.prototype.uploadPicture = function(req, res, data){
 
     }
     catch(exception){
-        res.json({err: error});
+        res.json({error: err});
     }
    
 }
@@ -47,7 +47,7 @@ adminService.prototype.createAccount = function(req, res, data){
     }
 
     catch(exception){
-        res.json({err :error});
+        res.json({error :err});
     }
     
 }

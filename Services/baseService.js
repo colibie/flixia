@@ -33,7 +33,7 @@ BaseService.prototype.add = function(req, res, data){
     }
 
     catch(exception){
-        res.json({err: error});
+        res.json({error: err});
     }
     
 }
@@ -47,7 +47,7 @@ BaseService.prototype.getAll = function(req, res){
         });
     }
     catch(exception){
-        res.json({err:error});
+        res.json({error:err});
     }
 }
 
@@ -59,7 +59,7 @@ BaseService.prototype.getById = function(req, res, id){
          });
         }
         catch(exception){
-            res.json({err:error});
+            res.json({error:err});
         }     
 }
 
@@ -76,7 +76,7 @@ BaseService.prototype.search = function(req, res, option){
             });
         }
         catch(exception){
-            res.json({err:error});
+            res.json({error:err});
         } 
 }
 
@@ -92,7 +92,7 @@ BaseService.prototype.delete = function(req, res, id){
             });
         }
     catch(exception){
-        res.json({err:error});
+        res.json({error:err});
     }        
 }
     
@@ -116,7 +116,7 @@ BaseService.prototype.update = function(req, res, id, options){
         });
     }
     catch(exception){
-        res.json
+        res.json({error:err})
     }    
 }
 
@@ -147,8 +147,8 @@ BaseService.prototype.login = function(req, res, options, data){
         });
 
     }
-    catch{
-        res.json({err: error});
+    catch(exception){
+        res.json({error: err});
     }
 }    
 
