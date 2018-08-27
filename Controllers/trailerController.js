@@ -9,6 +9,7 @@ exports.add = function(req, res){
         year: req.body.year,
         productionCompany: req.body.productionCompany,
         duration: req.body.duration,
+        category: req.body.category,
         trailerCover: req.files[0].path,
         // trailerCoverId : '',
         trailerVideo: req.files[1].path,
