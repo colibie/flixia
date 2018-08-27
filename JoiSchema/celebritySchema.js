@@ -6,5 +6,6 @@ module.exports = Joi.object().keys({
     biography: Joi.string(),
     dateOfBirth: Joi.number().integer(),
     picture : Joi.string(),
+    pictureId: Joi.any(),
     //movieIndurtyRole: Joi.string(),
 });

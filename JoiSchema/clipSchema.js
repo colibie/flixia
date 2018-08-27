@@ -8,4 +8,5 @@ module.exports = Joi.object().keys({
     user: Joi.string().length(24).required(),
     time: Joi.any(),
     clipContent: Joi.any().required(),
+    clipContentId: Joi.any(),
 });
