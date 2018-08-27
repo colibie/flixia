@@ -5,7 +5,6 @@
 *.exe
 *.o
 *.so
-*.env
 
 # Packages #
 ############
@@ -43,3 +42,4 @@ node_modules/
 *test.*
 Old*/
 
+\.env
