@@ -43,3 +43,4 @@ node_modules/
 *test.*
 Old*/
 
+\.env
