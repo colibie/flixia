@@ -24,9 +24,10 @@ BaseService.prototype.add = function(req, res, data){
         this.repo.add(data, function(err, result){
             if (err) {
                 if (err.code == 11000) res.status(409).json({err:err, message: 'Already taken. Pick another please'});
-                res.status(500).json({err: err, message: 'Data could not be created'});
+                else res.status(500).json({err: err, message: 'Data could not be created'});
+            }else{
+                res.json(result);
             }
-            res.json(result);
         });
     }
 }
