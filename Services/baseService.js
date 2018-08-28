@@ -16,74 +16,105 @@ function BaseService(repo){
 // }
 
 BaseService.prototype.add = function(req, res, data){
-    var valid = validator.isValid(req, res, this.joiSchema, data);
-    if (valid != null){
-        res.status(400).json(valid);
-    }
-    else{
-        this.repo.add(data, function(err, result){
-            if (err) {
-                if (err.code == 11000) res.status(409).json({err:err, message: 'Already taken. Pick another please'});
-                res.status(500).json({err: err, message: 'Data could not be created'});
-            }
-            res.json(result);
-        });
+    try{
+        var valid = validator.isValid(req, res, this.joiSchema, data);
+        if (valid != null){
+            res.status(400).json(valid);
+        }
+        else{
+            this.repo.add(data, function(err, result){
+                if (err) {
+                    if (err.code == 11000) res.status(409).json({err:err, message: 'Already taken. Pick another please'});
+                    else res.status(500).json({err: err, message: 'Data could not be created'});
+                }else{
+                    res.json(result);
+                }
+            });
+        }
+    }catch(exception){
+        res.status(520).json({error: exception});
     }
 }
 
 BaseService.prototype.getAll = function(req, res){
-    this.repo.get({}, this.structure, this.populateA, this.populateB, function(err, result){
-        if(err) res.status(500).json({err: err, message: 'Data could not be fetched'});
-        res.json(result);
-    });
+    try{
+        this.repo.get({}, this.structure, this.populateA, this.populateB, function(err, result){
+            if(err) res.status(500).json({err: err, message: 'Data could not be fetched'});
+            res.json(result);
+        });
+    }catch(exception){
+        res.status(520).json({error:exception});
+    }
 }
 
 BaseService.prototype.getById = function(req, res, id){
-    this.repo.getById(id, this.structure, this.populateA, this.populateB, function(err, result){
+    try{
+        this.repo.getById(id, this.structure, this.populateA, this.populateB, function(err, result){
         if(err) res.json({err: err, message: 'Data could not be fetched'});
         res.json(result);
-    });
+         });
+    }catch(exception){
+        res.status(520).json({error:exception});
+    }     
 }
 
 BaseService.prototype.search = function(req, res, option){
-    this.repo.get(option, this.structure, this.populateA, this.populateB, function(err, result){
-        if(err) res.status(500).json({err: err, message: 'Data could not be fetched'});
-        if (result.length >= 1){
-            res.json(result);
-        }else{
-            res.json({message: 'Not found'});
-        }
-            
-    });
+    try{
+        this.repo.get(option, this.structure, this.populateA, this.populateB, function(err, result){
+            if(err) res.status(500).json({err: err, message: 'Data could not be fetched'});
+            if (result.length >= 1){
+                res.json(result);
+            }else{
+                res.status(404).json({message: 'Not found'});
+            }
+                
+        });
+    }catch(exception){
+        res.status(520).json({error:exception});
+    } 
 }
 
 BaseService.prototype.delete = function(req, res, id){
-    this.repo.findAndRemove(id, function(err, result){
-        if (err) res.json({error: err, message: 'The data could not be deleted'});
-        if (result == null){
-            res.json({message: 'Resource does not exist'});
-        }else{
-            res.json({message: 'Resource deleted successfully'});
-        }
-    })
+    try{
+        this.repo.findAndRemove(id, function(err, result){
+            if (err) res.status(500).json({error: err, message: 'The data could not be deleted'});
+            else if (result == null){
+                res.status(400).json({message: 'Resource does not exist'});
+            }else{
+                res.json({message: 'Resource deleted successfully'});
+            }
+        });
+    }catch(exception){
+        res.status(520).json({error:exception});
+    }        
 }
     
 BaseService.prototype.oldDelete = function(req, res, options){
-    this.repo.delete(options, function(err){
-        if(err) res.json({err: err, message: 'The data could not be deleted'});
-        res.json({message: 'The data was deleted successfully'});
-    });
+    try{
+        this.repo.delete(options, function(err){
+            if(err) res.json({err: err, message: 'The data could not be deleted'});
+            res.json({message: 'The data was deleted successfully'});
+        });
+    }catch(exception){
+        res.status(520).json({err:exception});
+    }    
 }
 
 BaseService.prototype.update = function(req, res, id, options){
-    this.repo.update(id, options, function(err, update){
-        if(err) res.json({err: err, message: `The data could not be updated`});
-        res.json({message: update});
-    });
+    try{
+        this.repo.update(id, options, function(err, update){
+            if(err) res.json({err: err, message: `The data could not be updated`});
+            res.json({message: update});
+        });
+    }
+    catch(exception){
+        res.status(520).json({error:exception})
+    }    
 }
 
 BaseService.prototype.login = function(req, res, options, data){
-    this.repo.get(options, '','','', function(err, result){
+    try{
+        this.repo.get(options, '','','', function(err, result){
         if (result.length < 1){
             res.status(401).json({message: 'Email/Password is incorrect'});
         } else if(result.length >= 1){
@@ -102,10 +133,13 @@ BaseService.prototype.login = function(req, res, options, data){
                     res.status(401).json({message: 'Email/Password is incorrect' });
                 }
             });
-        }else{
-            res.status(500).json({message: 'Email/Password is incorrect'});
-        }
-    });
+            }else{
+                res.status(500).json({message: 'Email/Password is incorrect'});
+            }
+        });
+    }catch(exception){
+        res.status(520).json({error: exception});
+    }
 }    
 
 module.exports = function(repo){
