@@ -11,9 +11,9 @@ exports.add = function(req, res){
         duration: req.body.duration,
         categories: req.body.categories,
         trailerCover: req.files[0].path,
-        // trailerCoverId : '',
+        trailerCoverId : '',
         trailerVideo: req.files[1].path,
-        // trailerVideoId: ''
+        trailerVideoId: ''
     }
     cloudinary.addTrailerCover(data.trailerCover).then((result)=> {
         data.trailerCover = result.url;

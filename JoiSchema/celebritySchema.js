@@ -7,5 +7,5 @@ module.exports = Joi.object().keys({
     dateOfBirth: Joi.number().integer(),
     picture : Joi.string(),
     pictureId: Joi.any(),
-    roles: Joi.array(),
+    roles: Joi.any(),
 });
