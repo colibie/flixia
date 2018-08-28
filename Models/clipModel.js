@@ -6,6 +6,7 @@ var ClipSchema = mongoose.Schema({
     title : String,
     rating : Number,
     clipContent : String,
+    clipContentId: String,
     description : String,
     clipComment : [{type : mongoose.Schema.Types.ObjectId, ref : 'clipComment'}],
 });

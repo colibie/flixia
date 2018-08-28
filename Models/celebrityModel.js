@@ -7,6 +7,7 @@ var celebrityModel = mongoose.Schema({
     dateOfBirth: Number,
     roles: [{type : mongoose.Schema.Types.ObjectId, ref: 'Role'}],
     picture: String,
+    pictureId: String,
     trailers: [{type: mongoose.Schema.Types.ObjectId, ref: 'Trailer'}],
 });
 

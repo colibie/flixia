@@ -8,8 +8,8 @@ var validator = require('../JoiSchema/validator');
 function celebrityService(joiSchema){
     //must be added for population purposes
     this.structure = '-__v';
-    this.populateA = {path: 'roles', select: 'name'};;
-    this.populateB = '';
+    this.populateA = {path: 'roles', select: 'name'};
+    this.populateB = {path: 'trailers', select: 'name'};
     //needed to define the joiSchema
     this.joiSchema = joiSchema;
 }
