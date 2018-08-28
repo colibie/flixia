@@ -7,7 +7,7 @@ exports.add = function(req, res){
         rating: req.body.rating,
         trailer: req.body.trailer,
     }
-    return service.add(req, res, data);
+    return service.addPopulate(req, res, data);
 }
 
 exports.getAll = function(req, res){
