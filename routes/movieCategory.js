@@ -12,4 +12,6 @@ router.post('/create', categoryController.add); //admin protected
 
 router.delete('/delete/:id', categoryController.delete);//admin protected
 
+router.get('/search', categoryController.search);
+
 module.exports = router;
