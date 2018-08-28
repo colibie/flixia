@@ -17,37 +17,33 @@ function BaseService(repo){
 
 BaseService.prototype.add = function(req, res, data){
     try{
-            var valid = validator.isValid(req, res, this.joiSchema, data);
-            if (valid != null){
-                res.status(400).json(valid);
-            }
-            else{
-                this.repo.add(data, function(err, result){
-                    if (err) {
-                        if (err.code == 11000) res.status(409).json({err:err, message: 'Already taken. Pick another please'});
-                        res.status(500).json({err: err, message: 'Data could not be created'});
-                    }
+        var valid = validator.isValid(req, res, this.joiSchema, data);
+        if (valid != null){
+            res.status(400).json(valid);
+        }
+        else{
+            this.repo.add(data, function(err, result){
+                if (err) {
+                    if (err.code == 11000) res.status(409).json({err:err, message: 'Already taken. Pick another please'});
+                    else res.status(500).json({err: err, message: 'Data could not be created'});
+                }else{
                     res.json(result);
-                });
-            }
+                }
+            });
+        }
+    }catch(exception){
+        res.status(520).json({error: exception});
     }
-
-    catch(exception){
-        res.json({error: err});
-    }
-    
 }
 
 BaseService.prototype.getAll = function(req, res){
     try{
-
         this.repo.get({}, this.structure, this.populateA, this.populateB, function(err, result){
             if(err) res.status(500).json({err: err, message: 'Data could not be fetched'});
             res.json(result);
         });
-    }
-    catch(exception){
-        res.json({error:err});
+    }catch(exception){
+        res.status(520).json({error:exception});
     }
 }
 
@@ -57,42 +53,39 @@ BaseService.prototype.getById = function(req, res, id){
         if(err) res.json({err: err, message: 'Data could not be fetched'});
         res.json(result);
          });
-        }
-        catch(exception){
-            res.json({error:err});
-        }     
+    }catch(exception){
+        res.status(520).json({error:exception});
+    }     
 }
 
 BaseService.prototype.search = function(req, res, option){
-        try{
-            this.repo.get(option, this.structure, this.populateA, this.populateB, function(err, result){
-                if(err) res.status(500).json({err: err, message: 'Data could not be fetched'});
-                if (result.length >= 1){
-                    res.json(result);
-                }else{
-                    res.json({message: 'Not found'});
-                }
-                    
-            });
-        }
-        catch(exception){
-            res.json({error:err});
-        } 
+    try{
+        this.repo.get(option, this.structure, this.populateA, this.populateB, function(err, result){
+            if(err) res.status(500).json({err: err, message: 'Data could not be fetched'});
+            if (result.length >= 1){
+                res.json(result);
+            }else{
+                res.status(404).json({message: 'Not found'});
+            }
+                
+        });
+    }catch(exception){
+        res.status(520).json({error:exception});
+    } 
 }
 
 BaseService.prototype.delete = function(req, res, id){
     try{
-            this.repo.findAndRemove(id, function(err, result){
-                if (err) res.json({error: err, message: 'The data could not be deleted'});
-                if (result == null){
-                    res.json({message: 'Resource does not exist'});
-                }else{
-                    res.json({message: 'Resource deleted successfully'});
-                }
-            });
-        }
-    catch(exception){
-        res.json({error:err});
+        this.repo.findAndRemove(id, function(err, result){
+            if (err) res.status(500).json({error: err, message: 'The data could not be deleted'});
+            else if (result == null){
+                res.status(400).json({message: 'Resource does not exist'});
+            }else{
+                res.json({message: 'Resource deleted successfully'});
+            }
+        });
+    }catch(exception){
+        res.status(520).json({error:exception});
     }        
 }
     
@@ -102,9 +95,8 @@ BaseService.prototype.oldDelete = function(req, res, options){
             if(err) res.json({err: err, message: 'The data could not be deleted'});
             res.json({message: 'The data was deleted successfully'});
         });
-    }
-    catch(exception){
-        res.json({err:error});
+    }catch(exception){
+        res.status(520).json({err:exception});
     }    
 }
 
@@ -116,39 +108,37 @@ BaseService.prototype.update = function(req, res, id, options){
         });
     }
     catch(exception){
-        res.json({error:err})
+        res.status(520).json({error:exception})
     }    
 }
 
 BaseService.prototype.login = function(req, res, options, data){
     try{
-            this.repo.get(options, '','','', function(err, result){
-            if (result.length < 1){
-                res.status(401).json({message: 'Email/Password is incorrect'});
-            } else if(result.length >= 1){
-                bcrypt.compare(data.password, result[0].password, function(err, success){
-                    if(err) res.status(401).json({error: err, message: 'Email/Password is incorrect'});
-                    else if (success) {
-                        res.status(200).json({
-                            message: 'Welcome and enjoy your stay',
-                            token: token({
-                                email: result[0].email,
-                                id: result[0]._id
-                            }),
-                        });
-                    }
-                    else {
-                        res.status(401).json({message: 'Email/Password is incorrect' });
-                    }
-                });
+        this.repo.get(options, '','','', function(err, result){
+        if (result.length < 1){
+            res.status(401).json({message: 'Email/Password is incorrect'});
+        } else if(result.length >= 1){
+            bcrypt.compare(data.password, result[0].password, function(err, success){
+                if(err) res.status(401).json({error: err, message: 'Email/Password is incorrect'});
+                else if (success) {
+                    res.status(200).json({
+                        message: 'Welcome and enjoy your stay',
+                        token: token({
+                            email: result[0].email,
+                            id: result[0]._id
+                        }),
+                    });
+                }
+                else {
+                    res.status(401).json({message: 'Email/Password is incorrect' });
+                }
+            });
             }else{
                 res.status(500).json({message: 'Email/Password is incorrect'});
             }
         });
-
-    }
-    catch(exception){
-        res.json({error: err});
+    }catch(exception){
+        res.status(520).json({error: exception});
     }
 }    
 

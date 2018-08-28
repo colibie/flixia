@@ -51,17 +51,13 @@ userService.prototype.createAccount = function(req, res, data){
                 };
             });
         }
+    }catch(exception){
+        res.json({error:exception});
     }
-
-    catch(exception){
-        res.json({error:err});
-    }
-    
 }
 
 sendMail = function(req, res, userAccount, name){
-    try{
- 
+    try{ 
         // setup email data with unicode symbols
         var mailOptions = {
             from: 'helloflixia@gmail.com', // sender address
@@ -82,9 +78,8 @@ sendMail = function(req, res, userAccount, name){
                 console.log('Email sent successfully');
             }
         });
-    }
-    catch(exception){
-        res.json({error:err});
+    }catch(exception){
+        res.status(520).json({error:exception});
     }    
 }
     
