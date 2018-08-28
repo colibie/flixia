@@ -57,7 +57,7 @@ exports.uploadPicture = function(req, res){
     cloudinary.addProfilePicture(data.profilePicture).then((result)=> {
         data.profilePicture = result.url;
         data.profilePictureId = result.ID;
-        return service.add(req, res, data);
+        return service.uploadPicture(req, res, data);
     }, (rejected) => {
         res.json({message: rejected.message});
     });

@@ -25,15 +25,13 @@ userService.prototype = baseService(repo);
 
 userService.prototype.uploadPicture = function(req, res, data){
     try{
-            repo.update(data._id, {profilePicture: data.profilePicture}, function(err, user){
+        repo.update(data._id, {profilePicture: data.profilePicture}, function(err, user){
             if(err) res.json({err: err, message: `The user could not be updated`});
-            res.json({message: 'Profile picture uploaded successfully'});
+            else res.json({message: 'Profile picture uploaded successfully'});
         });
+    }catch(exception){
+        res.json({error:exception});
     }
-    catch(exception){
-        res.json({error:err});
-    }
-   
 }
 
 userService.prototype.createAccount = function(req, res, data){
