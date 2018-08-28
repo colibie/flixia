@@ -7,6 +7,7 @@ var AdminSchema = mongoose.Schema({
     email: {type: String, unique: true},
     password: String,
     profilePicture: String,
+    profilePictureId: String
 });
 
 AdminSchema.methods.validPassword = function(password){

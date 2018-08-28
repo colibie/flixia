@@ -5,10 +5,11 @@ exports.add = function(req, res){
     data = {
         content: req.body.content,
         rating: req.body.rating,
-        time : Date.now()
-        
+        time : Date.now(),
+        clip: req.body.clip,
+        user: req.body.user
     }
-    return service.add(req, res, data);
+    return service.addPopulate(req, res, data);
 }
 
 exports.getAll = function(req, res){

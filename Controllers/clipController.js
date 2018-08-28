@@ -15,7 +15,7 @@ exports.add = function(req, res){
     cloudinary.addClipUpload(data.clipContent).then((result)=> {
         data.clipContent = result.url;
         data.clipContentId = result.ID;        
-        return service.add(req, res, data);
+        return service.addPopulate(req, res, data);
     }, (rejected) => {
         res.json({message: rejected.message});
     });

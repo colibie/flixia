@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 var CategorySchema = mongoose.Schema({
     name: {type: String, unique: true},
-    //trailers: [{type: mongoose.Schema.Types.ObjectId, ref: 'Trailers'}],
+    trailers: [{type: mongoose.Schema.Types.ObjectId, ref: 'Trailer'}],
 })
 
 module.exports = mongoose.model('Category', CategorySchema);
