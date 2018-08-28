@@ -6,7 +6,7 @@ var joiSchema = require('../JoiSchema/roleSchema');
 function roleService(joiSchema){
     //must be added for population purposes
     this.structure = '-__v';
-    this.populateA = '';
+    this.populateA = {path: 'celebrities', select: 'name'};
     this.populateB = '';
     //needed to define the joiSchema
     this.joiSchema = joiSchema;

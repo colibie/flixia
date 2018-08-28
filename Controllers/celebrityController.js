@@ -9,12 +9,12 @@ exports.add = function(req, res){
         dateOfBirth: req.body.dateOfBirth,//stands for date of birth
         picture : req.file.path,
         pictureId: '', 
-        //movieIndustryRole: req.body.movieIndustryRole,
+        roles: req.body.roles,
     }
     cloudinary.addCelebrityPicture(data.picture).then((result)=> {
         data.picture = result.url;
         data.pictureId = result.ID;        
-        return service.add(req, res, data);
+        return service.addPopulate(req, res, data);
     }, (rejected) => {
         res.json({message: rejected.message});
     });

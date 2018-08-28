@@ -1,13 +1,11 @@
 var mongoose = require('mongoose');
 
 var clipCommentSchema = mongoose.Schema({
-
-    //clip : [{type : mongoose.Schema.Types.ObjectId, ref : 'Clips'}],
-    //user : [{type : mongoose.Schema.Types.ObjectId, ref : 'User'}],
     time : Date,
     rating : Number,
-    content : String
+    content : String,
+    clip : {type : mongoose.Schema.Types.ObjectId, ref : 'Clip'},
+    user : {type : mongoose.Schema.Types.ObjectId, ref : 'User'},
 });
 
-
-module.exports = mongoose.model('ClipComments', clipCommentSchema);
+module.exports = mongoose.model('ClipComment', clipCommentSchema);

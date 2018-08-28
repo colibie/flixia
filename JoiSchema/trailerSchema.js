@@ -7,7 +7,7 @@ module.exports = Joi.object().keys({
     year: Joi.number().integer(),
     productionCompany: Joi.string(),
     duration: Joi.number().min(20).max(180),
-    category: Joi.string(),
+    categories: Joi.array(),
     trailerCover: Joi.any().required(),
     trailerCoverId: Joi.any(),
     trailerVideo: Joi.any().required(),

@@ -3,8 +3,7 @@ var service = require('../Services/roleService');
 
 exports.add = function(req, res){
     data = {
-        roleName: req.body.roleName,
-    
+        rolename: req.body.rolename,
     }
     return service.add(req, res, data);
 }

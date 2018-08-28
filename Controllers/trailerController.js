@@ -9,7 +9,7 @@ exports.add = function(req, res){
         year: req.body.year,
         productionCompany: req.body.productionCompany,
         duration: req.body.duration,
-        category: req.body.category,
+        categories: req.body.categories,
         trailerCover: req.files[0].path,
         // trailerCoverId : '',
         trailerVideo: req.files[1].path,
@@ -22,7 +22,7 @@ exports.add = function(req, res){
             data.trailerVideo = result.url;
             data.trailerVideoId = result.ID;
             
-            return service.add(req, res, data);
+            return service.addPopulate(req, res, data);
         }, (rejected) => {
             res.json({message: rejected.message});
         });
