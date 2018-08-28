@@ -28,15 +28,17 @@ trailerService.prototype.addPopulate = function(req, res, data){
                     res.status(500).json({err: err, message: 'Data could not be created'});
                 }
             }else{
-                result.categories.forEach(element => {
-                    categoryRepo.getById(element,'','','', function(err, category){
-                        category.trailers.push(result._id);
-                        category.save();
-                        if(err) res.json({err: err, message: 'the trailer could not be added'});
+                if (result.categories.length > 0){
+                    result.categories.forEach(element => {
+                        categoryRepo.getById(element,'','','', function(err, category){
+                            category.trailers.push(result._id);
+                            category.save();
+                            if(err) res.json({err: err, message: 'the trailer could not be added'});
+                        });
                     });
-                });
-                res.json({message: 'the trailer was added successfully', movie: result});
                 }
+                res.json({message: 'the trailer was added successfully', movie: result});
+            }
         });
     }
 }
