@@ -7,7 +7,7 @@ var joiSchema = require('../JoiSchema/movieCategoriesSchema');
 function movieCategoryService(joiSchema){
     //must be added for population purposes
     this.structure = '-__v';
-    this.populateA = '';
+    this.populateA = {path: 'trailers', select: '-__v -categories'};
     this.populateB = '';
     //needed to define the joiSchema
     this.joiSchema = joiSchema;
