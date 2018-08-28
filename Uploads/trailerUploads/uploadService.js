@@ -23,11 +23,11 @@ var fileFilter = function(req, file, callback){
     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
         //accept a file
         callback(null, true);
-    } else if (file.mimetype === 'video/mp4'){
+    } else if (file.mimetype === 'video/mp4' || file.mimetype === 'image/gif'){
         callback(null, true);
     } else {
         //reject a file
-        callback(new Error('Trailer upload failed. Supports only jpeg, png and mp4'), false);
+        callback(new Error('Trailer upload failed. Supports only jpeg, png, gif and mp4'), false);
     }    
 }
 
