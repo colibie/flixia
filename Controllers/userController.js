@@ -7,6 +7,8 @@ exports.sendMail = function(req, res){
 }
 
 exports.createAccount = function(req, res){
+    //console.log(req.body.password)
+    
     bcrypt.hash(req.body.password, 10, function(err, hash){
         if(err) {
             return res.status(500).json({error: err});
@@ -37,7 +39,7 @@ exports.search = function(req, res){
 
 exports.delete = function(req, res){
     var option = req.params.id;
-    return service.delete(req, res, option);
+    return service.deleteUser(req, res, option);
 }
 
 exports.login = function(req, res){
