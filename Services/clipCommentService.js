@@ -31,7 +31,7 @@ clipCommentService.prototype.addPopulate = function(req, res, data){
                 clipRepo.getById(result.clip, '' , '' , '' , function(err, clip){
                     clip.clipComments.push(result._id);
                     clip.save();
-                    if(err) res.json({err: err, message: 'the comment could not be added'});
+                    if(err) res.status(500).json({err: err, message: 'the comment could not be added'});
                 });
             res.json({message: 'the comment was added successfully', comment: result});
             }

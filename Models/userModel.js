@@ -8,6 +8,7 @@ var UserSchema = mongoose.Schema({
     password: String,
     profilePicture: String,
     profilePictureId: String,
+    verified: String,
     clips: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clip'}],
 });
 

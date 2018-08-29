@@ -14,6 +14,7 @@ exports.createAccount = function(req, res){
             var data = {
                 username: req.body.username,
                 email: req.body.email,
+                verified: false,
                 password: hash,
             }
             return service.createAccount(req, res, data);
