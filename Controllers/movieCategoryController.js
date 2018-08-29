@@ -19,7 +19,7 @@ exports.getById = function(req, res){
 
 exports.search = function(req, res){
     var option = req.query;
-    return service.search(req, res, option);
+    return service.searchByCategory(req, res, option);
 }
 
 exports.delete = function(req, res){
