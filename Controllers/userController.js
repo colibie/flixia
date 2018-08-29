@@ -14,6 +14,7 @@ exports.createAccount = function(req, res){
             var data = {
                 username: req.body.username,
                 email: req.body.email,
+                verified: false,
                 password: hash,
             }
             return service.createAccount(req, res, data);
@@ -48,6 +49,12 @@ exports.login = function(req, res){
     return service.login(req, res, {email: data.email}, data);
 }
 
+exports.verify = function(req, res){
+    var data = {
+        email: req.params.email
+    };
+    return service.verify(req, res, data);
+}
 exports.uploadPicture = function(req, res){
     var data = {
         _id: req.body._id,

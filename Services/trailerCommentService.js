@@ -26,18 +26,22 @@ trailerCommentService.prototype.addPopulate = function(req, res, data){
     }
     else{
         repo.add(data, function(err, result){
-            if (err) {
-                if (err.code == 11000) res.status(409).json({err:err, message: 'Already taken. Pick another please'});
-                else{
-                    res.status(500).json({err: err, message: 'Data could not be created'});
-                }
-            }else{
-                trailerRepo.getById(result.trailer, '' , '' , '' , function(err, trailer){
-                    trailer.trailerComments.push(result._id);
-                    trailer.save();
-                    if(err) res.json({err: err, message: 'the comment could not be added'});
-                });
-            res.json({message: 'the comment was added successfully', comment: result});
+            try {
+                if (err) {
+                    if (err.code == 11000) res.status(409).json({err:err, message: 'Already taken. Pick another please'});
+                    else{
+                        res.status(500).json({err: err, message: 'Data could not be created'});
+                    }
+                }else{
+                    trailerRepo.getById(result.trailer, '' , '' , '' , function(err, trailer){
+                        trailer.trailerComments.push(result._id);
+                        trailer.save();
+                        if(err) res.json({err: err, message: 'the comment could not be added'});
+                    });
+                res.json({message: 'the comment was added successfully', comment: result});
+                }            
+            } catch (error) {
+                res.json({error: error});
             }
         });
     }
