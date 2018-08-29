@@ -41,7 +41,7 @@ exports.login = function(req, res){
         email: req.body.email,
         password: req.body.password 
     }
-    return service.login(req, res, {email: data.email}, data);
+    return service.adminLogin(req, res, {email: data.email}, data);
 }
 
 exports.uploadPicture = function(req, res){
