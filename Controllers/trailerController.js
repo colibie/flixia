@@ -6,7 +6,7 @@ exports.add = function(req, res){
         title: req.body.title,
         description: req.body.description,
         rating: req.body.rating,
-        year: req.body.year,
+        releaseDate: req.body.releaseDate,
         productionCompany: req.body.productionCompany,
         duration: req.body.duration,
         category: req.body.category,
@@ -48,4 +48,12 @@ exports.search = function(req, res){
 exports.delete = function(req, res){
     var option = req.params.id;
     return service.deleteTrailer(req, res, option);
+}
+
+exports.getLatestTrailers = function(req, res){
+    try {
+        return service.getByRecent(req, res, Number.parseInt(req.query.releaseDate));   
+    } catch (exception){
+        console.log("Error : "+exception);
+    }
 }
