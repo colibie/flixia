@@ -14,40 +14,41 @@ function adminService(joiSchema){
 }
 adminService.prototype = baseService(repo);
 
-adminService.prototype.uploadPicture = function(req, res, data){
-    try{ 
-        repo.update(data._id, {profilePicture: data.profilePicture}, function(err, admin){
+adminService.prototype.uploadPicture = function(req, res, data){   
+    repo.update(data._id, {profilePicture: data.profilePicture}, function(err, admin){
+        try{
             if(err) res.json({err: err, message: `The admin could not be updated`});
             res.json({message: 'Profile picture uploaded successfully'});
-        });
-    }catch(exception){
-        res.json({error: exception});
-    }   
+        }catch(exception){
+            res.json({error: exception});
+        }  
+    });
+     
 }
 
 adminService.prototype.createAccount = function(req, res, data){
-    try{
-        var valid = validator.isValid(req, res, this.joiSchema, data);
-        if (valid != null){
-            res.json(valid);
-        }else{
-            repo.createAccount(data, function(err, adminAccount){
+    var valid = validator.isValid(req, res, this.joiSchema, data);
+    if (valid != null){
+        res.json(valid);
+    }else{
+        repo.createAccount(data, function(err, adminAccount){
+            try{
                 if(err) res.json({err: err, message: "Something went wrong, please try again"});
                 else{
 
                     adminAccount.save();
                     res.json({sub: adminAccount, message: 'Your account has been created successfully'});
                 };
-            });
-        }
-    }catch(exception){
-        res.json({error: exception});
-    } 
+            }catch(exception){
+                res.json({error: exception});
+            } 
+        });
+    }    
 }
 
-BaseService.prototype.adminLogin = function(req, res, options, data){
-    try{
-        this.repo.get(options, '','','', function(err, result){
+adminService.prototype.adminLogin = function(req, res, options, data){
+    this.repo.get(options, '','','', function(err, result){
+        try{
             if (result.length < 1){
                 res.status(401).json({message: 'Email/Password is incorrect'});
             } else if(result.length >= 1){
@@ -70,10 +71,10 @@ BaseService.prototype.adminLogin = function(req, res, options, data){
             }else{
                 res.status(500).json({message: 'Email/Password is incorrect'});
             }
-        });
-    }catch(exception){
-        res.status(520).json({error: exception});
-    }
+        }catch(exception){
+            res.status(520).json({error: exception});
+        }
+    });  
 }    
    
 module.exports = new adminService(joiSchema);
