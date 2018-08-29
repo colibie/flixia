@@ -41,7 +41,7 @@ userService.prototype.createAccount = function(req, res, data){
             res.json(valid);
         }else{
             repo.createAccount(data, function(err, userAccount){
-                if(err) res.json({err: err, message: "Something went wrong, please try again"});
+                if(err) res.status(500).json({err: err, message: "Something went wrong, please try again"});
                 else{
                     sendMail(req, res, data.email, data.username);
                     userAccount.save();
@@ -61,16 +61,17 @@ sendMail = function(req, res, userAccount, name){
             from: 'helloflixia@gmail.com', // sender address
             to: userAccount, // list of receivers
             subject: `Welcome to Our World Of Nollywood Movies ${name} 🎇`, // Subject line
-            html: "<p>You are very welcome to our platform😁. Expect enough fun and updates from us.</p>"
+            html: "<p>You are very welcome to our platform😁. Expect enough fun and updates from us.</p>"+
+                `Please click <a href='http://localhost:3000/users/email/verify/${userAccount}'>here😭</a` + 
+                `or copy this link to your browser: http://localhost:3000/users/email/verify/${userAccount}`
         };
-
         /**I need a function that ensures that email is sent
          * else notify me of the failure to send email.
          */
         // send mail with defined transport object
         transporter.sendMail(mailOptions, function(err){
             if (err) {
-                res.json({message: 'Account could not be created'})
+                res.status(500).json({message: 'Account could not be created'})
             }
             else{
                 console.log('Email sent successfully');
@@ -80,5 +81,28 @@ sendMail = function(req, res, userAccount, name){
         res.status(520).json({error:exception});
     }    
 }
+
+userService.prototype.verify = function(req, res, data){    
+    repo.get(data, '', '', '', function(err, user){
+        try {
+        if (err) res.status(500).json({err: err, message: 'Something went wrong.Please try again'});
+        else if (user.length >= 1){
+            if (user[0].verified == true){
+                res.json({message: 'You\'re already verified. Please proceed'})
+            }else{
+                repo.update(user[0]._id, {verified: true}, function(err, update){
+                    if(err) res.status(500).json({err: err, message: `The user could not be verified`});
+                    else res.json({message: update});
+                });
+            }
+        }else {
+            res.status(404).json({message: 'Your email doesn\'t seem to be registered. Please do try to signup again'});
+        }
+    } catch (error) {
+        res.status(520).json({error: error});
+        }
+    });
+}
+
     
 module.exports = new userService(joiSchema);
