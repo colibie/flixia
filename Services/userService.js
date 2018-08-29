@@ -26,7 +26,7 @@ userService.prototype = baseService(repo);
 
 userService.prototype.uploadPicture = function(req, res, data){
     try{
-        repo.update(data._id, {profilePicture: data.profilePicture}, function(err, user){
+        repo.update(data._id, {profilePicture: data.profilePicture, profilePictureId : data.profilePictureId}, function(err, user){
             if(err) res.json({err: err, message: `The user could not be updated`});
             else res.json({message: 'Profile picture uploaded successfully'});
         });
@@ -83,8 +83,8 @@ sendMail = function(req, res, userAccount, name){
 }
 
 userService.prototype.deleteUser = function (req, res, id){
-    repo.getById(id,'','','', function(err, data)
-    {
+    repo.getById(id,'','','', function(err, data){
+
        try {
            if (data != null){
             repo.delete({_id:id}, function(err, result){
@@ -98,11 +98,11 @@ userService.prototype.deleteUser = function (req, res, id){
                         }
                     });
              } else {
-               res.json({message: "Trailer not found, delete not successful"});
+               res.json({message: "Picture not found, delete not successful"});
            }
         
        } catch(exception){
-            //res.json({error : err});
+            res.json({error : exception});
        }
     })       
 };
