@@ -2,7 +2,8 @@ var repo = require('../Repositories/userRepo');
 var baseService = require('../Services/baseService'); //contains the content of module.exports
 var joiSchema = require('../JoiSchema/userSchema');
 var nodemailer = require('nodemailer');
-var validator = require('../JoiSchema/validator')
+var validator = require('../JoiSchema/validator');
+var token = require('../Config/jwt');
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -45,7 +46,14 @@ userService.prototype.createAccount = function(req, res, data){
                 else{
                     sendMail(req, res, data.email, data.username);
                     userAccount.save();
-                    res.json({sub: userAccount, message: 'Your account has been created successfully'});
+                    res.json({
+                        sub: userAccount, 
+                        message: 'Your account has been created successfully',
+                        token: token({
+                            email: data.email,
+                            id: data._id
+                        }),
+                    });
                 };
             });
         }
@@ -70,7 +78,7 @@ sendMail = function(req, res, userAccount, name){
         // send mail with defined transport object
         transporter.sendMail(mailOptions, function(err){
             if (err) {
-                res.json({message: 'Account could not be created'})
+                console.log('Email not sent');
             }
             else{
                 console.log('Email sent successfully');
