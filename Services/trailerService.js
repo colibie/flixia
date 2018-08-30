@@ -47,6 +47,7 @@ trailerService.prototype.addPopulate = function(req, res, data){
         });
     }
 }
+
 trailerService.prototype.deleteTrailer = function (req, res, id){
     repo.getById(id,'','','', function(err, data){
        try {

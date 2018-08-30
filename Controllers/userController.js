@@ -38,7 +38,7 @@ exports.search = function(req, res){
 
 exports.delete = function(req, res){
     var option = req.params.id;
-    return service.delete(req, res, option);
+    return service.deleteUser(req, res, option);
 }
 
 exports.login = function(req, res){
