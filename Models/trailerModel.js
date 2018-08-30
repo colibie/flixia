@@ -4,7 +4,7 @@ var TrailerSchema = mongoose.Schema({
     title: String,
     description: String,
     rating: Number,
-    year: Number,
+    releaseDate: Number,
     productionCompany: String,
     duration: Number,
     trailerCover: String,

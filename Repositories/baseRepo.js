@@ -38,6 +38,11 @@ BaseRepo.prototype.findAndRemove = function(id, callback){
     this.model.findByIdAndRemove(id, callback);
 }    
 
+BaseRepo.prototype.getByRecent = function(count, options, columns, callback){
+    var query = this.model.find(options, columns, {limit: count, sort: {'releaseDate': -1}});
+    query.exec(callback);
+}
+
 module.exports = function(model){
     return new BaseRepo(model);
 };

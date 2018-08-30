@@ -57,11 +57,20 @@ exports.addProfilePicture = function(filename){
     });
 }
 
-exports.deleteUpload = function(publicId){
+exports.deleteImage = function(publicId){
     return new Promise(function(resolve){
         cloudinary.uploader.destroy(publicId, function(result){
             resolve(result);
-        });
+        }, {resource_type : "image"});
+    }, reject => {
+        reject({message: 'File could not be deleted'});
+    });
+}
+exports.deleteVideoFile = function(publicId){
+    return new Promise (function(resolve){
+        cloudinary.uploader.destroy(publicId, function(result){
+            resolve(result);
+        }, {resource_type: "video"});
     }, reject => {
         reject({message: 'File could not be deleted'});
     });

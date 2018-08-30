@@ -4,6 +4,7 @@ var joiSchema = require('../JoiSchema/userSchema');
 var nodemailer = require('nodemailer');
 var validator = require('../JoiSchema/validator');
 var token = require('../Config/jwt');
+var cloud = require('../Config/cloudinary');
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -25,10 +26,13 @@ function userService(joiSchema){
 userService.prototype = baseService(repo);
 
 userService.prototype.uploadPicture = function(req, res, data){
-    repo.update(data._id, {profilePicture: data.profilePicture}, function(err, user){
+    repo.update(data._id, {profilePicture: data.profilePicture, profilePictureId : data.profilePictureId}, function(err, user){
         try{
-            if(err) res.json({err: err, message: `The user could not be updated`});
-        else res.json({message: 'Profile picture uploaded successfully'});
+            if(err) res.json({err: err, message: `The profile picture could not be updated`});
+            else if (data.profilePictureId != null){
+                res.json({message: 'Profile picture uploaded successfully'});
+            }
+            else res.json({message: 'Profile picture not uploaded. Please try again'});
         }catch(exception){
             res.json({error:exception});
         }
@@ -112,4 +116,27 @@ userService.prototype.verify = function(req, res, data){
     });
 }
 
+userService.prototype.deleteUser = function (req, res, id){
+    repo.getById(id,'','','', function(err, data){
+        try {
+            if (data != null){
+                repo.delete({_id:id}, function(err, result){
+                    if (err) res.json({error: err, message: 'The data could not be deleted'});
+                    else if (result == null){
+                        res.json({message: 'Resource does not exist'});
+                    }else{
+                        cloud.deleteImage(data.profilePictureId).then(()=>{
+                            res.json({message: 'Resource deleted successfully'});
+                        });                  
+                    }
+                });
+            }else {
+                res.json({message: "Picture not found, delete not successful"});
+            }        
+        } catch(exception){
+            res.json({error : exception});
+        }
+    })       
+};
+    
 module.exports = new userService(joiSchema);
