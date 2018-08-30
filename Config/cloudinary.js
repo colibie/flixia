@@ -28,8 +28,7 @@ exports.addClipUpload = function(filename){
     return new Promise(resolve => {
         cloudinary.uploader.unsigned_upload(filename,'v6ebp55w', function(result){
             resolve({url: result.url, ID: result.public_id});
-        },         
-        {resource_type: 'video', use_filename: true});
+        }, {resource_type: 'video'});
     }, reject => {
         reject({message: 'File could not be uploaded'});
     });
