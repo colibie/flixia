@@ -17,4 +17,6 @@ router.delete('/delete/:id', clipController.delete);
 
 router.get('/search', clipController.search);
 
+router.get('/sort', clipController.getLatestClips);
+
 module.exports = router;
