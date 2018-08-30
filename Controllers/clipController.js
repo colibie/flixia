@@ -39,3 +39,11 @@ exports.delete = function(req, res){
     var option = req.params.id;
     return service.delete(req, res, option);
 }
+
+exports.getLatestClips = function(req, res){
+    try {
+        return service.getByRecent(req, res, Number.parseInt(req.query.releaseDate));   
+    } catch (exception){
+        res.json({error:exception});
+    }
+}
