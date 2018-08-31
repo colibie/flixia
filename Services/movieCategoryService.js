@@ -16,11 +16,11 @@ function movieCategoryService(joiSchema){
 movieCategoryService.prototype = baseService(repo);
 
 movieCategoryService.prototype.searchByCategory = function(req, res, option){
-    this.repo.get(option, this.structure, this.populateA, this.populateB, function(err, result){
+    this.repo.get(option, '', this.populateA, this.populateB, function(err, result){
         try{    
             if(err) res.status(500).json({err: err, message: 'Data could not be fetched'});
             else if (result.length >= 1){
-                res.json(result.tailers);
+                res.json(result[0].trailers);
             }else{
                 res.status(404).json({message: 'Not found'});
             }

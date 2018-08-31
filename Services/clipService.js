@@ -30,9 +30,13 @@ clipService.prototype.addPopulate = function(req, res, data){
                     }
                 }else{
                     userRepo.getById(result.user, '' , '' , '' , function(err, user){
-                        user.clips.push(result._id);
-                        user.save();
-                        if(err) res.json({err: err, message: 'the clip could not be added'});
+                        if(user != null){
+                            user.clips.push(result._id);
+                            user.save();
+                            if(err) res.json({err: err, message: 'the clip could not be added'});
+                        }else{
+                            res.json({message: 'User does not exist'});
+                        }
                     });
                 res.json({message: 'the clip was added successfully', clip: result});
                 }
