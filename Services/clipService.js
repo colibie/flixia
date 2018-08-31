@@ -3,6 +3,7 @@ var baseService = require('../Services/baseService'); //contains the content of 
 var joiSchema = require('../JoiSchema/clipSchema');
 var userRepo = require('../Repositories/userRepo');
 var validator = require('../JoiSchema/validator');
+var cloud = require('../Config/cloudinary');
 
 function clipService(joiSchema){
     //must be added for population purposes
@@ -46,5 +47,29 @@ clipService.prototype.addPopulate = function(req, res, data){
         });
     }
 }
+
+clipService.prototype.deleteClip = function (req, res, id){
+    repo.getById(id,'','','', function(err, data){
+       try {
+           if (data != null){
+            repo.delete({_id:id}, function(err, result){
+                if (err) res.json({error: err, message: 'The data could not be deleted'});
+                else if (result == null){
+                    res.json({message: 'Resource does not exist'});
+                }else{
+                        cloud.deleteVideoFile(data.clipContentId);
+                        res.json({message: 'Resource deleted successfully'});
+                                             
+                        }
+                    });
+            } else {
+               res.json({message: "Trailer not found, delete not successful"});
+            }        
+        } catch(exception){
+            res.json({error : exception});
+        }
+    });      
+};
+
 
 module.exports = new clipService(joiSchema);
