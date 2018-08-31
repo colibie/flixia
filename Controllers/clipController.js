@@ -1,6 +1,7 @@
 var service = require('../Services/clipService');
 var cloudinary = require('../Config/cloudinary');
 
+
 exports.add = function(req, res){
     var data = {
         title: req.body.title,
@@ -21,6 +22,7 @@ exports.add = function(req, res){
     });
 }
 
+
 exports.getAll = function(req, res){
     return service.getAll(req, res);
 }
@@ -37,12 +39,12 @@ exports.search = function(req, res){
 
 exports.delete = function(req, res){
     var option = req.params.id;
-    return service.delete(req, res, option);
+    return service.deleteClip(req, res, option);
 }
 
 exports.getLatestClips = function(req, res){
     try {
-        return service.getByRecent(req, res, Number.parseInt(req.query.releaseDate));   
+        return service.getByRecent(req, res, Number.parseInt(req.query.time));   
     } catch (exception){
         res.json({error:exception});
     }
