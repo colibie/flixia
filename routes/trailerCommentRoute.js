@@ -3,10 +3,10 @@ var router = express.Router();
 var trailerCommentController = require('../Controllers/trailerCommentController');
 
 /* GET trailers listing. */
-router.get('/', trailerCommentController.getAll);
+router.get('/:trailer/comments/', trailerCommentController.getComments);
 
-router.post('/create', trailerCommentController.add); //loginprotected
+router.post('/:trailer/comments/create', trailerCommentController.add); //loginprotected
 
-router.delete('/delete/:id', trailerCommentController.delete); //adminprotected
+router.delete('/:trailer/comments/delete/:id', trailerCommentController.delete); //adminprotected
 
 module.exports = router;
