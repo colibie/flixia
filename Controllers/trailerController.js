@@ -6,7 +6,7 @@ exports.add = function(req, res){
         title: req.body.title,
         description: req.body.description,
         rating: req.body.rating,
-        releaseDate: req.body.releaseDate,
+        releaseDate: req.body.releaseDate, //YearMonthDate
         productionCompany: req.body.productionCompany,
         duration: req.body.duration,
         language: req.body.language,
