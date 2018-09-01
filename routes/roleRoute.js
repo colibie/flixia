@@ -14,4 +14,6 @@ router.delete('/delete/:id', roleController.delete);//adminprotected
 
 router.get('/search', roleController.search);
 
+router.post('/update/:id', roleController.update);
+
 module.exports = router;

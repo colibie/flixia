@@ -14,4 +14,6 @@ router.delete('/delete/:id', categoryController.delete);//admin protected
 
 router.get('/search', categoryController.search);
 
+router.post('/update/:id', categoryController.update);
+
 module.exports = router;

@@ -26,3 +26,9 @@ exports.delete = function(req, res){
     var option = req.params.id;
     return service.delete(req, res, option);
 }
+
+exports.update = function(req, res){
+    var id = req.params.id;
+    var option = req.body;
+    return service.update(req, res, id, option);
+}

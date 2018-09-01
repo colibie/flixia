@@ -20,4 +20,6 @@ router.get('/search/title/:title', trailerController.searchByTitle);
 
 router.get('/sort', trailerController.getLatestTrailers);
 
+router.post('/update/:id', trailerController.update);
+
 module.exports = router;

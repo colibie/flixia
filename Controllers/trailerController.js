@@ -62,6 +62,12 @@ exports.delete = function(req, res){
     return service.deleteTrailer(req, res, option);
 }
 
+exports.update = function(req, res){
+    var id = req.params.id;
+    var option = req.body;
+    return service.update(req, res, id, option);
+}
+
 exports.getLatestTrailers = function(req, res){
     try {
         return service.getByRecent(req, res, Number.parseInt(req.query.releaseDate));   
