@@ -9,6 +9,10 @@ exports.add = function(req, res){
         releaseDate: req.body.releaseDate,
         productionCompany: req.body.productionCompany,
         duration: req.body.duration,
+        language: req.body.language,
+        filmingLocations: req.body.filmingLocations,
+        budget: req.body.budget,    
+        officialSite: req.body.officialSite,
         categories: req.body.categories,
         trailerCover: req.files[0].path,
         trailerCoverId : '',
@@ -42,7 +46,15 @@ exports.getById = function(req, res){
 
 exports.search = function(req, res){
     var option = req.query;
+    // var key = Object.keys(option).toString();
+    // var value = option[Object.keys(option).toString()]
     return service.search(req, res, option);
+}
+
+exports.searchByTitle = function(req, res){
+    var option = req.params.title;
+    var data = {title: {$regex: option, $options: 'i'}};
+    return service.searchByTitle(req, res, data);
 }
 
 exports.delete = function(req, res){
