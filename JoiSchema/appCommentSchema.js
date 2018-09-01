@@ -4,6 +4,6 @@ var Joi = require('joi');
 module.exports = Joi.object().keys({
     content: Joi.string().required(),
     time: Joi.any(),
-    email : Joi.string().email().required(),
-    name : Joi.string().required(),
+    email : Joi.string().email(),
+    name : Joi.string(),
 });

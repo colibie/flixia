@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 var appCommentController = require('../Controllers/appCommentController');
 
-/* GET trailers listing. */
+/* GET reviews listing. */
 router.get('/', appCommentController.getAll); 
 
 router.get('/search/:id', appCommentController.getById); //protected

@@ -45,9 +45,9 @@ app.use(function(req, res, next){
 
 //connecting to mongoose database
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/nmdb');
-// mongoose.connect('mongodb://'+ process.env.DB_USER + ':' 
-//                   + process.env.DB_PASS + '@ds121652.mlab.com:21652/flixia');
+// mongoose.connect('mongodb://localhost:27017/nmdb');
+mongoose.connect('mongodb://'+ process.env.DB_USER + ':' 
+                  + process.env.DB_PASS + '@ds121652.mlab.com:21652/flixia');
 
 //Routes which should handle requests
 app.use('/', indexRouter);
@@ -60,7 +60,7 @@ app.use('/clips', clipsRouter);
 app.use('/clipComments', clipCommentRouter);
 app.use('/celebrities', celebrityRouter);
 app.use('/admin', adminRouter);
-app.use('/appComment', appCommentRouter);
+app.use('/reviews', appCommentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

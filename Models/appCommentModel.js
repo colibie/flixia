@@ -4,7 +4,7 @@ var appCommentSchema = mongoose.Schema({
     name : String,
     time : Date,
     content : String,
-    email: {type: String, unique: true},
+    email: String,
 });
 
 module.exports = mongoose.model('AppComment', appCommentSchema);
