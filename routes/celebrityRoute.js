@@ -17,4 +17,6 @@ router.delete('/delete/:id', celebrityController.delete);
 
 router.get('/search', celebrityController.search);
 
+router.get('/search/name/:name', celebrityController.searchByName);
+
 module.exports = router;

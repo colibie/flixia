@@ -16,6 +16,8 @@ router.delete('/delete/:id', trailerController.delete);
 
 router.get('/search', trailerController.search);
 
+router.get('/search/title/:title', trailerController.searchByTitle);
+
 router.get('/sort', trailerController.getLatestTrailers);
 
 module.exports = router;

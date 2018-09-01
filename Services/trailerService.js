@@ -72,4 +72,19 @@ trailerService.prototype.deleteTrailer = function (req, res, id){
     });      
 };
 
+trailerService.prototype.searchByTitle = function(req, res, option){
+    this.repo.get(option, this.structure, this.populateA, this.populateB, function(err, result){
+        try{    
+            if(err) res.status(500).json({err: err, message: 'Data could not be fetched'});
+            else if (result.length >= 1){
+                res.json(result);
+            }else{
+                res.status(404).json({message: 'Not found'});
+            }
+        }catch(exception){
+            res.status(520).json({error:exception});
+        } 
+    });
+}
+
 module.exports = new trailerService(joiSchema);

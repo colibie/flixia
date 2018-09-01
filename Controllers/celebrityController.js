@@ -34,6 +34,12 @@ exports.search = function(req, res){
     return service.search(req, res, option);
 }
 
+exports.searchByName = function(req, res){
+    var option = req.params.name;
+    var data = {name: {$regex: option, $options: 'i'}};
+    return service.searchByName(req, res, data);
+}
+
 exports.delete = function(req, res){
     var option = req.params.id;
     return service.delete(req, res, option);
