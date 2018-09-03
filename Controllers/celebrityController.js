@@ -42,5 +42,5 @@ exports.searchByName = function(req, res){
 
 exports.delete = function(req, res){
     var option = req.params.id;
-    return service.delete(req, res, option);
+    return service.deleteCelebrity(req, res, option);
 }
