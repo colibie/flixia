@@ -179,7 +179,7 @@ userService.prototype.forgotPass = (req, res) => async.waterfall([
         subject: 'Flixia Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+          'http://' + req.headers.host + '/users/reset/' + token + '\n\n' +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n'
       };
       smtpTransport.sendMail(mailOptions, function(err) {
@@ -192,5 +192,50 @@ userService.prototype.forgotPass = (req, res) => async.waterfall([
     if (err) return res.json({error : err});
     //res.redirect('/forgot');
   });
+
+
+  userService.prototype.resetPass = function(req, res) {
+    async.waterfall([
+      function(done) {
+        repo.getOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+          if (!user) {
+            res.json({message:'Password reset token is invalid or has expired.'});
+            //return res.redirect('back');
+          }
+  
+          user.password = req.body.password;
+          user.resetPasswordToken = undefined;
+          user.resetPasswordExpires = undefined;
+  
+          user.save(function(err) {
+            //req.login(user, function(err) {
+              done(err, user);
+            });
+          });
+      },
+      function(user, done) {
+        var smtpTransport = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'helloflixia@gmail.com',
+            pass: 'genesystechhub'
+          }
+        });
+        var mailOptions = {
+          to: user.email,
+          from: 'helloflixia@gmail.com',
+          subject: 'Your password has been changed',
+          text: 'Hello,\n\n' +
+            'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+        };
+        smtpTransport.sendMail(mailOptions, function(err) {
+          req.json({message: 'Success! Your password has been changed.'});
+          done(err);
+        });
+      }
+    ], function(err) {
+      res.json({message : 'Password reset succesful'});
+    });
+  };
     
 module.exports = new userService(joiSchema);
