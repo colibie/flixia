@@ -6,7 +6,7 @@ exports.add = function(req, res){
     data = {
         name: req.body.name,
         biography: req.body.biography,
-        dateOfBirth: req.body.dateOfBirth,//YearMonthDate
+        dateOfBirth: req.body.dateOfBirth,//MonthDate eg 0101 = jan 1st
         picture : req.file.path,
         pictureId: '', 
         roles: req.body.roles,
@@ -49,4 +49,8 @@ exports.update = function(req, res){
 exports.delete = function(req, res){
     var option = req.params.id;
     return service.delete(req, res, option);
+}
+
+exports.getByBirth = function(req, res){
+    return service.getByBirth(req, res);
 }
