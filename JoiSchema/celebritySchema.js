@@ -6,6 +6,8 @@ module.exports = Joi.object().keys({
     biography: Joi.string(),
     dateOfBirth: Joi.number().integer(),
     picture : Joi.string(),
+    thumbnail : Joi.string(),
+    thumbnailId : Joi.any(),
     pictureId: Joi.any(),
     roles: Joi.any(),
 });
