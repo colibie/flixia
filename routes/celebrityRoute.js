@@ -10,7 +10,7 @@ router.get('/', celebrityController.getAll);
 router.get('/search/:id', celebrityController.getById);
 
 //adminprotected
-router.post('/create', uploadService.upload.single('picture'), celebrityController.add);
+router.post('/create', uploadService.upload.any(), celebrityController.add);
 
 //adminprotected
 router.delete('/delete/:id', celebrityController.delete);
