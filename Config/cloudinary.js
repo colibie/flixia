@@ -7,7 +7,7 @@ exports.addTrailerCover = function(filename){
             resolve({url: result.url, ID: result.public_id});
         },
         {resource_type: 'image', folder: 'trailerImages', use_filename: true, 
-            width: 250, height: 350, crop:'limit'});
+            width: 250, height: 350, crop:'crop'});
     }, reject => {
         reject({message: 'File could not be uploaded'});
     });
@@ -41,7 +41,7 @@ exports.addCelebrityPictures = function(filename){
             resolve({url: result.url, ID: result.public_id});
         },         
         {resource_type: 'image',folder: 'celebPictures', use_filename: true,
-            width:1024, crop: 'limit'});
+            width:1024, crop: 'crop'});
     }, reject => {
         reject({message: 'File could not be uploaded'});
     });
@@ -53,7 +53,7 @@ exports.addCelebrityThumbnails = function(filename){
             resolve({url: result.url, ID: result.public_id});
         },         
         {resource_type: 'image',folder: 'celebThumbs', use_filename: true,
-            width:250, height:350, crop:'limit'});
+            width:250, height:350, crop:'crop'});
     }, reject => {
         reject({message: 'File could not be uploaded'});
     });
@@ -96,7 +96,7 @@ exports.addPromoTrailerPictures = function(filename){
             resolve({url: result.url, ID: result.public_id});
         },
         {resource_type: 'image', folder: 'promoTrailerImages', use_filename: true, 
-            width: 1080, height: 610, crop:'limit'});
+            width: 1080, height: 610, crop:'crop'});
     }, reject => {
         reject({message: 'File could not be uploaded'});
     });

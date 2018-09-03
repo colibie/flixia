@@ -8,7 +8,7 @@ module.exports = Joi.object().keys({
     productionCompany: Joi.string(),
     duration: Joi.number().min(20).max(180),
     language: Joi.string(),
-    budget: Joi.number(),
+    budget: Joi.any(),
     officialSite: Joi.string(), 
     filmingLocations: Joi.any(),
     categories: Joi.any(),

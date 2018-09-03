@@ -50,3 +50,11 @@ exports.delete = function(req, res){
     var option = req.params.id;
     return service.deleteTrailer(req, res, option);
 }
+
+exports.getLatestTrailers = function(req, res){
+    try {
+        return service.getByRecent(req, res, Number.parseInt(req.query.dateAdded));   
+    } catch (exception){
+        res.json({error:exception});
+    }
+}
