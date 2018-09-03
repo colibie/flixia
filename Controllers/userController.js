@@ -69,3 +69,10 @@ exports.uploadPicture = function(req, res){
         res.json({message: rejected.message});
     });
 }
+
+
+
+exports.forgotPass = function(req, res, next) {
+    //var email = req.body.email;
+    service.forgotPass(req, res);
+  };
