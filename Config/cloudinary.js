@@ -34,10 +34,13 @@ exports.addClipUpload = function(filename){
     });
 }
 
-exports.addCelebrityPicture = function(filename){
+exports.addCelebrityPictures = function(filenameA, filnameB){
     return new Promise(resolve => {
-        cloudinary.uploader.upload(filename, function(result){
+        cloudinary.uploader.upload(filenameA, function(result){
             resolve({url: result.url, ID: result.public_id});
+            cloudinary.uploader.upload(filenameB, function(result){
+                resolve({url: result.url, ID: result.public_id});
+            });
         },         
         {resource_type: 'image',folder: 'celebPictures', use_filename: true});
     }, reject => {
