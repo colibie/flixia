@@ -5,8 +5,8 @@ var PromoTrailerSchema = mongoose.Schema({
     releaseDate: Number,
     trailerId: Number,
     genre: Array,
-    promoImage: String,
-    promoImageId: String
+    promoCover: String,
+    promoCoverId: String
 });
 
 module.exports = mongoose.model('PromoTrailer', PromoTrailerSchema);

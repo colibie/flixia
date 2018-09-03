@@ -79,6 +79,7 @@ exports.deleteImage = function(publicId){
         reject({message: 'File could not be deleted'});
     });
 }
+
 exports.deleteVideoFile = function(publicId){
     return new Promise (function(resolve){
         cloudinary.uploader.destroy(publicId, function(result){
@@ -86,5 +87,17 @@ exports.deleteVideoFile = function(publicId){
         }, {resource_type: "video"});
     }, reject => {
         reject({message: 'File could not be deleted'});
+    });
+}
+
+exports.addPromoTrailerPictures = function(filename){
+    return new Promise(resolve => {
+        cloudinary.uploader.upload(filename, function(result){
+            resolve({url: result.url, ID: result.public_id});
+        },
+        {resource_type: 'image', folder: 'promoTrailerImages', use_filename: true, 
+            width: 1080, height: 610, crop:'limit'});
+    }, reject => {
+        reject({message: 'File could not be uploaded'});
     });
 }
