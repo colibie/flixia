@@ -7,13 +7,16 @@ exports.add = function(req, res){
         name: req.body.name,
         biography: req.body.biography,
         dateOfBirth: req.body.dateOfBirth,//stands for date of birth
-        picture : req.file.path,
+        picture : req.files.path[0],
         pictureId: '', 
+        thumbnail : req.files.path[1],
         roles: req.body.roles,
     }
     cloudinary.addCelebrityPicture(data.picture).then((result)=> {
         data.picture = result.url;
-        data.pictureId = result.ID;        
+        data.pictureId = result.ID;
+        data.thumbnail = result.url;
+        data.thumbnailId = result.ID;        
         return service.addPopulate(req, res, data);
     }, (rejected) => {
         res.json({message: rejected.message});
