@@ -4,6 +4,7 @@ var baseService = require('../Services/baseService'); //contains the content of 
 var joiSchema = require('../JoiSchema/celebritySchema');
 var roleRepo = require('../Repositories/roleRepo');
 var validator = require('../JoiSchema/validator');
+var cloud = require('../Config/cloudinary');
 
 function celebrityService(joiSchema){
     //must be added for population purposes
@@ -46,6 +47,31 @@ celebrityService.prototype.addPopulate = function(req, res, data){
         });
     }
 }
+
+celebrityService.prototype.deleteCelebrity = function (req, res, id){
+    repo.getById(id,'','','', function(err, data){
+       try {
+           if (data != null){
+            repo.delete({_id:id}, function(err, result){
+                if (err) res.json({error: err, message: 'The data could not be deleted'});
+                else if (result == null){
+                    res.json({message: 'Resource does not exist'});
+                }else{
+                    cloud.deleteImage(data.pictureId).then(()=>{
+                         cloud.deleteImage(data.thumbnailId);
+                        res.json({message: 'Resource deleted successfully'});
+                            });                  
+                        }
+                    });
+            } else {
+               res.json({message: "Celebrity not found, delete not successful"});
+            }        
+        } catch(exception){
+            res.json({error : exception});
+        }
+    });      
+};
+
 
 celebrityService.prototype.searchByName = function(req, res, option){
     this.repo.get(option, this.structure, this.populateA, this.populateB, function(err, result){
