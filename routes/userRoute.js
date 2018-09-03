@@ -23,4 +23,6 @@ router.post('/login', userController.login);
 
 router.get('/email/verify/:email',userController.verify);
 
+router.post('/update/:id', userController.update);
+
 module.exports = router;

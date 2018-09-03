@@ -19,4 +19,6 @@ router.get('/search', clipController.search);
 
 router.get('/sort', clipController.getLatestClips);
 
+router.post('/update/:id', clipController.update);
+
 module.exports = router;

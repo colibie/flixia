@@ -19,4 +19,8 @@ router.get('/search', celebrityController.search);
 
 router.get('/search/name/:name', celebrityController.searchByName);
 
+router.post('/update/:id', celebrityController.update);
+
+router.get('/birth', celebrityController.getByBirth);
+
 module.exports = router;

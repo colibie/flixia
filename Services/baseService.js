@@ -1,19 +1,13 @@
 var validator = require('../JoiSchema/validator');
 var bcrypt = require('bcrypt');
 var token = require('../Config/jwt');
+var born = require('../daysToBirth');
 
 //creating a constructor for base Services
 function BaseService(repo){
     if(!repo) throw new Error("A repo must be provided");
     this.repo = repo;
 }
-
-//can I fetch comments with a differnt route on a trailer page
-//something like 'GET ALL COMMENTS WHERE TRAILER = ID,
-//instead of populating, I can't seem to populate with this structure.
-// BaseService.prototype.populateRepo = function(){
-//     this.populateRepo.getById(data.)
-// }
 
 BaseService.prototype.add = function(req, res, data){
     var valid = validator.isValid(req, res, this.joiSchema, data);
@@ -146,6 +140,27 @@ BaseService.prototype.login = function(req, res, options, data){
             res.status(520).json({error: exception});
         }
     });  
+}
+
+//to get birthdays based on current date
+BaseService.prototype.getByBirth = function(req, res){
+    this.repo.get({}, '-__v','','', function(err, result){
+        if (err) res.json({err:err, message:'error, could not get latest item'});
+        else{
+            var ordered = [];
+            var passed = []
+            result.forEach(element => {
+                var day = parseInt(element.dateOfBirth % 100);
+                var month = parseInt(element.dateOfBirth / 100);
+                element.diff = born(month, day);
+                // checks if birthday is upcoming and pushes else, it pushes it to another
+                element.diff >= 0 ? ordered.push(element) : passed.push(element);
+            });
+            var see = ordered.sort(function(a, b){return a.diff - b.diff});
+            var saw = passed.sort(function(a,b){return a.diff - b.diff});
+            res.json(see.concat(saw));
+        };
+    });
 }
 
 module.exports = function(repo){

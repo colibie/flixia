@@ -6,7 +6,7 @@ exports.add = function(req, res){
         title: req.body.title,
         description: req.body.description,
         rating: req.body.rating,
-        releaseDate: req.body.releaseDate,
+        releaseDate: req.body.releaseDate, //YearMonthDate
         productionCompany: req.body.productionCompany,
         duration: req.body.duration,
         language: req.body.language,
@@ -60,6 +60,12 @@ exports.searchByTitle = function(req, res){
 exports.delete = function(req, res){
     var option = req.params.id;
     return service.deleteTrailer(req, res, option);
+}
+
+exports.update = function(req, res){
+    var id = req.params.id;
+    var option = req.body;
+    return service.update(req, res, id, option);
 }
 
 exports.getLatestTrailers = function(req, res){

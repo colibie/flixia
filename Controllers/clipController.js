@@ -49,3 +49,9 @@ exports.getLatestClips = function(req, res){
         res.json({error:exception});
     }
 }
+
+exports.update = function(req, res){
+    var id = req.params.id;
+    var option = req.body;
+    return service.update(req, res, id, option);
+}

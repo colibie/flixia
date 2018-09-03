@@ -21,4 +21,6 @@ router.post('/signup', adminController.createAccount);
 
 router.post('/login', adminController.login);
 
+router.post('/update/:id', adminController.update);
+
 module.exports = router;
