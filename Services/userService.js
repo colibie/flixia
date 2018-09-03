@@ -5,6 +5,9 @@ var nodemailer = require('nodemailer');
 var validator = require('../JoiSchema/validator');
 var token = require('../Config/jwt');
 var cloud = require('../Config/cloudinary');
+var model = require('../Models/userModel');
+var async = require('async');
+var crypto = require('crypto');
 
 var transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -138,5 +141,56 @@ userService.prototype.deleteUser = function (req, res, id){
         }
     })       
 };
+
+
+userService.prototype.forgotPass = (req, res) => async.waterfall([
+    function(done) {
+      crypto.randomBytes(20, function(err, buf) {
+        var token = buf.toString('hex');
+        done(err, token);
+      });
+    },
+    function(token, done) {
+      repo.getOne({ email: req.body.email }, function(err, user) {
+        if (!user) {
+         // req.flash('error', 'No account with that email address exists.');
+          return res.redirect('/forgot');
+        }
+
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+        user.save(function(err) {
+          done(err, token, user);
+        });
+      });
+    },
+    function(token, user, done) {
+      var smtpTransport = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'helloflixia@gmail.com',
+          pass: 'genesystechhub'
+        }
+      });
+      var mailOptions = {
+        to: user.email,
+        from: 'helloflixia@gmail.com',
+        subject: 'Flixia Password Reset',
+        text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+      };
+      smtpTransport.sendMail(mailOptions, function(err) {
+          console.log('about to send mail');
+        //req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+        done(err, 'done');
+      });
+    }
+  ], function(err) {
+    if (err) return res.json({error : err});
+    //res.redirect('/forgot');
+  });
     
 module.exports = new userService(joiSchema);
