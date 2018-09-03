@@ -76,3 +76,8 @@ exports.forgotPass = function(req, res, next) {
     //var email = req.body.email;
     service.forgotPass(req, res);
   };
+
+  exports.resetPass = function(req, res, next){
+
+    service.resetPass(req, res);
+  };
