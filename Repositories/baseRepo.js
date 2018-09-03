@@ -43,6 +43,10 @@ BaseRepo.prototype.getByRecent = function(count, options, columns, callback){
     query.exec(callback);
 }
 
+BaseRepo.prototype.getOne = function(options, callback){
+    this.model.findOne(options, callback);
+}
+
 module.exports = function(model){
     return new BaseRepo(model);
 };
