@@ -13,22 +13,20 @@ exports.add = function(req, res){
         thumbnailId : '',
         roles: req.body.roles,
     }
-    cloudinary.addCelebrityPictures(data.picture, data.thumbnail).then((result)=> {
+    cloudinary.addCelebrityPictures(data.picture).then((result)=> {
         data.picture = result.url;
         data.pictureId = result.ID;
-        data.thumbnail = result.url;
-        data.thumbnailId = result.ID;       
-        return service.addPopulate(req, res, data);
+        cloudinary.addCelebrityThumbnails(data.thumbnail).then((result)=> {
+            data.thumbnail = result.url;
+            data.thumbnailId = result.ID;            
+            return service.addPopulate(req, res, data);
+        }, (rejected) => {
+            res.json({message: rejected.message});
+        });
     }, (rejected) => {
         res.json({message: rejected.message});
     });
-
-//     cloudinary.addCelebrityPictures(data.thumbnail).then((result)=>{
-//         data.thumbnail = result.url;
-//         data.thumbnailId = result.ID;
-//         return service.addPopulate
-//     });
- }
+}
 
 exports.getAll = function(req, res){
     return service.getAll(req, res);
