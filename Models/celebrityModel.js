@@ -9,6 +9,7 @@ var celebrityModel = mongoose.Schema({
     picture: String,
     pictureId: String,
     thumbnail : String,
+    thumbnailId : String,
     trailers: [{type: mongoose.Schema.Types.ObjectId, ref: 'Trailer'}],
 });
 
