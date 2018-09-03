@@ -7,7 +7,7 @@ exports.add = function(req, res){
         name: req.body.name,
         biography: req.body.biography,
         dateOfBirth: req.body.dateOfBirth,//MonthDate eg 0101 = jan 1st
-        picture : req.file.path,
+        picture : req.files[0].path,
         pictureId: '', 
         thumbnail : req.files[1].path,
         thumbnailId : '',
@@ -51,7 +51,7 @@ exports.searchByName = function(req, res){
 exports.update = function(req, res){
     var id = req.params.id;
     var option = req.body;
-    return service.update(req, res, id, option);
+    return service.updateCeleb(req, res, id, option);
 }
 
 exports.delete = function(req, res){

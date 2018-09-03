@@ -88,5 +88,26 @@ celebrityService.prototype.searchByName = function(req, res, option){
     });
 }
 
+celebrityService.prototype.updateCeleb = function(req, res, id, options){
+    this.repo.update(id, options, function(err, update){
+        try{
+            if(err) res.json({err: err, message: `The data could not be updated`});
+            else {
+                if (update.roles.length > 0){
+                    update.roles.forEach(element => {
+                        roleRepo.getById(element,'','','', function(err, role){
+                            role.celebrities.push(update._id);
+                            role.save();
+                            if(err) res.json({err: err, message: 'the celebrity could not be added'});
+                        });
+                    });
+                }
+                res.json({message: update})
+            };
+        }catch(exception){
+            res.status(520).json({error:exception})
+        } 
+    });   
+}
 
 module.exports = new celebrityService(joiSchema);
