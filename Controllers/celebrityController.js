@@ -7,21 +7,28 @@ exports.add = function(req, res){
         name: req.body.name,
         biography: req.body.biography,
         dateOfBirth: req.body.dateOfBirth,//stands for date of birth
-        picture : req.files.path[0],
+        picture : req.files[0].path,
         pictureId: '', 
-        thumbnail : req.files.path[1],
+        thumbnail : req.files[1].path,
+        thumbnailId : '',
         roles: req.body.roles,
     }
-    cloudinary.addCelebrityPicture(data.picture).then((result)=> {
+    cloudinary.addCelebrityPictures(data.picture, data.thumbnail).then((result)=> {
         data.picture = result.url;
         data.pictureId = result.ID;
         data.thumbnail = result.url;
-        data.thumbnailId = result.ID;        
+        data.thumbnailId = result.ID;       
         return service.addPopulate(req, res, data);
     }, (rejected) => {
         res.json({message: rejected.message});
     });
-}
+
+//     cloudinary.addCelebrityPictures(data.thumbnail).then((result)=>{
+//         data.thumbnail = result.url;
+//         data.thumbnailId = result.ID;
+//         return service.addPopulate
+//     });
+ }
 
 exports.getAll = function(req, res){
     return service.getAll(req, res);
