@@ -87,4 +87,55 @@ trailerService.prototype.searchByTitle = function(req, res, option){
     });
 }
 
+trailerService.prototype.updateTrailer = function(req, res, id, options){
+    this.repo.update(id, options, function(err, update){
+        try{
+            if(err) res.json({err: err, message: `The data could not be updated`});
+            else {
+                if (options.categories){
+                    update.categories.forEach(element => {
+                        categoryRepo.getById(element,'','','', function(err, category){
+                            category.trailers.push(update._id);
+                            category.save();
+                            if(err) res.json({err: err, message: 'the trailer could not be updated'});
+                        });
+                    });
+                }                           
+                res.json({message: update});
+            };
+        }catch(exception){
+            res.status(520).json({error:exception})
+        } 
+    });   
+}
+
+trailerService.prototype.updateTrailerGallery = function(req, res, id, upload){
+    this.repo.update(id, upload, function(err, update){
+        try{
+            if(err) res.json({err: err, message: `The data could not be updated`});
+            else {
+                if (upload.length > 2){
+                    cloud.deleteImage(update.trailerCoverId).then(()=>{
+                        cloud.deleteVideoFile(update.trailerVideoId).then(()=>{
+                            res.json({message: update});
+                        });
+                    });
+                }else if (upload.trailerCover){
+                    cloud.deleteImage(update.trailerCoverId).then(()=>{
+                        res.json({message: update});
+                    });
+                }else if(upload.trailerVideo){
+                    cloud.deleteVideoFile(update.trailerVideoId).then(()=>{
+                        res.json({message: update});
+                    });                           
+                }else{
+                    res.json({message: 'Movie was not updated, please try again'});
+                }
+            }
+        }catch(exception){
+            res.status(520).json({error:exception})
+        } 
+    }); 
+}
+
 module.exports = new trailerService(joiSchema);

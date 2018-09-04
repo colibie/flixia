@@ -75,3 +75,34 @@ exports.getLatestTrailers = function(req, res){
         res.json({error:exception});
     }
 }
+
+exports.updateMultipart = function(req, res){
+    var id = req.params.id;
+    var options = req.files;
+    var upload = {};
+    if (options.length > 1){
+        cloudinary.addTrailerCover(options[0].path).then((result)=> {
+            upload.trailerCover = result.url;
+            upload.trailerCoverId = result.ID;
+            cloudinary.addTrailerVideo(options[1].path).then((result)=> {
+                upload.trailerVideo = result.url;
+                upload.trailerVideoId = result.ID;
+                return service.updateTrailerGallery(req, res, id, upload);
+            });
+        });
+    }else if (options[0].fieldname == 'trailerCover'){
+        cloudinary.addTrailerCover(options[0].path).then((result)=> {
+            upload.trailerCover = result.url;
+            upload.trailerCoverId = result.ID;
+            return service.updateTrailerGallery(req, res, id, upload);
+            });
+    }else if(options[0].fieldname == 'trailerVideo'){
+        cloudinary.addTrailerVideo(options[0].path).then((result)=> {
+            upload.trailerVideo = result.url;
+            upload.trailerVideoId = result.ID;
+            return service.updateTrailerGallery(req, res, id, upload);
+            });
+    }else{
+        res.json({message: 'Request must contain either video or image'});
+    }   
+}

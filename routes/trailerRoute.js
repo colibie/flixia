@@ -22,4 +22,6 @@ router.get('/sort', trailerController.getLatestTrailers);
 
 router.post('/update/:id', trailerController.update);
 
+router.post('/update/gallery/:id', uploadService.upload.any(), trailerController.updateMultipart);
+
 module.exports = router;
