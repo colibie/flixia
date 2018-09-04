@@ -93,8 +93,8 @@ celebrityService.prototype.updateCeleb = function(req, res, id, options){
         try{
             if(err) res.json({err: err, message: `The data could not be updated`});
             else {
-                if (update.roles.length > 0){
-                    update.roles.forEach(element => {
+                if (options.roles.length > 0){
+                    options.roles.forEach(element => {
                         roleRepo.getById(element,'','','', function(err, role){
                             role.celebrities.push(update._id);
                             role.save();
@@ -108,6 +108,35 @@ celebrityService.prototype.updateCeleb = function(req, res, id, options){
             res.status(520).json({error:exception})
         } 
     });   
+}
+
+celebrityService.prototype.updateCelebrityGallery = function(req, res, id, upload){
+    this.repo.update(id, upload, function(err, update){
+        try{
+            if(err) res.json({err: err, message: `The data could not be updated`});
+            else {
+                if (upload.length > 2){
+                    cloud.deleteImage(update.pictureId).then(()=>{
+                        cloud.deleteImage(update.thumbnailId).then(()=>{
+                            res.json({message: update});
+                        });
+                    });
+                }else if (upload.picture){
+                    cloud.deleteImage(update.pictureId).then(()=>{
+                        res.json({message: update});
+                    });
+                }else if(upload.thumbnail){
+                    cloud.deleteImage(update.thumbnailId).then(()=>{
+                        res.json({message: update});
+                    });                           
+                }else{
+                    res.json({message: 'Celebrity image was not updated, please try again'});
+                }
+            }
+        }catch(exception){
+            res.status(520).json({error:exception})
+        } 
+    }); 
 }
 
 module.exports = new celebrityService(joiSchema);
