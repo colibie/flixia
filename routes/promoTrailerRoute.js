@@ -9,7 +9,7 @@ router.get('/', promoTrailerController.getAll);
 router.get('/search/:id', promoTrailerController.getById);
 
 //adminprotected
-router.post('/create', uploadService.upload.single(), promoTrailerController.add);
+router.post('/create', uploadService.upload.single('promoCover'), promoTrailerController.add);
 
 //adminprotected
 router.delete('/delete/:id', promoTrailerController.delete);

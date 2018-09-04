@@ -14,6 +14,26 @@ function promoTrailerService(joiSchema){
 }
 promoTrailerService.prototype = baseService(repo);
 
+promoTrailerService.prototype.get = function(req, res){
+    this.repo.get({}, this.structure, this.populateA, this.populateB, function(err, result){
+        try{
+            if(err) res.status(500).json({err: err, message: 'Data could not be fetched'});
+            else{
+                result.forEach(element => {
+                    if (element.stringReleaseDate > Date.now()){
+                        element.status = 'Coming Soon';
+                    }else{
+                        element.status = 'Out Now';
+                    }
+                });
+                res.json(result)
+            };
+        }catch(exception){
+            res.status(520).json({error:exception});
+        }
+    }); 
+}
+
 promoTrailerService.prototype.deleteTrailer = function (req, res, id){
     repo.getById(id,'','','', function(err, data){
        try {

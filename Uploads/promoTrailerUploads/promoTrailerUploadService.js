@@ -17,7 +17,7 @@ var fileFilter = function(req, file, callback){
         callback(null, true);
     } else {
         //reject a file
-        callback(new Error('Clips upload failed. Supports only jpeg/png'), false);
+        callback(new Error('Trailer promo upload failed. Supports only jpeg/png'), false);
     }    
 }
 
