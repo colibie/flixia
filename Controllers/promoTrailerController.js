@@ -5,11 +5,13 @@ var cloudinary = require('../Config/cloudinary');
 exports.add = function(req, res){
     data = {
         title: req.body.title,
-        releaseDate: new Date(req.body.releaseDate),
+        releaseDate: req.body.releaseDate,
+        stringReleaseDate: new Date(req.body.releaseDate),
         trailerId: req.body.trailerId,
         promoCover : req.file.path,
         promoCoverId: '', 
         genre: req.body.genre,
+        status: ''
     }
     cloudinary.addPromoTrailerPictures(data.promoCover).then((result)=> {
         data.promoCover = result.url;
@@ -21,7 +23,7 @@ exports.add = function(req, res){
 }
 
 exports.getAll = function(req, res){
-    return service.getAll(req, res);
+    return service.get(req, res);
 }
 
 exports.getById = function(req, res){
