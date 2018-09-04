@@ -154,7 +154,7 @@ userService.prototype.forgotPass = (req, res) => async.waterfall([
       repo.getOne({ email: req.body.email }, function(err, user) {
         if (!user) {
          // req.flash('error', 'No account with that email address exists.');
-          return res.redirect('/forgot');
+          return res.json({message:'Cant find user'});
         }
 
         user.resetPasswordToken = token;
@@ -197,22 +197,34 @@ userService.prototype.forgotPass = (req, res) => async.waterfall([
   userService.prototype.resetPass = function(req, res) {
     async.waterfall([
       function(done) {
-        repo.getOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
-          if (!user) {
-            res.json({message:'Password reset token is invalid or has expired.'});
-            //return res.redirect('back');
-          }
-  
-          user.password = req.body.password;
-          user.resetPasswordToken = undefined;
-          user.resetPasswordExpires = undefined;
-  
-          user.save(function(err) {
+        try{
+        repo.getOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now()  } }, function(err, user) {
+          if (user) {
+              console.log(user); 
+              try{
+                user.password = req.body.password;
+                user.resetPasswordToken = undefined;
+                user.resetPasswordExpires = undefined;
+               }
+                catch(exception){
+                    res.json({error: exception});
+                }
+               user.save(function(err) {
             //req.login(user, function(err) {
               done(err, user);
             });
-          });
+          }
+          else {
+              res.json({error: 'Cannot find user'});
+          } 
+       
+        });
+         } catch(exception){
+                res.json({error:exception});
+       }   
+
       },
+    
       function(user, done) {
         var smtpTransport = nodemailer.createTransport({
           service: 'gmail',
@@ -229,7 +241,7 @@ userService.prototype.forgotPass = (req, res) => async.waterfall([
             'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
         };
         smtpTransport.sendMail(mailOptions, function(err) {
-          req.json({message: 'Success! Your password has been changed.'});
+          res.json({message: 'Success! Your password has been changed.'});
           done(err);
         });
       }
