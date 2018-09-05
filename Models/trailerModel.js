@@ -16,6 +16,7 @@ var TrailerSchema = mongoose.Schema({
     trailerCoverId: String,
     trailerVideoId: String,
     casts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Celebrity'}],
+    castActedAs: Array,
     categories: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
     trailerComments: [{type: mongoose.Schema.Types.ObjectId, ref: 'TrailerComment'}]
 })

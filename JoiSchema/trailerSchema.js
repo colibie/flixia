@@ -15,5 +15,7 @@ module.exports = Joi.object().keys({
     trailerCover: Joi.any().required(),
     trailerCoverId: Joi.any(),
     trailerVideo: Joi.any().required(),
-    trailerVideoId: Joi.any()
+    trailerVideoId: Joi.any(),
+    casts: Joi.any(),
+    castActedAs: Joi.any()
 });

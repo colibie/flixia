@@ -17,7 +17,9 @@ exports.add = function(req, res){
         trailerCover: req.files[0].path,
         trailerCoverId : '',
         trailerVideo: req.files[1].path,
-        trailerVideoId: ''
+        trailerVideoId: '',
+        casts: req.body.casts,
+        castActedAs: req.body.castActedAs
     }
     cloudinary.addTrailerCover(data.trailerCover).then((result)=> {
         data.trailerCover = result.url;
@@ -65,7 +67,7 @@ exports.delete = function(req, res){
 exports.update = function(req, res){
     var id = req.params.id;
     var option = req.body;
-    return service.update(req, res, id, option);
+    return service.updateTrailer(req, res, id, option);
 }
 
 exports.getLatestTrailers = function(req, res){
