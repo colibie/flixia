@@ -53,7 +53,7 @@ BaseService.prototype.getById = function(req, res, id){
 }
 
 BaseService.prototype.getByRecent = function(req, res, count){
-    this.repo.getByRecent(count, {}, '-__v', function(err, result){
+    this.repo.getByRecent(this.sort, count, {}, '-__v', function(err, result){
         if (err) res.json({err:err, message:'error, could not get latest item'});
         res.json(result);
     });
