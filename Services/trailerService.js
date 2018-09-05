@@ -2,14 +2,15 @@ var repo = require('../Repositories/trailerRepo');
 var baseService = require('../Services/baseService'); //contains the content of module.exports
 var joiSchema = require('../JoiSchema/trailerSchema');
 var categoryRepo = require('../Repositories/movieCategoryRepo');
+var celebrityRepo = require('../Repositories/celebrityRepo'); 
 var validator = require('../JoiSchema/validator');
 var cloud = require('../Config/cloudinary');
 
 function trailerService(joiSchema){
     //must be added for population purposes
     this.structure = '-__v';
-    this.populateA = {path: 'trailerComments', select: '-__v -trailer'}; // {path: 'categories', select: '-_id -__v'}
-    this.populateB = {path: 'categories', select: 'name'}; //{path: 'trailerComments', select:'-trailer -__v'};
+    this.populateA = {path: 'categories', select: 'name'}; // {path: 'categories', select: '-_id -__v'}
+    this.populateB = {path: 'casts', select: 'name'}; //{path: 'trailerComments', select:'-trailer -__v'};
     
     //needed to define the joiSchema
     this.joiSchema = joiSchema;
@@ -39,7 +40,16 @@ trailerService.prototype.addPopulate = function(req, res, data){
                             });
                         });
                     }
-                    res.json({message: 'the trailer was added successfully', movie: result});
+                    if (result.casts.length > 0){
+                        result.casts.forEach(element => {
+                            celebrityRepo.getById(element, '', '', function(err, celeb){
+                                celeb.trailers.push(result._id);
+                                celeb.save();
+                                if(err) res.json({err: err, message: 'The trailer could not be added'});
+                            });
+                        });
+                    }
+                    res.json({message: 'The trailer was added successfully', movie: result});
                 }            
             } catch (error) {
                 res.json({error: error});
@@ -92,11 +102,20 @@ trailerService.prototype.updateTrailer = function(req, res, id, options){
         try{
             if(err) res.json({err: err, message: `The data could not be updated`});
             else {
-                if (options.categories){
+                if (update.categories){
                     update.categories.forEach(element => {
                         categoryRepo.getById(element,'','','', function(err, category){
                             category.trailers.push(update._id);
                             category.save();
+                            if(err) res.json({err: err, message: 'the trailer could not be updated'});
+                        }); 
+                    });
+                }
+                if (update.casts){
+                    update.casts.forEach(element => {
+                        celebrityRepo.getById(element,'','','', function(err, celeb){
+                            celeb.trailers.push(update._id);
+                            celeb.save();
                             if(err) res.json({err: err, message: 'the trailer could not be updated'});
                         });
                     });
