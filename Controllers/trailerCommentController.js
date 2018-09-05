@@ -5,13 +5,15 @@ exports.add = function(req, res){
         time: Date.now(),
         content: req.body.content,
         rating: req.body.rating,
-        trailer: req.body.trailer,
+        user: req.body.user,
+        trailer: req.params.trailer,
     }
     return service.addPopulate(req, res, data);
 }
 
-exports.getAll = function(req, res){
-    return service.getAll(req, res);
+exports.getComments = function(req, res){
+    var data = {trailer : req.params.trailer}
+    return service.search(req, res, data);
 }
 
 exports.delete = function(req, res){

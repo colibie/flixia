@@ -18,6 +18,7 @@ var rolesRouter = require('./routes/roleRoute')
 var celebrityRouter = require('./routes/celebrityRoute');
 var adminRouter = require('./routes/adminRoute');
 var appCommentRouter = require('./routes/appCommentRouter');
+var promoTrailerRouter = require('./routes/promoTrailerRoute');
 
 var app = express();
 
@@ -54,13 +55,14 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/movieCategories', movieCategories);
 app.use('/trailers', trailersRouter);
-app.use('/trailer/comments', trailerCommentsRouter);
+app.use('/trailer', trailerCommentsRouter);
 app.use('/roles', rolesRouter);
 app.use('/clips', clipsRouter);
 app.use('/clipComments', clipCommentRouter);
 app.use('/celebrities', celebrityRouter);
 app.use('/admin', adminRouter);
 app.use('/reviews', appCommentRouter);
+app.use('/promotions/trailers/', promoTrailerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

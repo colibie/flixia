@@ -19,4 +19,10 @@ router.get('/search', celebrityController.search);
 
 router.get('/search/name/:name', celebrityController.searchByName);
 
+router.post('/update/:id', celebrityController.update);
+
+router.get('/birth', celebrityController.getByBirth);
+
+router.post('/update/gallery/:id', uploadService.upload.any(), celebrityController.updateMultipart);
+
 module.exports = router;

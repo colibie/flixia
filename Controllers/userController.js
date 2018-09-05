@@ -81,3 +81,8 @@ exports.forgotPass = function(req, res, next) {
 
     service.resetPass(req, res);
   };
+exports.update = function(req, res){
+    var id = req.params.id;
+    var option = req.body;
+    return service.update(req, res, id, option);
+}

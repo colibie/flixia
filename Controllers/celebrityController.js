@@ -6,29 +6,27 @@ exports.add = function(req, res){
     data = {
         name: req.body.name,
         biography: req.body.biography,
-        dateOfBirth: req.body.dateOfBirth,//stands for date of birth
+        dateOfBirth: req.body.dateOfBirth,//MonthDate eg 0101 = jan 1st
         picture : req.files[0].path,
         pictureId: '', 
         thumbnail : req.files[1].path,
         thumbnailId : '',
         roles: req.body.roles,
     }
-    cloudinary.addCelebrityPictures(data.picture, data.thumbnail).then((result)=> {
+    cloudinary.addCelebrityPictures(data.picture).then((result)=> {
         data.picture = result.url;
         data.pictureId = result.ID;
-        data.thumbnail = result.url;
-        data.thumbnailId = result.ID;       
-        return service.addPopulate(req, res, data);
+        cloudinary.addCelebrityThumbnails(data.thumbnail).then((result)=> {
+            data.thumbnail = result.url;
+            data.thumbnailId = result.ID;            
+            return service.addPopulate(req, res, data);
+        }, (rejected) => {
+            res.json({message: rejected.message});
+        });
     }, (rejected) => {
         res.json({message: rejected.message});
     });
-
-//     cloudinary.addCelebrityPictures(data.thumbnail).then((result)=>{
-//         data.thumbnail = result.url;
-//         data.thumbnailId = result.ID;
-//         return service.addPopulate
-//     });
- }
+}
 
 exports.getAll = function(req, res){
     return service.getAll(req, res);
@@ -50,7 +48,48 @@ exports.searchByName = function(req, res){
     return service.searchByName(req, res, data);
 }
 
+exports.update = function(req, res){
+    var id = req.params.id;
+    var option = req.body;
+    return service.updateCeleb(req, res, id, option);
+}
+
 exports.delete = function(req, res){
     var option = req.params.id;
     return service.deleteCelebrity(req, res, option);
+}
+
+exports.getByBirth = function(req, res){
+    return service.getByBirth(req, res);
+}
+
+exports.updateMultipart = function(req, res){
+    var id = req.params.id;
+    var options = req.files;
+    var upload = {};
+    if (options.length > 1){
+        cloudinary.addCelebrityPictures(options[0].path).then((result)=> {
+            upload.picture = result.url;
+            upload.pictureId = result.ID;
+            cloudinary.addCelebrityThumbnails(options[1].path).then((result)=> {
+                upload.thumbnail = result.url;
+                upload.thumbnailId = result.ID;
+                return service.updateCelebrityGallery(req, res, id, upload);
+            });
+        });
+    }else if (options[0].fieldname == 'picture'){
+        cloudinary.addCelebrityPictures(options[0].path).then((result)=> {
+            upload.picture = result.url;
+            upload.pictureId = result.ID;
+            return service.updateCelebrityGallery(req, res, id, upload);
+        });
+    }else if(options[0].fieldname == 'thumbnail'){
+        cloudinary.addCelebrityThumbnails(options[0].path).then((result)=> {
+            upload.thumbnail = result.url;
+            upload.thumbnailId = result.ID;
+            return service.updateCelebrityGallery(req, res, id, upload);
+            });
+    }else{
+        res.json({message: 'Request must contain a picture or thumbnail'});
+    }   
 }

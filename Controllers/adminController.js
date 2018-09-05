@@ -58,3 +58,9 @@ exports.uploadPicture = function(req, res){
         res.json({message: rejected.message});
     });
 }
+
+exports.update = function(req, res){
+    var id = req.params.id;
+    var option = req.body;
+    return service.update(req, res, id, option);
+}
