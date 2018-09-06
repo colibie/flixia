@@ -9,6 +9,8 @@ var UserSchema = mongoose.Schema({
     profilePicture: String,
     profilePictureId: String,
     verified: String,
+    resetPasswordToken : String,
+    resetPasswordExpires : Date,
     clips: [{type: mongoose.Schema.Types.ObjectId, ref: 'Clip'}],
 });
 

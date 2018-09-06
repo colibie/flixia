@@ -23,6 +23,10 @@ router.post('/login', userController.login);
 
 router.get('/email/verify/:email',userController.verify);
 
+router.post('/forgot', userController.forgotPass);
+
+router.post('/reset/:token', userController.resetPass);
+
 router.post('/update/:id', userController.update);
 
 module.exports = router;
