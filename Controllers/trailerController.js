@@ -22,10 +22,10 @@ exports.add = function(req, res){
         castActedAs: req.body.castActedAs
     }
     cloudinary.addTrailerCover(data.trailerCover).then((result)=> {
-        data.trailerCover = result.url;
+        data.trailerCover = result.secure_url;
         data.trailerCoverId = result.ID;
         cloudinary.addTrailerVideo(data.trailerVideo).then((result)=> {
-            data.trailerVideo = result.url;
+            data.trailerVideo = result.secure_url;
             data.trailerVideoId = result.ID;
             
             return service.addPopulate(req, res, data);
@@ -84,23 +84,23 @@ exports.updateMultipart = function(req, res){
     var upload = {};
     if (options.length > 1){
         cloudinary.addTrailerCover(options[0].path).then((result)=> {
-            upload.trailerCover = result.url;
+            upload.trailerCover = result.secure_url;
             upload.trailerCoverId = result.ID;
             cloudinary.addTrailerVideo(options[1].path).then((result)=> {
-                upload.trailerVideo = result.url;
+                upload.trailerVideo = result.secure_url;
                 upload.trailerVideoId = result.ID;
                 return service.updateTrailerGallery(req, res, id, upload);
             });
         });
     }else if (options[0].fieldname == 'trailerCover'){
         cloudinary.addTrailerCover(options[0].path).then((result)=> {
-            upload.trailerCover = result.url;
+            upload.trailerCover = result.secure_url;
             upload.trailerCoverId = result.ID;
             return service.updateTrailerGallery(req, res, id, upload);
             });
     }else if(options[0].fieldname == 'trailerVideo'){
         cloudinary.addTrailerVideo(options[0].path).then((result)=> {
-            upload.trailerVideo = result.url;
+            upload.trailerVideo = result.secure_url;
             upload.trailerVideoId = result.ID;
             return service.updateTrailerGallery(req, res, id, upload);
             });

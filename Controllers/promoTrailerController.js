@@ -14,7 +14,7 @@ exports.add = function(req, res){
         status: ''
     }
     cloudinary.addPromoTrailerPictures(data.promoCover).then((result)=> {
-        data.promoCover = result.url;
+        data.promoCover = result.secure_url;
         data.promoCoverId = result.ID;
         return service.add(req, res, data);
     }, (rejected) => {

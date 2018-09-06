@@ -14,10 +14,10 @@ exports.add = function(req, res){
         roles: req.body.roles,
     }
     cloudinary.addCelebrityPictures(data.picture).then((result)=> {
-        data.picture = result.url;
+        data.picture = result.secure_url;
         data.pictureId = result.ID;
         cloudinary.addCelebrityThumbnails(data.thumbnail).then((result)=> {
-            data.thumbnail = result.url;
+            data.thumbnail = result.secure_url;
             data.thumbnailId = result.ID;            
             return service.addPopulate(req, res, data);
         }, (rejected) => {
@@ -69,23 +69,23 @@ exports.updateMultipart = function(req, res){
     var upload = {};
     if (options.length > 1){
         cloudinary.addCelebrityPictures(options[0].path).then((result)=> {
-            upload.picture = result.url;
+            upload.picture = result.secure_url;
             upload.pictureId = result.ID;
             cloudinary.addCelebrityThumbnails(options[1].path).then((result)=> {
-                upload.thumbnail = result.url;
+                upload.thumbnail = result.secure_url;
                 upload.thumbnailId = result.ID;
                 return service.updateCelebrityGallery(req, res, id, upload);
             });
         });
     }else if (options[0].fieldname == 'picture'){
         cloudinary.addCelebrityPictures(options[0].path).then((result)=> {
-            upload.picture = result.url;
+            upload.picture = result.secure_url;
             upload.pictureId = result.ID;
             return service.updateCelebrityGallery(req, res, id, upload);
         });
     }else if(options[0].fieldname == 'thumbnail'){
         cloudinary.addCelebrityThumbnails(options[0].path).then((result)=> {
-            upload.thumbnail = result.url;
+            upload.thumbnail = result.secure_url;
             upload.thumbnailId = result.ID;
             return service.updateCelebrityGallery(req, res, id, upload);
             });
