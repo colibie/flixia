@@ -76,17 +76,26 @@ sendMail = function(req, res, userAccount, name){
             from: 'helloflixia@gmail.com', // sender address
             to: userAccount, // list of receivers
             subject: `Welcome to Our World Of Nollywood Movies ${name} 🎇`, // Subject line
-            html: `<h4>Hi ${name}!</h4>
-            <p>Welcome to Flixia! Thanks so much for joining us. You’re on your way to super-productivity and beyond!<p>
-
-            <p> Stay informed about your favourite movies and celebrities you admire</p>
-            
-            <p>Our number one tip to get the most out of Flixia is to always visit and send us feedbacks, tell us what you feel needs to be done and what you don’t like in our product, and we will improve and give you a better and fun experience.<p>
-            
-            <p>Have any questions? Just shoot us an email! We’re always here to help.</p>
-            
-            <p>Cheerfully yours,</br> 
-            The Flixia Team</p>`
+            html:`<body style = 'margin: auto;text-align: center;width:70%;'>
+            <figure>
+                <img src="https://i.imgur.com/xZA1hQ3.png" alt="Flixia" style="width: 100%;
+                height: auto;">
+            </figure>
+            <section>
+                <h1><strong id="logo" style="background: -webkit-linear-gradient(left, #ff9900, #000033);
+                    background-clip: text;
+                    -text-fill-color: transparent;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;">FLIXIA</strong> welcomes you, oh mighty ${name}!</h1>
+                <p>Thanks so much for joining us. You’re on your way to super-productivity and beyond!<p>
+                <p> Stay informed about your favourite movies and celebrities you admire</p>
+                <p>Our number one tip to get the most out of Flixia is to always visit and send us feedbacks, tell us what you feel needs to be done and what you don’t like in our product, and we will improve and give you a better and fun experience.<p>
+                <p>Have any questions? Just shoot us an email! We’re always here to help.</p>
+                
+                <p>Cheerfully yours,</br> 
+                    The Flixia Team</p>
+            </section>
+        </body>`,
         };
         /**I need a function that ensures that email is sent
          * else notify me of the failure to send email.
