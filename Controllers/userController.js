@@ -70,6 +70,17 @@ exports.uploadPicture = function(req, res){
     });
 }
 
+
+
+exports.forgotPass = function(req, res, next) {
+    //var email = req.body.email;
+    service.forgotPass(req, res);
+  };
+
+  exports.resetPass = function(req, res, next){
+
+    service.resetPass(req, res);
+  };
 exports.update = function(req, res){
     var id = req.params.id;
     var option = req.body;
