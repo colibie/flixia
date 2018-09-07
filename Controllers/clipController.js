@@ -14,7 +14,7 @@ exports.add = function(req, res){
         clipContentId: '',
     }
     cloudinary.addClipUpload(data.clipContent).then((result)=> {
-        data.clipContent = result.secure_url;
+        data.clipContent = result.url;
         data.clipContentId = result.ID;        
         return service.addPopulate(req, res, data);
     }, (rejected) => {

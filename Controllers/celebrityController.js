@@ -69,23 +69,23 @@ exports.updateMultipart = function(req, res){
     var upload = {};
     if (options.length > 1){
         cloudinary.addCelebrityPictures(options[0].path).then((result)=> {
-            upload.picture = result.secure_url;
+            upload.picture = result.url;
             upload.pictureId = result.ID;
             cloudinary.addCelebrityThumbnails(options[1].path).then((result)=> {
-                upload.thumbnail = result.secure_url;
+                upload.thumbnail = result.url;
                 upload.thumbnailId = result.ID;
                 return service.updateCelebrityGallery(req, res, id, upload);
             });
         });
     }else if (options[0].fieldname == 'picture'){
         cloudinary.addCelebrityPictures(options[0].path).then((result)=> {
-            upload.picture = result.secure_url;
+            upload.picture = result.url;
             upload.pictureId = result.ID;
             return service.updateCelebrityGallery(req, res, id, upload);
         });
     }else if(options[0].fieldname == 'thumbnail'){
         cloudinary.addCelebrityThumbnails(options[0].path).then((result)=> {
-            upload.thumbnail = result.secure_url;
+            upload.thumbnail = result.url;
             upload.thumbnailId = result.ID;
             return service.updateCelebrityGallery(req, res, id, upload);
             });
