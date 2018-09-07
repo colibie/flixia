@@ -11,6 +11,7 @@ function trailerService(joiSchema){
     this.structure = '-__v';
     this.populateA = {path: 'categories', select: 'name'}; // {path: 'categories', select: '-_id -__v'}
     this.populateB = {path: 'casts', select: 'name'}; //{path: 'trailerComments', select:'-trailer -__v'};
+    this.sort = {'releaseDate': -1};
     
     //needed to define the joiSchema
     this.joiSchema = joiSchema;
