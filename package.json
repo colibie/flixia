@@ -20,7 +20,7 @@
     "http-errors": "~1.6.2",
     "joi": "^13.6.0",
     "joi-errors-for-forms": "^0.2.6",
-    "jsonwebtoken": "^8.3.0",
+    "jsonwebtoken": "^9.0.0",
     "mongod": "^2.0.0",
     "mongodb": "^3.1.4",
     "mongoose": "^5.2.12",
